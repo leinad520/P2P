@@ -1,3 +1,3 @@
-const API_KEY = 'API KEY HERE'
+// const API_KEY = 'API KEY HERE'
 
-module.exports = API_KEY;
+// module.exports = API_KEY;
