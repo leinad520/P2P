@@ -17,8 +17,20 @@ app.use(cors());
 app.use(express.static('client/dist'));
 
 
+
 axios.defaults.headers.common['Authorization'] = process.env.HR_TOKEN;
 
+app.get('/products', (req, res) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/', {
+    headers: {
+      Authorization: process.env.HR_TOKEN
+    }
+  })
+  .then(data => res.status(200).send(data.data))
+  .catch(err => {
+    console.log(err.message);
+  })
+});
 
 // GET & SORT PRODUCTS
 app.get('/productreviews/:id/:sortType', (req, res) => {
@@ -53,6 +65,19 @@ app.get('/productmeta/:id', (req, res) => {
   })
 });
 
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, {
+    headers: {
+      Authorization: process.env.HR_TOKEN
+    }
+  })
+})
+  .then(data => res.status(200).send(data.data))
+  .catch(err => {
+    console.log(err.message);
+})
+
 // GET SECURE URL from AWS:
 app.get('/s3Url', (req, res) => {
   s3().then(url => res.status(200).send(url));
@@ -65,6 +90,23 @@ app.post('/review', (req, res) => {
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews',
     data: req.body,
     headers: {'Authorization': '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'}
+  })
+  .then(success => {
+    console.log('success')
+    res.status(201).end();
+  })
+  .catch(err => {
+    console.log(err.message);
+    res.status(400).send(err);
+  })
+})
+
+app.get('/products/:id/styles', (req, res) => {
+  const { id } = req.params
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/styles`, {
+    headers: {
+      Authorization: process.env.HR_TOKEN
+    }
   })
   .then(success => {
     console.log('success')
@@ -91,7 +133,6 @@ app.put('/helpful', (req, res) => {
   })
 })
 
-// SERVE
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
-});
+  app.listen(PORT, () => {
+    console.log(`Server listening on port: ${PORT}`);
+  })
