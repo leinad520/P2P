@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.static('client/dist'));
 
 
-axios.defaults.headers.common['Authorization'] = process.env.GITHUB_TOKEN;
+axios.defaults.headers.common['Authorization'] = process.env.HR_TOKEN;
 
 app.get('/products', (req, res) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/', {
