@@ -22,7 +22,11 @@ class QAListEntry extends React.Component {
 
 
 render() {
-
+  var answers = [];
+  for (let answer in this.props.question.answers) {
+    answers.push(this.props.question.answers[answer]);
+  }
+  console.log('this is answers: ', answers);
   return (
     <>
     <div id="question">
@@ -30,7 +34,7 @@ render() {
     </div>
     <div id="answer">
     {console.log('this is this.props.question.answers:' , this.props.question.answers)}
-    {this.props.question.answers.map((answer, index) => {
+    {answers.map((answer, index) => {
       return <Answer answer={answer} key={index}/>
     })}
     </div>

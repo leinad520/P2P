@@ -35,9 +35,9 @@ class QA extends React.Component {
     });
   }
 
-  componentDidMount() {
-    axios.get()
-  }
+  // componentDidMount() {
+  //   axios.get()
+  // }
 
 
 
