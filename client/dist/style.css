@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: sans-serif, arial;
 }
@@ -154,3 +159,224 @@ img {
   height: 150px;
 
 }
+
+
+
+/* JIMMY'S STYLES */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: sans-serif, arial;
+}
+
+.animate {
+  transition: all 1s ease-in;
+}
+
+.star {
+  width: 0%;
+}
+
+.marker {
+  left: 0%;
+  position: absolute;
+  transform: translate(-50%, 0%);
+  height: 100%;
+  width: 1.5rem;
+  background-color: #333;
+  border-radius: 40px;
+  /* transition: all 1.5s cubic-bezier(.33,.98,1,.99); */
+}
+
+
+
+
+
+.btn {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 150px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.main-section {
+  margin: auto;
+  max-width: 900px;
+}
+
+/* RATINGS */
+.ratings-reviews-section {
+  display: flex;
+}
+
+.ratings-section {
+  padding: 10px;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  flex: 0 0 245px;
+}
+
+.rating-summary-top {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+}
+.rating-summary-top span {
+  font-size: 45px;
+}
+
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meta {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* REVIEWS */
+.reviews-section {
+  flex: 0 5 0;
+  padding: 10px;
+}
+
+/* Review.jsx */
+
+.review-container.animate {
+  transition-duration: 0.8s;
+}
+
+.review-container {
+  transform: translateY(10px);
+  opacity: 0;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-container.visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.review-container-sort {
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.review-select-sort {
+  -webkit-appearance: none;
+  border: none;
+  text-decoration: underline;
+}
+
+.review-text {
+  width: 100%;
+}
+
+.review-star-date{
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-recommend img {
+  width: 15px;
+  height: 15px;
+}
+
+.review-photo-holder {
+  display: flex;
+  gap: 10px;
+  height: 50px;
+  width: 50px;
+}
+.review-photo-holder img {
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-review-form {
+  display: flex;
+  flex-direction: column;
+}
+.product-review-form .select {
+  width: 500px;
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+}
+.product-review-form .select input {
+  margin: 0;
+  display: inline-block;
+  width: 25px;
+}
+.select div {
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  margin-top: 10px;
+}
+
+.product-review-form input {
+  width: 50%;
+  height: 25px;
+  border: solid #777 1px;
+  padding: 3px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.response {
+  background-color: rgb(235,235,235);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* END JIMMY'S STYLES */
