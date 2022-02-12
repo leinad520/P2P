@@ -18,23 +18,25 @@ class RelatedProducts extends React.Component {
     .then(res => {
       this.setState({relatedCardIds: res.data})
     })
-    .then(() => {
+    .then(() => { // Sometimes works, sometimes doesn't
       this.state.relatedCardIds.forEach(id =>
         axios.get(`/api/${id}`)
         .then(res => {
-          this.state.relatedCardObjs.push(res.data);
+          this.setState({relatedCardObjs: [...this.state.relatedCardObjs, res.data]});
         })
+        .catch(err => console.log(err))
       )
     })
+    .catch(err => console.log(err))
   }
 
   render() {
     return (
-      <section>
+      <section className="parent">
       {this.state.relatedCardObjs.map(card =>
         <div className="card">
-          <div className="card-picture"></div>
-          <div className="card-description"></div>
+          <div className="card-picture">hi</div>
+          <div className="card-description">bye</div>
         </div>
       )}
       </section>

@@ -2,15 +2,25 @@ body {
   font-family: sans-serif, arial;
 }
 
-.card {
+.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
 
+.card {
+  width: 150px;
+  height: 300px;
+  border: solid;
+  margin: 10px;
 }
 
 
 .card-picture {
-
+  height: 150px;
 }
 
 .card-description {
+  height: 150px;
 
 }
