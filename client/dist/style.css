@@ -1,3 +1,156 @@
 body {
   font-family: sans-serif, arial;
 }
+
+.styleButtons {
+  padding: 8px;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+
+.productInfo {
+  border-style: solid;
+  border-width: 2px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.styleContainer {
+  border-style: solid;
+  border-width: 2px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.imageContainer {
+  height: 840px;
+  width: 560px;
+  position: relative;
+  margin: 30px;
+}
+
+.imageContainer .slide img {
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.row {
+  display: flex;
+}
+
+.thumbnail {
+  opacity: 0.6;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+}
+
+.slide {
+  position: relative;
+  opacity: 0;
+  transition-duration: .5s ease;
+}
+
+.active.slide {
+  position: relative;
+  opacity: 1;
+  transition-duration: .5s;
+  transform: scale(1.05);
+}
+
+.active.slide img {
+  object-fit: contain;
+  height: 522px;
+  width: 800px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.imageContainer {
+  height: 522px;
+  width: 800px;
+}
+
+
+.modal {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em 1em;
+  z-index: 999999;
+  box-sizing: border-box;
+}
+
+.exitModal {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.exitModal:hover {
+  cursor: pointer;
+}
+.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.card {
+  width: 150px;
+  height: 300px;
+  border: solid;
+  margin: 10px;
+}
+
+
+.card-picture {
+  height: 150px;
+}
+
+.card-description {
+  height: 150px;
+
+}
