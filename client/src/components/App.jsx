@@ -1,7 +1,7 @@
 import React from 'react';
 import Overview from './OverviewComponents/Overview.jsx';
 import RelatedProductsAndOutfit from './RelatedProductsAndOutfit.jsx';
-
+import ReviewSection from './ReviewComponent/ReviewSection.jsx'
 
 const App = (props) => (
   <section>
@@ -9,7 +9,7 @@ const App = (props) => (
     {/* Daniel */}
     <RelatedProductsAndOutfit />
     {/* Matt */}
-    {/* reviews */}
+    <ReviewSection />
   </section>
 );
 
