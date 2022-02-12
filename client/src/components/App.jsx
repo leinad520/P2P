@@ -8,8 +8,8 @@ const App = (props) => (
   <section>
     <Overview />
     {/* Daniel */}
-    <QA />
     <RelatedProductsAndOutfit />
+    <QA />
     {/* Matt */}
     {/* reviews */}
   </section>
