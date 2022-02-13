@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Modal from './Modal.jsx';
+import Modal from '../sharedComponents/Modal/Modal.jsx';
 
 function ImageGallery({ currData }) {
 
