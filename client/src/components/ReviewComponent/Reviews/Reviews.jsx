@@ -28,6 +28,7 @@ const Reviews = ({
         <ModalWindow onClose={showModal} show={show}>
           <ReviewForm getReviews={getReviews} productId={productId} />
         </ModalWindow>
+        <button className="btn" onClick={e => {showModal()}}>CLICK ME</button>
         <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
         {
           reviews.results.map(review => {
