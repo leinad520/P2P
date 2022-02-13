@@ -225,6 +225,7 @@ img {
 /* RATINGS */
 .ratings-reviews-section {
   display: flex;
+  justify-content: center;
 }
 
 .ratings-section {
