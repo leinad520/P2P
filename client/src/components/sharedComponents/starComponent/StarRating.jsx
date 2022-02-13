@@ -1,16 +1,17 @@
 import React from 'react';
-const starEmpty = '../../../../assets/star-none.svg';
-const star = '../../../../assets/star.svg';
-const starOneQuarter = '../../../../assets/star-one-quarter.svg';
-const starHalf = '../../../../assets/star-half.svg';
-const starThreeQuarter = '../../../../assets/star-three-quarter.svg';
+const starEmpty = '../../../../static/star-none.svg';
+const star = '../../../../static/star.svg';
+const starOneQuarter = '../../../../static/star-one-quarter.svg';
+const starHalf = '../../../../static/star-half.svg';
+const starThreeQuarter = '../../../../static/star-three-quarter.svg';
+// const starThreeQuarter = '/client/static';
 
 const StarRating = (props) => {
   let returnStars = (rating) => {
     let starCount = [];
     while (rating > 0) {
       if (rating > .99) {
-        starCount.push(<img key={Math.random() * 100} src={starThreeQuarter} />);
+        starCount.push(<img key={Math.random() * 100} src={star} />);
       } else if (rating < 1 && rating >= 0.75) {
         starCount.push( <img key={Math.random() * 100} src={starThreeQuarter} />);
       } else if (rating < 0.75 && rating >= 0.5) {

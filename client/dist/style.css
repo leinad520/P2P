@@ -164,14 +164,7 @@ img {
 
 /* JIMMY'S STYLES */
 
-* {
-  padding: 0;
-  margin: 0;
-}
 
-body {
-  font-family: sans-serif, arial;
-}
 
 .animate {
   transition: all 1s ease-in;
@@ -179,6 +172,10 @@ body {
 
 .star {
   width: 0%;
+}
+
+.star-rating {
+  display: flex;
 }
 
 .marker {
@@ -191,10 +188,6 @@ body {
   border-radius: 40px;
   /* transition: all 1.5s cubic-bezier(.33,.98,1,.99); */
 }
-
-
-
-
 
 .btn {
   background-color: rgba(51, 51, 51, 0.05);
@@ -226,7 +219,7 @@ body {
 
 .main-section {
   margin: auto;
-  max-width: 900px;
+  max-width: 1200px;
 }
 
 /* RATINGS */

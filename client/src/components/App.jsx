@@ -5,12 +5,10 @@ import RelatedProductsAndOutfit from './RelatedProductsAndOutfit.jsx';
 import ReviewSection from './ReviewComponent/ReviewSection.jsx'
 
 const App = (props) => (
-  <section>
+  <section className="main-section">
     <Overview />
-    {/* Daniel */}
     <QA />
     <RelatedProductsAndOutfit />
-    {/* Matt */}
     <ReviewSection />
   </section>
 );
