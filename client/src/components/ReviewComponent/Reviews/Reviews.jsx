@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import Review from './Review.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import ReviewSort from './ReviewSort.jsx';
+import ModalWindow from '../../sharedComponents/modalComponent/Modal.jsx';
 import axios from 'axios';
 
 
