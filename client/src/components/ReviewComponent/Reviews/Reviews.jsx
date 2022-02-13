@@ -17,7 +17,9 @@ const Reviews = ({
     return <div data-testid="loading">loading...</div>
   } else {
     return (
+      // REVIEWS WORKING ... BUT I NEED TO RETRIEVE "100" BECAUSE SORT-BY-NEW IS NOT WORKING ... may need to implement front-end quick sort.
       <div className="reviews-section">
+        <ReviewForm getReviews={getReviews} productId={productId} />
         <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
         {
           reviews.results.map(review => {
@@ -39,7 +41,6 @@ const Reviews = ({
             );
           })
         }
-        <ReviewForm getReviews={getReviews} productId={productId} />
       </div>
   )
   }
