@@ -13,6 +13,11 @@ const Reviews = ({
                   getReviews,
                   onHelpfulClick
                 }) => {
+  const [show, setShow] = useState(false);
+
+  function showModal () {
+    setShow(!show);
+  }
 
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
