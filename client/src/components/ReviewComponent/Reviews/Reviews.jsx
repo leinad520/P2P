@@ -19,7 +19,9 @@ const Reviews = ({
     return (
       // REVIEWS WORKING ... BUT I NEED TO RETRIEVE "100" BECAUSE SORT-BY-NEW IS NOT WORKING ... may need to implement front-end quick sort.
       <div className="reviews-section">
-        <ReviewForm getReviews={getReviews} productId={productId} />
+        <ModalWindow onClose={showModal} show={show}>
+          <ReviewForm getReviews={getReviews} productId={productId} />
+        </ModalWindow>
         <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
         {
           reviews.results.map(review => {
