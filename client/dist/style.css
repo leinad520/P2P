@@ -213,8 +213,13 @@ img {
   width: 150px;
 }
 
+.btn:active {
+  background-color: #333;
+}
+
 .mt-10 {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .main-section {
@@ -226,6 +231,8 @@ img {
 .ratings-reviews-section {
   display: flex;
   justify-content: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .ratings-section {
@@ -234,7 +241,8 @@ img {
   display: flex;
   flex-direction: column;
   align-items: left;
-  flex: 0 0 245px;
+  flex: 1 0 20%;
+  min-width: 245px;
 }
 
 .rating-summary-top {
@@ -261,7 +269,7 @@ img {
 
 /* REVIEWS */
 .reviews-section {
-  flex: 0 5 0;
+  flex: 1 1 80%;
   padding: 10px;
 }
 
@@ -334,12 +342,14 @@ img {
 
 .product-review-form {
   display: flex;
+  /* justify-content: center; */
+  align-items: center;
   flex-direction: column;
 }
 .product-review-form .select {
   width: 500px;
   display: flex;
-  /* flex-direction: row; */
+  justify-content: center;
   align-items: center;
 }
 .product-review-form .select input {
@@ -347,9 +357,16 @@ img {
   display: inline-block;
   width: 25px;
 }
+
+#input-body {
+  height: 100px;
+}
+
 .select div {
+  justify-content: center;
+  width: 100%;
   display: flex;
-  align-items: center;
+  align-content: stretch;
 }
 
 .select {
@@ -374,3 +391,38 @@ img {
 }
 
 /* END JIMMY'S STYLES */
+
+.jim-modal {
+  transition: all 0.2s ease-in;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  top: 50%;
+  left: -50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  z-index: 10;
+  background-color: whitesmoke;
+  height: 600px;
+  width: 500px;
+  max-width: 80%;
+};
+
+.modal-btn button {
+  background-color: blue;
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none;
+}
+
+/* .jim-modal-header {}
+.title {}
+.close-button {}
+.jim-modal-body {} */
