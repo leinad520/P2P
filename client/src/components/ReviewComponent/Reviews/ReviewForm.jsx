@@ -39,7 +39,6 @@ const ReviewForm = (props) => {
         form.photos = [photoUrl];
         form.product_id = props.productId,
         form.characteristics = {}
-
         axios({
           method: 'post',
           url: 'http://localhost:3000/review',
@@ -74,8 +73,8 @@ const ReviewForm = (props) => {
       <input name="summary" type="text" placeholder="Review Summary"  required/>
       <div className="select" required>
         <div>Recommmend?</div>
-        <div><input name="recommend" type="radio" value="false" /> No</div>
-        <div><input name="recommend" type="radio" value="true" defaultChecked="checked" /> Yes</div>
+        <div><input name="recommend" type="radio" value="false" required/> No</div>
+        <div><input name="recommend" type="radio" value="true" required/> Yes</div>
       </div>
       <input name="body" type="textarea" placeholder="Write Your Review" required/>
       <input name="name" type="text" placeholder="Name"  />

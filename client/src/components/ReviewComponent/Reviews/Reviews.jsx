@@ -18,7 +18,6 @@ const Reviews = ({
   } else {
     return (
       <div className="reviews-section">
-        <ReviewForm getReviews={getReviews} productId={productId} />
         <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
         {
           reviews.results.map(review => {
@@ -40,6 +39,7 @@ const Reviews = ({
             );
           })
         }
+        <ReviewForm getReviews={getReviews} productId={productId} />
       </div>
   )
   }
