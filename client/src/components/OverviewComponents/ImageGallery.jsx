@@ -46,9 +46,9 @@ function ImageGallery({ currData }) {
   const renderModal = () => {
     if (currData.photos) {
       return (
-        <div className='modalContainer'>
-          <a className='exitModal' onClick={() => modal.current.close()}>&#10006;</a>
-          <img src={currData.photos[currPhotoIndex].url}></img>
+        <div className='modalContainer' onClick={() => modal.current.close()}>
+          {/* <a className='exitModal' onClick={() => modal.current.close()}>&#10006;</a> */}
+          <img className='modalImage' src={currData.photos[currPhotoIndex].url} onClick={() => modal.current.close()}></img>
         </div>
       )
     }

@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+/*
+  rem is based off of font size of the documents root
+  em is relative sizing to parent element
+*/
+
 body {
   font-family: sans-serif, arial;
 }
@@ -73,6 +78,10 @@ body {
   display: flex;
 }
 
+.column {
+  position: relative;
+}
+
 .thumbnail {
   opacity: 0.6;
 }
@@ -113,6 +122,7 @@ img {
 
 .modal {
   position: fixed;
+  display: flex;
   overflow: hidden;
   top: 0;
   right: 0;
@@ -127,16 +137,30 @@ img {
   padding: 1.5em 1em;
   z-index: 999999;
   box-sizing: border-box;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: stretch;
 }
 
-.exitModal {
+/* .exitModal {
+  border:rgba(149, 157, 165, 0.2) 1px solid;
+  padding: 5px;
+  background-color: aliceblue;
+  border-radius: 50%;
+  position: absolute;
   display: flex;
   justify-content: flex-end;
+  z-index:10;
+  left FONT-VARIANT: JIS90;
+  right: 1;
+  top: 18%;
+  left: 94%;
 }
 
 .exitModal:hover {
   cursor: pointer;
-}
+} */
+
 .parent {
   display: flex;
   flex-direction: row;
