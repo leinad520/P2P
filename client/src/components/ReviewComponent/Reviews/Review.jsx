@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useState, useRef} from 'react';
+import axios from 'axios';
 import moment from 'moment';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx'
 const checkmark = '../../../../static/checkmark.svg';
-import { useIntersection } from '../../animate.js';
 
 
 
@@ -21,6 +21,8 @@ function chopText (text) {
 };
 
 const Review = (props) => {
+  console.log('Review Page Render')
+  const [helpfulCount, setHelpfulCount] = useState(props.helpfulness);
   const momentDate = moment(props.date);
   const reviewDate = {
     year: momentDate.year(),
@@ -28,12 +30,17 @@ const Review = (props) => {
     day: (momentDate.day() +  + 1)
   }
 
-  const animRef = useRef();
-  let { isVisible } = useIntersection(animRef);
+  function onHelpfulClick(reviewId) {
+    axios({ method: 'put', url: 'http://localhost:3000/helpful', data: { reviewId }})
+      .then(success => {
+        setHelpfulCount(helpfulCount + 1);
+      })
+      .catch(err => console.log(err))
+  };
 
 
   return (
-    <div className={`review-container animate ${isVisible ? "visible" : ""}`} ref={animRef}>
+    <div className={`review-container animate visible`}>
       <div className="review-title-box">
         <div className="review-star-date">
           <StarRating rating={props.rating} />
@@ -66,14 +73,18 @@ const Review = (props) => {
         }
 
       <div className="review-links">
-        <span className="review-helpful">
-          Helpful?
-          <a href="#" onClick={() => props.onHelpfulClick(props.reviewId)}>Yes</a>
-          {(props.helpfulness > 0) && <p>{props.helpfulness} found this helpful</p>}
-        </span> | <a href="#">Report</a>
+
+            {(helpfulCount === 0) && (<a id="not-helpful-yet" className="helpful-link" onClick={() => onHelpfulClick(props.reviewId)}>Yes</a>)}
+
+            {(helpfulCount > 0) && (
+              <a className="helpful-link" onClick={() => onHelpfulClick(props.reviewId)}>Yes
+                <div className="helpful-count">{helpfulCount}</div>
+              </a>
+            )}
+
+          <a href="#" className="report">Report</a>
       </div>
       <div className="review-line" />
-
     </div>
   )
 }
