@@ -61,7 +61,7 @@ const Reviews = ({
 
         <div className="review-section-buttons">
           <button className="btn" onClick={e => {allReviewsObj.showThreeMoreReviews()}}>Show More</button>
-          <button className="btn" onClick={e => {showModal()}}>Add a Review</button>
+        <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
         </div>
 
         <ModalWindow onClose={showModal} show={show}>

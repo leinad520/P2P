@@ -15,10 +15,13 @@ const modalWindow = (props) => {
     return null;
   } else {
     return (
+      <>
       <div ref={elInput} className="jim-modal animate">
         {props.children}
-        <button className="btn" onClick={props.onClose}>Close</button>
+        <button id="modal-close-btn" className="btn" onClick={props.onClose}>close</button>
       </div>
+      <div className="jim-modal-backdrop"></div>
+      </>
     )
   }
 }

@@ -181,6 +181,7 @@ img {
 }
 
 .marker {
+  transition: all 3s ease-in;
   left: 0%;
   position: absolute;
   transform: translate(-50%, 0%);
@@ -189,6 +190,20 @@ img {
   background-color: #333;
   border-radius: 40px;
   /* transition: all 1.5s cubic-bezier(.33,.98,1,.99); */
+}
+
+#modal-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 2%;
+  left: 90%;
+  border-radius: 10px;
+  height: 50px;
+  width: 80px;
+  color: #333;
+  background-color: rgba(215, 177, 121);
 }
 
 .btn {
@@ -271,19 +286,22 @@ img {
 
 /* REVIEWS */
 .reviews-section {
+  position: relative;
   flex: 1 1 80%;
   padding: 10px;
 }
 
+
+
 /* Review.jsx */
 
 .review-container.animate {
-  transition-duration: 0.8s;
+  transition-duration: 0.4s;
 }
 
 .review-container {
-  transform: translateY(10px);
-  opacity: 0;
+  transform: translateX(250%);
+
   border-radius: 10px;
   padding: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -410,8 +428,24 @@ a.report  {
 
 /* PRODUCT REVIEW FORM */
 
+.form-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.form-image {
+  height: 100%;
+  flex: 1 1 30%;
+  background: url(https://bit.ly/3sF5qUD);
+  background-size: cover;
+  background-position-x: 70%;
+}
+
 .product-review-form {
   display: flex;
+  flex: 1 1 70%;
+  height: 100%;
   align-items: center;
   flex-direction: column;
 }
@@ -460,9 +494,19 @@ a.report  {
 }
 
 
-
+.jim-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.666);
+  z-index: 1;
+}
 .jim-modal {
+  z-index: 100;
   transition: all 0.2s ease-in;
+  background-color: #333;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   position: fixed;
@@ -473,23 +517,14 @@ a.report  {
   top: 50%;
   left: -50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
   z-index: 10;
-  background-color: whitesmoke;
   height: 600px;
-  width: 500px;
+  width: 900px;
   max-width: 80%;
 };
 
-.modal-btn button {
-  background-color: blue;
-  padding: 0;
-  border: none;
-  outline: none;
-  font: inherit;
-  color: inherit;
-  background: none;
-}
+
+
 
 /* .jim-modal-header {}
 .title {}

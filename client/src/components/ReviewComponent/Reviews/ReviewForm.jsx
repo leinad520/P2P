@@ -68,20 +68,25 @@ const ReviewForm = (props) => {
   }
 
   return(
-    <form className="product-review-form" id="imageForm" onSubmit={onFormSubmit} onChange={onFormChange}>
-      <input name="rating" type="number" placeholder="Rate Product" required/>
-      <input name="summary" type="text" placeholder="Review Summary"  required/>
-      <div className="select" required>
-        <div>Recommmend?</div>
-        <div><input name="recommend" type="radio" value="false" required/> No</div>
-        <div><input name="recommend" type="radio" value="true" required/> Yes</div>
+    <div className="form-container">
+      <div className="form-image"></div>
+      <div className="product-review-form">
+        <form  onSubmit={onFormSubmit} onChange={onFormChange}>
+          <input name="rating" type="number" placeholder="Rate Product" required/>
+          <input name="summary" type="text" placeholder="Review Summary"  required/>
+          <div className="select" required>
+            <div>Recommmend?</div>
+            <div><input name="recommend" type="radio" value="false" required/> No</div>
+            <div><input name="recommend" type="radio" value="true" required/> Yes</div>
+          </div>
+          <input name="body" type="textarea" placeholder="Write Your Review" required/>
+          <input name="name" type="text" placeholder="Name"  />
+          <input name="email" type="email" placeholder="Email"  />
+          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+          <button className="btn mt-10" type="submit">Submit Review</button>
+        </form>
       </div>
-      <input name="body" type="textarea" placeholder="Write Your Review" required/>
-      <input name="name" type="text" placeholder="Name"  />
-      <input name="email" type="email" placeholder="Email"  />
-      <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
-      <button className="btn mt-10" type="submit">Submit Review</button>
-    </form>
+    </div>
   );
 }
 

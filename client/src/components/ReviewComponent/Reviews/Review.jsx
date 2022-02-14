@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx'
@@ -23,12 +23,17 @@ function chopText (text) {
 const Review = (props) => {
   console.log('Review Page Render')
   const [helpfulCount, setHelpfulCount] = useState(props.helpfulness);
+  const elAnim = useRef(null);
   const momentDate = moment(props.date);
   const reviewDate = {
     year: momentDate.year(),
     month: (momentDate.month() + 1),
     day: (momentDate.day() +  + 1)
   }
+
+  useEffect(() => {
+    elAnim.current.style.transform = 'translateX(0%)'
+  })
 
   function onHelpfulClick(reviewId) {
     axios({ method: 'put', url: 'http://localhost:3000/helpful', data: { reviewId }})
@@ -40,7 +45,7 @@ const Review = (props) => {
 
 
   return (
-    <div className={`review-container animate visible`}>
+    <div ref={elAnim} className={`review-container animate`}>
       <div className="review-title-box">
         <div className="review-star-date">
           <StarRating rating={props.rating} />
