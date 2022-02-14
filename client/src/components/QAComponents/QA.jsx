@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import data from '../dummyQAdata.js';
+import data from './dummyQAdata.js';
 import QAList from './QAList.jsx';
 //this is the main component for the QA List
 //will map over the data and render each QA List Entry
@@ -47,10 +47,12 @@ render () {
     <>
     <h3>QUESTION & ANSWERS</h3>
     <section>
-      <form>
-        <input onChange={this.searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
+    <div className="searchContainer">
+      <form className="searchForm">
+        <input className="searchInput" onChange={this.searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
         <button id="q-btn-search">Search</button>
       </form>
+      </div>
     </section>
     <div id="qa-list">
     <QAList data={data}/>

@@ -1,9 +1,6 @@
 const express = require('express');
-<<<<<<< HEAD
-=======
 const morgan = require('morgan');
 const cors = require('cors');
->>>>>>> bbed84a60a250b0b920a13ad8e3d33992927271c
 const app = express();
 const axios = require('axios');
 const dotenv = require('dotenv').config();
@@ -83,8 +80,50 @@ app.get('/products/:id/styles', (req, res) => {
     })
   })
 
+// Q&A SECTION
+app.get('/qa/questions', (req, res) => {
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions', {
+    header: {
+      Authorization: process.env.HR_TOKEN
+    }
+  })
+  .then(response => {res.send(response.data)})
+  .catch(err => res.send(err))
+})
 
+// GET ALL ANSWERS FOR GIVEN QUESTION
+app.get('/qa/questions/:id/answers', (req, res) => {
+  const {id} = req.params
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`, {
+    headers: {
+      Authorization: process.env.HR_TOKEN
+    }
+  })
+  .then(response => {res.send(response.data);})
+  .catch(err => res.send(err))
+})
 
+//ADD QUESTION
+app.post('/qa/questions', (req, res) => {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions', req.body)
+  .then(success => {
+    console.log('success');
+    res.sendStatus(201).end();
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
+
+//ADD ANSWER
+
+//MARK QUESTION AS HELPFUL
+
+//REPORT QUESTION
+
+//MARK ANSWER AS HELPFUL
+
+//REPORT ANSWER
 
 // GET & SORT PRODUCTS
 app.get('/productreviews/:id/:sortType', (req, res) => {

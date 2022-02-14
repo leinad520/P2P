@@ -26,14 +26,13 @@ render() {
   for (let answer in this.props.question.answers) {
     answers.push(this.props.question.answers[answer]);
   }
-  console.log('this is answers: ', answers);
   return (
     <>
-    <div id="question">
-    {this.props.question.question_body} - {this.props.question.asker_name}
+    <div className="question">
+    <span id="Q">Q:</span>
+    <span>{this.props.question.question_body} - {this.props.question.asker_name}</span>
     </div>
-    <div id="answer">
-    {console.log('this is this.props.question.answers:' , this.props.question.answers)}
+    <div className="answer">
     {answers.map((answer, index) => {
       return <Answer answer={answer} key={index}/>
     })}
