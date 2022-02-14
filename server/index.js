@@ -157,7 +157,6 @@ app.put('/helpful', (req, res) => {
 })
 
 app.get("*/:id", (req, res) => {
-  console.log('OONGA BOONGA')
   res.sendFile('index.html', {root: path.join(__dirname, '/../client/dist')});
 });
 
