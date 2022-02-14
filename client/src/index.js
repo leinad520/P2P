@@ -15,19 +15,3 @@ ReactDOM.render(
   </Router>
   ,
   document.getElementById('app'));
-
-  <Routes>
-  <Route path="/" element={<App />}>
-    <Route path="invoices" element={<App />}>
-      <Route path=":invoiceId" element={<App />} />
-    </Route>
-    <Route
-      path="*"
-      element={
-        <main style={{ padding: "1rem" }}>
-          <p>There's nothing here!</p>
-        </main>
-      }
-    />
-  </Route>
-</Routes>
