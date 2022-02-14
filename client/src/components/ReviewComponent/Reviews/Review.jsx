@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import moment from 'moment';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx'
-const checkmark = '../../../../assets/checkmark.svg';
+const checkmark = '../../../../static/checkmark.svg';
 import { useIntersection } from '../../animate.js';
 
 

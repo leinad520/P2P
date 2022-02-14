@@ -12,14 +12,11 @@ const App = (props) => {
     productId = useParams().id
   }
 
-  console.log(productId, '~~~~~~~~~~~~~~~~~~~~~~~~')
-
   return (<section>
     <Overview productId={productId}/>
     {/* Daniel */}
     <QA />
     <RelatedProductsAndOutfit />
-    {/* Matt */}
     <ReviewSection />
   </section>)
 };

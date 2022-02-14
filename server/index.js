@@ -116,11 +116,15 @@ app.get('/productmeta/:id', (req, res) => {
 
 // GET SECURE URL from AWS:
 app.get('/s3Url', (req, res) => {
-  s3().then(url => res.status(200).send(url));
+  s3().then(url => {
+    console.log(url);
+    res.status(200).send(url)
+  });
 })
 
 // POST REVIEW
 app.post('/review', (req, res) => {
+  console.log(req.body);
   axios({
     method: 'post',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews',
