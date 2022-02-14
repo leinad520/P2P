@@ -6,9 +6,9 @@ import ReviewSection from './ReviewComponent/ReviewSection.jsx'
 
 const App = (props) => (
   <section className="main-section">
-    <Overview />
-    <QA />
-    <RelatedProductsAndOutfit />
+    {/* <Overview /> */}
+    {/* <QA /> */}
+    {/* <RelatedProductsAndOutfit /> */}
     <ReviewSection />
   </section>
 );

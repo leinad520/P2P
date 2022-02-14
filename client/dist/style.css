@@ -7,6 +7,8 @@ body {
   font-family: sans-serif, arial;
 }
 
+
+
 .styleButtons {
   padding: 8px;
   border-radius: 50%;
@@ -390,7 +392,7 @@ img {
   gap: 10px;
 }
 
-/* END JIMMY'S STYLES */
+
 
 .jim-modal {
   transition: all 0.2s ease-in;
@@ -426,3 +428,6 @@ img {
 .title {}
 .close-button {}
 .jim-modal-body {} */
+
+
+/* END JIMMY'S STYLES */
