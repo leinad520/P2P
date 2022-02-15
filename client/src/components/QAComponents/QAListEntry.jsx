@@ -28,10 +28,15 @@ render() {
   }
   return (
     <>
-    <div id="question">
-    {this.props.question.question_body} - {this.props.question.asker_name}
+    <div className="question">
+    <span id="Q">Q:</span>
+    <span>{this.props.question.question_body} - {this.props.question.asker_name}</span>
     </div>
+<<<<<<< HEAD:client/src/components/QAComponents/QAListEntry.jsx
+    <div className="answer">
+=======
     <div id="answer">
+>>>>>>> master:client/src/components/QAListEntry.jsx
     {answers.map((answer, index) => {
       return <Answer answer={answer} key={index}/>
     })}
