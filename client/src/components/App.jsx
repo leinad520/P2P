@@ -14,13 +14,8 @@ const App = (props) => {
 
   return (<section>
     <Overview productId={productId}/>
-    {/* Daniel */}
     <RelatedProductsAndOutfit />
-<<<<<<< HEAD
     <QA />
-    {/* Matt */}
-=======
->>>>>>> master
     <ReviewSection />
   </section>)
 };
