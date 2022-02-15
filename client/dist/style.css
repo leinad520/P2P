@@ -488,13 +488,17 @@ a.report  {
   color: #222222; /* Start color when not clicked */
 }
 
-.starrating > input:checked ~ label {
+.goldcolor {
+  color: hsl(47, 90%, 39%);
+}
+
+/* .starrating > input:checked ~ label {
   color: #ffca08 ;
-} /* Set yellow color when star checked */
+}
 
 .starrating > input:hover ~ label {
   color: #ffca08;
-} /* Set yellow color when star hover */
+} */
 
 /* End Star Styling */
 

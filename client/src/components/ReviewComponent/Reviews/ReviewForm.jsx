@@ -5,11 +5,57 @@ import axios from 'axios';
 const ReviewForm = (props) => {
   const [file, setFile] = useState([]);
   const [form, setForm] = useState({});
+  console.log('Render')
   const starOne = useRef(null);
   const starTwo = useRef(null);
   const starThree = useRef(null);
   const starFour = useRef(null);
   const starFive = useRef(null);
+
+  function onStarClick (e) {
+    e.persist();
+    if (e.target.checked === true) {
+      console.log(e.target.value);
+      if (e.target.value === '1') {
+        console.log('1')
+        starOne.current.style.color = "#ffca08";
+        starTwo.current.style.color = "#222222";
+        starThree.current.style.color = "#222222";
+        starFour.current.style.color = "#222222";
+        starFive.current.style.color = "#222222";
+      } else if (e.target.value === '2') {
+        console.log('2')
+        starOne.current.style.color = "#ffca08";
+        starTwo.current.style.color = "#ffca08";
+        starThree.current.style.color = "#222222";
+        starFour.current.style.color = "#222222";
+        starFive.current.style.color = "#222222";
+      } else if (e.target.value === '3') {
+        console.log('3')
+        starOne.current.style.color = "#ffca08";
+        starTwo.current.style.color = "#ffca08";
+        starThree.current.style.color = "#ffca08";
+        starFour.current.style.color = "#222222";
+        starFive.current.style.color = "#222222";
+      } else if (e.target.value === '4') {
+        console.log('4')
+        starOne.current.style.color = "#ffca08";
+        starTwo.current.style.color = "#ffca08";
+        starThree.current.style.color = "#ffca08";
+        starFour.current.style.color = "#ffca08";
+        starFive.current.style.color = "#222222";
+      } else if (e.target.value === '5') {
+        console.log('5')
+        starOne.current.style.color = "#ffca08";
+        starTwo.current.style.color = "#ffca08";
+        starThree.current.style.color = "#ffca08";
+        starFour.current.style.color = "#ffca08";
+        starFive.current.style.color = "#ffca08";
+      }
+
+    }
+
+  };
 
   function onFileChange (e) {
     e.persist();
@@ -70,7 +116,9 @@ const ReviewForm = (props) => {
         setForm({...form, [e.target.name]: e.target.value})
       }
     }
-  }
+  };
+
+
 
   return(
     <div className="form-container">
@@ -81,26 +129,29 @@ const ReviewForm = (props) => {
           <h3>Submit a Review</h3>
           <h4>Tell us what you think!</h4>
           <fieldset>
+              <div className="starrating risingstar d-flex justify-content-center flex-row-reverse" onClick={onStarClick}>
+                  <input type="radio"id="star1" name="rating" value="1" />
+                  <label ref={starOne} value="1" htmlFor="star1" title="1 star"></label>
 
-              <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
+                  <input type="radio" id="star2" name="rating" value="2" />
+                  <label ref={starTwo} value="2" htmlFor="star2" title="2 star"></label>
 
-                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star">2</label>
+                  <input type="radio" id="star3" name="rating" value="3" />
+                  <label ref={starThree} value="3" htmlFor="star3" title="3 star"></label>
 
-                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star">3</label>
+                  <input type="radio" id="star4" name="rating" value="4" />
+                  <label ref={starFour} value="4" htmlFor="star4" title="4 star"></label>
 
-                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star">4</label>
-
-                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star">5</label>
+                  <input type="radio" id="star5" name="rating" value="5" />
+                  <label ref={starFive} value="5" htmlFor="star5" title="5 star"></label>
               </div>
-
           </fieldset>
 
           <fieldset>
-            <input name="name" type="text" placeholder="Name" tabIndex="4" required></input>
+            <input name="name" type="text" placeholder="Name" tabIndex="1" autoFocus required></input>
           </fieldset>
           <fieldset>
-            <input name="email" type="email" placeholder="Email" tabIndex="4" required></input>
+            <input name="email" type="email" placeholder="Email" tabIndex="2" required></input>
           </fieldset>
           <div className="select" required>
             <div>Recommmend?</div>
@@ -109,11 +160,11 @@ const ReviewForm = (props) => {
           </div>
           <fieldset>
 
-            <input name="summary" type="text" placeholder="Review Summary" required tabIndex="2" required></input>
+            <input name="summary" type="text" placeholder="Review Summary" required tabIndex="3" required></input>
 
           </fieldset>
           <fieldset>
-            <textarea name="body" placeholder="Type your Message Here...." tabIndex="5" required></textarea>
+            <textarea name="body" placeholder="Type your Message Here...." tabIndex="4" required></textarea>
           </fieldset>
           <fieldset>
           <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
