@@ -9,10 +9,10 @@ function ProductHeader({ currStyle }) {
   }
 
   return (
-    <div>
+    <div className='productHeader'>
+      <h2>{currStyle.name}</h2>
       <div>stars READ ALL REVIEWS</div>
       <h3>{currStyle.category}</h3>
-      <h2>{currStyle.name}</h2>
       <div>{currStyle.default_price}</div>
       {renderProductOverView()}
     </div>

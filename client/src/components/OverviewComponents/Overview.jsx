@@ -14,28 +14,46 @@ import axios from 'axios';
 function Overview({ productId }) {
 
   const [product, setProduct] = useState({});
+  const [currData, setCurrData] = useState({});
+
+  useEffect(() => {
+    getStyles();
+  }, [])
 
   useEffect(() => {
     getProduct();
   }, [])
 
+  const getStyle = (currStyle) => {
+    setCurrData(currStyle);
+  }
+  
   const getProduct = async () => {
     try {
-      const res = await axios.get(`/products/${prodcutId}`)
+      const res = await axios.get(`/products/${productId}`)
       setProduct(res.data);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
 
+  const getStyles = async () => {
+    try {
+      const res = await axios.get(`/products/${productId}/styles`)
+      setCurrData(res.data.results[0]);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
-    <div>
-      {/* <ImageGallery styles={exampleStyles}/> */}
-      <ProductHeader currStyle={product}/>
-      <StyleSelector productId={productId}/>
-      {/* <AddToCart styles={exampleStyles}/> */}
-      <ProductInfo currStyle={product}/>
+    <div className='MegaContainer'>
+      <ImageGallery currData={currData} />
+      <div className='productInfoContainer'>
+        <ProductHeader currStyle={product} />
+        <StyleSelector productId={productId} getStyle={getStyle}/>
+        <ProductInfo currStyle={product} />
+      </div>
     </div>
   )
 }

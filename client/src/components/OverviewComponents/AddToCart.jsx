@@ -37,16 +37,18 @@ function AddToCart({ currData, defaultStyle }) {
   }
 
   return (
-    <form>
-      <select onChange={(e) => onSizeChange(e)}>
-        <option value='select size'>Select Size</option>
-        {Object.keys(currData).length && renderSizes()}
-      </select>
-      <select>
-        {renderQuantity()}
-      </select>
-      <input type='submit' value='Add to Cart'></input>
-    </form>
+    <div>
+      <form>
+        <select onChange={(e) => onSizeChange(e)}>
+          <option value='select size'>Select Size</option>
+          {Object.keys(currData).length && renderSizes()}
+        </select>
+        <select>
+          {renderQuantity()}
+        </select>
+        <input type='submit' value='Add to Cart'></input>
+      </form>
+    </div>
   )
 }
 

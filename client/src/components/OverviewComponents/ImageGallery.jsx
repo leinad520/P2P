@@ -4,15 +4,16 @@ import Modal from '../sharedComponents/Modal/Modal.jsx';
 function ImageGallery({ currData }) {
 
   const modal = useRef(null);
-  const [currPhotoIndex, setCurrPhotoIndex] = useState(0); // want state to be the big photo
+  const [currPhotoIndex, setCurrPhotoIndex] = useState(0);
   const length = currData.photos ? currData.photos.length : 0;
+
 
   const renderImage = () => {
     if (currData.photos) {
       return currData.photos.map((photo, index) => {
         return (
           <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
-            {index === currPhotoIndex && (<img value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
+            {index === currPhotoIndex && (<img className='active-photo' value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
           </div>
         )
       })
@@ -21,10 +22,23 @@ function ImageGallery({ currData }) {
 
   const renderThumbnails = () => {
     if (currData.photos) {
-      return currData.photos.map((photo, index) => {
+      let photoSet;
+      if (currData.photos.length >= 4) {
+        if (currData.photos[currPhotoIndex + 4]) {
+          photoSet = currData.photos.slice(currPhotoIndex, currPhotoIndex + 4);
+        } else {
+          photoSet = currData.photos.slice(currData.photos.length - 4);
+        }
+      } else {
+        photoSet = currData.photos;
+      }
+      return photoSet.map((photo, index) => {
         return (
           <div className='column' key={`column ${index} ${photo.style_id}`}>
-            <input className='thumbnail' type='image' src={photo.thumbnail_url} onClick={() => setCurrPhotoIndex(index)}/>
+            <img className='thumbnailPhoto' src={photo.thumbnail_url} />
+            <input
+              type="button"
+              className='thumbnail' onClick={() => setCurrPhotoIndex(index)} />
           </div>
         )
       })
@@ -47,7 +61,6 @@ function ImageGallery({ currData }) {
     if (currData.photos) {
       return (
         <div className='modalContainer' onClick={() => modal.current.close()}>
-          {/* <a className='exitModal' onClick={() => modal.current.close()}>&#10006;</a> */}
           <img className='modalImage' src={currData.photos[currPhotoIndex].url} onClick={() => modal.current.close()}></img>
         </div>
       )
@@ -55,19 +68,23 @@ function ImageGallery({ currData }) {
   }
 
   return (
-    <>
+    <div className="heroPhotoContainer">
+
       <div className='imageContainer'>
         {renderImage()}
         <a className="prev" onClick={() => moveSlide(-1)}>&#10094;</a>
         <a className="next" onClick={() => moveSlide(1)}>&#10095;</a>
       </div>
+
       <Modal ref={modal}>
         {renderModal()}
       </Modal>
+
       <div className='row'>
         {renderThumbnails()}
       </div>
-    </>
+
+    </div>
   )
 }
 

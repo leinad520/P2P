@@ -4,7 +4,7 @@ import ImageGallery from './ImageGallery.jsx';
 
 import axios from 'axios'
 
-function StyleSelector({ productId }) {
+function StyleSelector({ productId, getStyle }) {
 
   const [styles, setStyles] = useState([]);
   const [currData, setCurrData] = useState({});
@@ -50,6 +50,7 @@ function StyleSelector({ productId }) {
         data = style
       }
     })
+    getStyle(data);
     setCurrData(data);
   }
 
@@ -58,7 +59,7 @@ function StyleSelector({ productId }) {
       STYLE > {currData.name}
       {renderStyleButtons()}
       <AddToCart currData={currData}/>
-      <ImageGallery currData={currData}/>
+      {/* <ImageGallery currData={currData}/> */}
     </div>
   );
 }
