@@ -2,3 +2,4 @@ node_modules
 bundle.js
 config.js
 bundle.js.map
+.env

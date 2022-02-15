@@ -1,11 +1,11 @@
 import React from 'react';
 import Overview from './OverviewComponents/Overview.jsx';
-import RelatedProductsAndOutfit from './RelatedProductsAndOutfit.jsx';
+import RelatedProductsAndOutfit from './RelatedProductsComponent/RelatedProductsAndOutfit.jsx';
 
 
 const App = (props) => (
   <section>
-    <Overview />
+    {/* <Overview /> */}
     {/* Daniel */}
     <RelatedProductsAndOutfit />
     {/* Matt */}
