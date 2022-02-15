@@ -1,11 +1,14 @@
-import React,{useState, useRef} from 'react';
+import React,{useState, useRef, useEffect} from 'react';
+import FormChars from './FormChars.jsx';
 import Review from './Review.jsx';
 import axios from 'axios';
 
 const ReviewForm = (props) => {
   const [file, setFile] = useState([]);
+  const [imgPreview, setImgPreview] = useState([]);
   const [form, setForm] = useState({});
-  console.log('Render')
+  const [attributes, setAttributes] = useState({});
+
   const starOne = useRef(null);
   const starTwo = useRef(null);
   const starThree = useRef(null);
@@ -15,37 +18,31 @@ const ReviewForm = (props) => {
   function onStarClick (e) {
     e.persist();
     if (e.target.checked === true) {
-      console.log(e.target.value);
       if (e.target.value === '1') {
-        console.log('1')
         starOne.current.style.color = "#ffca08";
         starTwo.current.style.color = "#222222";
         starThree.current.style.color = "#222222";
         starFour.current.style.color = "#222222";
         starFive.current.style.color = "#222222";
       } else if (e.target.value === '2') {
-        console.log('2')
         starOne.current.style.color = "#ffca08";
         starTwo.current.style.color = "#ffca08";
         starThree.current.style.color = "#222222";
         starFour.current.style.color = "#222222";
         starFive.current.style.color = "#222222";
       } else if (e.target.value === '3') {
-        console.log('3')
         starOne.current.style.color = "#ffca08";
         starTwo.current.style.color = "#ffca08";
         starThree.current.style.color = "#ffca08";
         starFour.current.style.color = "#222222";
         starFive.current.style.color = "#222222";
       } else if (e.target.value === '4') {
-        console.log('4')
         starOne.current.style.color = "#ffca08";
         starTwo.current.style.color = "#ffca08";
         starThree.current.style.color = "#ffca08";
         starFour.current.style.color = "#ffca08";
         starFive.current.style.color = "#222222";
       } else if (e.target.value === '5') {
-        console.log('5')
         starOne.current.style.color = "#ffca08";
         starTwo.current.style.color = "#ffca08";
         starThree.current.style.color = "#ffca08";
@@ -55,36 +52,80 @@ const ReviewForm = (props) => {
     }
   };
 
-  function onFileChange (e) {
-    e.persist();
-    let reader = new FileReader();
-    let newFile = e.target.files[0];
-    reader.onloadend = () => {
-      setFile([...file, newFile]);
-    };
-    // this method fires onloadend
-    reader.readAsDataURL(newFile)
+  function updateBlob(blob) {
+    console.log('hi')
+    setImgPreview([...imgPreview, blob])
   }
 
-  function onFormSubmit (e) {
+  async function onFileChange (e) {
+    e.persist();
+    let arrOfFiles = Object.values(e.target.files);
+
+    function getBase64(file) {
+      const reader = new FileReader();
+
+      return new Promise(resolve => {
+        reader.readAsDataURL(file);
+
+        reader.onloadend = () => {
+          resolve(reader.result);
+        }
+      });
+    };
+
+    const promiseArray = [];
+
+    arrOfFiles.forEach(file => promiseArray.push(getBase64(file)));
+
+    let arrOfBlobs = await Promise.all(promiseArray);
+    setImgPreview([...imgPreview].concat(arrOfBlobs));
+  }
+
+  // WORKING VERSION
+  // function onFileChange (e) {
+  //   e.persist();
+  //   let newFile = e.target.files[0];
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(newFile);
+
+  //   console.log(e.target.files)
+
+  //   reader.onloadend = () => {
+  //     setImgPreview([...imgPreview, reader.result])
+  //     setFile([...file, newFile]);
+  //   };
+  // }
+
+  async function onFormSubmit (e) {
     e.preventDefault();
     e.persist();
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3000/s3Url'
-    })
-    .then(data => {
-      let url = data.data;
-      axios({
-          method: 'PUT',
-          url: url,
-          headers: {"Content-Type": "multipart/form-data"},
-          data: file[0]
-        })
+    let arrOfS3UrlPromises = [];
+
+    imgPreview.forEach(img => {
+      let getUrl = axios({
+        method: 'GET',
+        url: 'http://localhost:3000/s3Url'
+      }).then(data => data.data);
+
+      arrOfS3Urls.push(getUrl);
+    });
+
+    let finalArr = await Promise.all(arrOfS3UrlPromises);
+    console.log(finalArr);
+
+    let arrOfApiPromises = [];
+
+    finalArr.forEach((s3url, index) => {
+      let successCall = axios({
+        method: 'PUT',
+        url: s3url,
+        headers: {"Content-Type": "multipart/form-data"},
+        data: imgPreview[index]
+      })
       .then(url => {
         // URL of uploaded photo:
         let productId = props.productId;
-        let photoUrl = url.config.url.split('?')[0];
+        let photoUrl = s3url.config.url.split('?')[0];
         form.photos = [photoUrl];
         form.product_id = props.productId,
         form.characteristics = {}
@@ -99,7 +140,7 @@ const ReviewForm = (props) => {
         })
         .catch(err => console.log(err))
       })
-    })
+    });
   }
 
   function onFormChange(e) {
@@ -115,7 +156,6 @@ const ReviewForm = (props) => {
       }
     }
   };
-
 
 
   return(
@@ -164,13 +204,21 @@ const ReviewForm = (props) => {
           <fieldset>
             <textarea name="body" placeholder="Type your Message Here...." tabIndex="4" required></textarea>
           </fieldset>
-          <fieldset>
-          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
-          </fieldset>
+
 
           <fieldset>
+            <FormChars meta={props.meta} />
+          </fieldset>
+
+          {(imgPreview.length) && (
+            <div className="review-photo-holder">
+              {imgPreview.map(src => <img src={src} />)}
+            </div>
+          )}
+
+          <fieldset className="relative-fieldset">
             <label className="custom-file-upload">
-                <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+                <input name="image" id="imageInput" type="file" accept="image/*" multiple="multiple" onChange={onFileChange}/>
                 <i className="fa fa-cloud-upload"></i> Upload Images
             </label>
           </fieldset>

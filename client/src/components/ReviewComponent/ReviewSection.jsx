@@ -46,6 +46,7 @@ const ReviewSection = (props) => {
     <section className="ratings-reviews-section">
       <Ratings meta={meta} />
       <Reviews
+        meta={meta}
         sort={sort}
         sortedByOnChangeHandler={sortedByOnChangeHandler}
         getReviews={getReviews}

@@ -81,13 +81,13 @@ const Review = (props) => {
             {props.photos.map(photo => {
               if(imageValid) {
                 return (
-                  <>
+                  <div key={photo.id}>
                     <img ref={image} onLoad={checkValid} onError={() => setImageValid(false)} key={photo.id} src={photo.url} onClick={() => modal.current.open()}/>
 
                     <Modal ref={modal}>
                       {renderModal(photo)}
                     </Modal>
-                  </>
+                  </div>
                 )
               }
             })}

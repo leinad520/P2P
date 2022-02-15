@@ -345,7 +345,6 @@ img {
 }
 
 .review-container-sort {
-  border-radius: 10px;
   padding: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   width: 100%;
@@ -485,6 +484,30 @@ a.report  {
   color: whitesmoke;
 }
 
+.attribute-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.attribute-container label {
+  font-size: small;
+  font-style: italic;
+  color: rgba(43, 35, 35, 0.632);
+}
+
+.attribute-radio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.attribute-descriptor {
+  display: flex;
+  justify-content: space-between;
+  font-size: x-small;
+  color: rgba(89, 89, 89, 0.632);
+}
+
 /* Star Styling */
 
 .starrating > input {display: none;}  /* Remove radio buttons */
@@ -505,6 +528,7 @@ a.report  {
   color: hsl(47, 90%, 39%);
 }
 
+
 /* .starrating > input:checked ~ label {
   color: #ffca08 ;
 }
@@ -520,12 +544,20 @@ fieldset i {
 }
 
 input[type="file"] {
-  position: fixed;
-  width: 431px;
-  height: 66px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   opacity: 0;
 }
+
+.relative-fieldset {
+  position: relative;
+}
+
 .custom-file-upload {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -538,6 +570,15 @@ input[type="file"] {
   cursor: pointer;
 }
 
+.custom-file-upload:hover {
+  color: blue;
+  border: 3px dashed blue;
+  background-color: rgba(0, 0, 255, 0.16);
+}
+
+.custom-file-upload:active {
+  background-color: rgba(255, 255, 255, 0.557);
+}
 
 
 #review {
