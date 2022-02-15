@@ -37,7 +37,11 @@ const Review = (props) => {
 
   useEffect(() => {
     elAnim.current.style.transform = 'translateX(0%)'
-  })
+  });
+
+  const checkValid = () => {
+    if (!image.current.complete || image.current.naturalWidth < 1 || image.current.naturalHeight < 1) setImageValid(false);
+  }
 
   function onHelpfulClick(reviewId) {
     axios({ method: 'put', url: 'http://localhost:3000/helpful', data: { reviewId }})
@@ -72,17 +76,20 @@ const Review = (props) => {
         {chopText(props.text)}
       </div>
 
-        {(props.photos.length > 0) && (
+        {(props.photos.length > 0 && imageValid) && (
           <div className="review-photo-holder">
             {props.photos.map(photo => {
-              return (
-                <>
-                  <img key={photo.id} src={photo.url} onClick={() => modal.current.open()}/>
-                  <Modal ref={modal}>
-                    {renderModal(photo)}
-                  </Modal>
-                </>
-              )
+              if(imageValid) {
+                return (
+                  <>
+                    <img ref={image} onLoad={checkValid} onError={() => setImageValid(false)} key={photo.id} src={photo.url} onClick={() => modal.current.open()}/>
+
+                    <Modal ref={modal}>
+                      {renderModal(photo)}
+                    </Modal>
+                  </>
+                )
+              }
             })}
           </div>
         )}
