@@ -155,6 +155,21 @@ body {
   margin: 10px;
 }
 
+.outfit-card {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  height: 300px;
+  border: solid;
+  margin: 10px;
+}
+
+.empty-card {
+  width: 150px;
+  height: 300px;
+  position: absolute;
+}
+
 
 .card-picture {
   height: 200px;
@@ -185,4 +200,10 @@ body {
   bottom: 200px;
   left: 125px;
 
+}
+
+.circle-plus {
+  position: relative;
+  top: 100px;
+  left: 35px;
 }

@@ -55,7 +55,7 @@ class RelatedProducts extends React.Component {
       <>
       <div className="title">RELATED PRODUCTS</div>
       <section className="parent">
-        {this.state.relatedCardObjs.map((card, i) =>
+        {relatedCardObjs.map((card, i) =>
           <div className="card">
             <div className="card-picture">
               <img src={this.state.relatedStyles[i]}></img>
