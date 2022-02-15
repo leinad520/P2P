@@ -91,7 +91,7 @@ app.get('/productreviews/:id/:sortType', (req, res) => {
 
   axios({
     method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews?product_id=${id}&count=50&sort=${sort}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews?product_id=${id}&count=100&sort=${sort}`,
     // headers: {'Authorization': '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'}
   })
     .then(data => res.status(200).send(data.data))
