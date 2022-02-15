@@ -4,7 +4,7 @@ import ImageGallery from './ImageGallery.jsx';
 
 import axios from 'axios'
 
-function StyleSelector() {
+function StyleSelector({ productId }) {
 
   const [styles, setStyles] = useState([]);
   const [currData, setCurrData] = useState({});
@@ -15,7 +15,7 @@ function StyleSelector() {
 
   const getStyles = async () => {
     try {
-      const res = await axios.get('/products/42370/styles')
+      const res = await axios.get(`/products/${productId}/styles`)
       setStyles(res.data.results);
       setCurrData(res.data.results[0]);
     } catch(err) {

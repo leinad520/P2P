@@ -5,14 +5,13 @@ const ProgressBar = (props) => {
   const starInput = useRef(null);
 
   useEffect(() => {
-    console.log(props.percentage)
     starInput.current.style.width =`${props.percentage}%`;
   }, []);
 
 
   const Parentdiv = {
     margin: '5px 0 5px 0',
-    height: 10,
+    height: 15,
     width: '80%',
     backgroundColor: 'whitesmoke',
     borderRadius: 40,

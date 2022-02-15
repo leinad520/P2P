@@ -1,10 +1,15 @@
-import React,{useState} from 'react';
+import React,{useState, useRef} from 'react';
 import Review from './Review.jsx';
 import axios from 'axios';
 
 const ReviewForm = (props) => {
   const [file, setFile] = useState([]);
   const [form, setForm] = useState({});
+  const starOne = useRef(null);
+  const starTwo = useRef(null);
+  const starThree = useRef(null);
+  const starFour = useRef(null);
+  const starFive = useRef(null);
 
   function onFileChange (e) {
     e.persist();
@@ -39,7 +44,6 @@ const ReviewForm = (props) => {
         form.photos = [photoUrl];
         form.product_id = props.productId,
         form.characteristics = {}
-
         axios({
           method: 'post',
           url: 'http://localhost:3000/review',
@@ -69,20 +73,83 @@ const ReviewForm = (props) => {
   }
 
   return(
-    <form className="product-review-form" id="imageForm" onSubmit={onFormSubmit} onChange={onFormChange}>
-      <input name="rating" type="number" placeholder="Rate Product" required/>
-      <input name="summary" type="text" placeholder="Review Summary"  required/>
-      <div className="select" required>
-        <div>Recommmend?</div>
-        <div><input name="recommend" type="radio" value="false" /> No</div>
-        <div><input name="recommend" type="radio" value="true" defaultChecked="checked" /> Yes</div>
+    <div className="form-container">
+      <div className="form-image" />
+
+      <div className="product-review-form-container">
+        <form id="review" onSubmit={onFormSubmit} onChange={onFormChange}>
+          <h3>Submit a Review</h3>
+          <h4>Tell us what you think!</h4>
+          <fieldset>
+
+              <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
+
+                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star">2</label>
+
+                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star">3</label>
+
+                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star">4</label>
+
+                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star">5</label>
+              </div>
+
+          </fieldset>
+
+          <fieldset>
+            <input name="name" type="text" placeholder="Name" tabIndex="4" required></input>
+          </fieldset>
+          <fieldset>
+            <input name="email" type="email" placeholder="Email" tabIndex="4" required></input>
+          </fieldset>
+          <div className="select" required>
+            <div>Recommmend?</div>
+            <div><input name="recommend" type="radio" value="false" required/> No</div>
+            <div><input name="recommend" type="radio" value="true" required/> Yes</div>
+          </div>
+          <fieldset>
+
+            <input name="summary" type="text" placeholder="Review Summary" required tabIndex="2" required></input>
+
+          </fieldset>
+          <fieldset>
+            <textarea name="body" placeholder="Type your Message Here...." tabIndex="5" required></textarea>
+          </fieldset>
+          <fieldset>
+          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+          </fieldset>
+
+          <fieldset>
+            <label className="custom-file-upload">
+                <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+                <i className="fa fa-cloud-upload"></i> Upload Images
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <button name="submit" type="submit" id="review-submit" data-submit="...Sending" tabIndex="6">Submit</button>
+          </fieldset>
+        </form>
       </div>
-      <input name="body" type="textarea" placeholder="Write Your Review" required/>
-      <input name="name" type="text" placeholder="Name"  />
-      <input name="email" type="email" placeholder="Email"  />
-      <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
-      <button className="btn mt-10" type="submit">Submit Review</button>
-    </form>
+
+      {/* <div className="product-review-form-container">
+        <form className="product-review-form" onSubmit={onFormSubmit} onChange={onFormChange}>
+          <div className="form-title"><h3>Give us your feedback!</h3></div>
+          <input name="rating" type="number" placeholder="Rate Product" required/>
+          <input name="summary" type="text" placeholder="Review Summary"  required/>
+          <div className="select" required>
+            <div>Recommmend?</div>
+            <div><input name="recommend" type="radio" value="false" required/> No</div>
+            <div><input name="recommend" type="radio" value="true" required/> Yes</div>
+          </div>
+          <input className="review-text-body" rows="4" cols="30" name="body" type="textarea" placeholder="Write Your Review" required/>
+          <input name="name" type="text" placeholder="Name"  />
+          <input name="email" type="email" placeholder="Email"  />
+          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+          <button className="btn mt-10" type="submit">Submit Review</button>
+        </form>
+      </div> */}
+    </div>
   );
 }
 
