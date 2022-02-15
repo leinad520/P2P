@@ -80,14 +80,20 @@ app.get('/products/:id/styles', (req, res) => {
     })
   })
 
+  console.log('this is hrtoken: ', process.env.HR_TOKEN);
+  //product id: 42367
 // Q&A SECTION
-app.get('/qa/questions', (req, res) => {
-  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions', {
+
+app.get('/qa/questions/:id/', (req, res) => {
+  const { id, page, count } = req.params;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&sort=newest`, {
     header: {
       Authorization: process.env.HR_TOKEN
     }
   })
-  .then(response => {res.send(response.data)})
+  .then(response => {
+    console.log('this res.data:', response.data);
+    res.send(response.data)})
   .catch(err => res.send(err))
 })
 
@@ -104,8 +110,9 @@ app.get('/qa/questions/:id/answers', (req, res) => {
 })
 
 //ADD QUESTION
-app.post('/qa/questions', (req, res) => {
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions', req.body)
+app.post('/qa/questions/:id', (req, res) => {
+  const {id} = req.params;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}`, req.body)
   .then(success => {
     console.log('success');
     res.sendStatus(201).end();
