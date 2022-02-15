@@ -79,7 +79,6 @@ app.get("/api/:id", (req, res) => {
     .catch(err => {
       res.send(err);
     })
-<<<<<<< HEAD
   })
 
   console.log('this is hrtoken: ', process.env.HR_TOKEN);
@@ -133,9 +132,6 @@ app.post('/qa/questions/:id', (req, res) => {
 //MARK ANSWER AS HELPFUL
 
 //REPORT ANSWER
-=======
-})
->>>>>>> master
 
 // GET & SORT PRODUCTS
 app.get('/productreviews/:id/:sortType', (req, res) => {
