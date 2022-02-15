@@ -52,9 +52,7 @@ const ReviewForm = (props) => {
         starFour.current.style.color = "#ffca08";
         starFive.current.style.color = "#ffca08";
       }
-
     }
-
   };
 
   function onFileChange (e) {
