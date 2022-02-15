@@ -24,7 +24,7 @@ function generateUploadURL() {
     Bucket: bucketName,
     Key: imageName,
     Expires: 60
-  })
+  });
 
   return s3.getSignedUrlPromise('putObject', params);
 }

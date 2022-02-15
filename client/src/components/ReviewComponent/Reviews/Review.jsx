@@ -7,7 +7,6 @@ import Modal from '../../sharedComponents/Modal/Modal.jsx';
 const checkmark = '../../../../static/checkmark.svg';
 
 
-
 function chopText (text) {
   if (text.length > 100) {
     let string = '';
@@ -24,6 +23,8 @@ function chopText (text) {
 
 const Review = (props) => {
   const [helpfulCount, setHelpfulCount] = useState(props.helpfulness);
+  const [imageValid, setImageValid] = useState(true);
+  const image = useRef(null);
   const elAnim = useRef(null);
   const modal = useRef(null);
 
@@ -100,15 +101,13 @@ const Review = (props) => {
         }
 
       <div className="review-links">
-
-            {(helpfulCount === 0) && (<a id="not-helpful-yet" className="helpful-link" onClick={() => onHelpfulClick(props.reviewId)}>Yes</a>)}
-
-            {(helpfulCount > 0) && (
-              <a className="helpful-link" onClick={() => onHelpfulClick(props.reviewId)}>Yes
-                <div className="helpful-count">{helpfulCount}</div>
-              </a>
-            )}
-
+            <a
+              className={"helpful-link " + (helpfulCount > 0 ? '' : 'not-helpful-yet')}
+              onClick={() => onHelpfulClick(props.reviewId)}
+            >
+              Yes
+              <div className={'hidden ' + (helpfulCount > 0 ? 'helpful-count' : '')}>{helpfulCount}</div>
+            </a>
           <a href="#" className="report">Report</a>
       </div>
       <div className="review-line" />
