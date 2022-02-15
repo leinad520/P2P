@@ -128,7 +128,7 @@ const ReviewForm = (props) => {
           <h4>Tell us what you think!</h4>
           <fieldset>
               <div className="starrating risingstar d-flex justify-content-center flex-row-reverse" onClick={onStarClick}>
-                  <input type="radio"id="star1" name="rating" value="1" />
+                  <input type="radio" id="star1" name="rating" value="1" />
                   <label ref={starOne} value="1" htmlFor="star1" title="1 star"></label>
 
                   <input type="radio" id="star2" name="rating" value="2" />

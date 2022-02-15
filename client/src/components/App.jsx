@@ -13,10 +13,10 @@ const App = (props) => {
 
   return (
   <section>
-    {/* <Overview productId={productId}/> */}
+    <Overview productId={productId}/>
     {/* Daniel */}
-    {/* <QA /> */}
-    {/* <RelatedProductsAndOutfit /> */}
+    <QA />
+    <RelatedProductsAndOutfit />
     <ReviewSection />
   </section>
   );
