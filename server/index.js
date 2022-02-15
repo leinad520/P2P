@@ -81,7 +81,6 @@ app.get("/api/:id", (req, res) => {
     })
   })
 
-  console.log('this is hrtoken: ', process.env.HR_TOKEN);
   //product id: 42367
 // Q&A SECTION
 
