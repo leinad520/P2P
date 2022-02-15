@@ -302,9 +302,9 @@ img {
 .review-container {
   transform: translateX(250%);
 
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
   width: 100%;
   margin-top: 25px;
   display: flex;
@@ -442,13 +442,173 @@ a.report  {
   background-position-x: 70%;
 }
 
-.product-review-form {
-  display: flex;
+.product-review-form-container {
   flex: 1 1 70%;
-  height: 100%;
-  align-items: center;
-  flex-direction: column;
 }
+
+.form-title {
+  color: whitesmoke;
+}
+
+/* Star Styling */
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before {
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.starrating > label {
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label {
+  color: #ffca08 ;
+} /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label {
+  color: #ffca08;
+} /* Set yellow color when star hover */
+
+/* End Star Styling */
+
+fieldset i {
+  margin-right: 0.5rem;
+}
+
+input[type="file"] {
+  position: fixed;
+  width: 431px;
+  height: 66px;
+  opacity: 0;
+}
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 95%;
+  height: 3rem;
+  border: 3px dashed #333;
+  /* display: inline-block; */
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+
+
+#review {
+	background:#f9f9f9;
+	padding:25px;
+  width: 100%;
+}
+
+#review h3 {
+	color: #F96;
+	display: block;
+	font-size: 30px;
+	font-weight: 400;
+}
+
+#review h4 {
+	margin:5px 0 15px;
+	display:block;
+	font-size:13px;
+}
+
+fieldset {
+	border: medium none !important;
+	margin: 0 0 10px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+#review input[type="text"], #review input[type="email"], #review input[type="tel"], #review input[type="url"], #review textarea {
+	width:100%;
+	border:1px solid #CCC;
+	background:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+}
+
+#review input[type="text"]:hover, #review input[type="email"]:hover, #review input[type="tel"]:hover, #review input[type="url"]:hover, #review textarea:hover {
+	-webkit-transition:border-color 0.3s ease-in-out;
+	-moz-transition:border-color 0.3s ease-in-out;
+	transition:border-color 0.3s ease-in-out;
+	border:1px solid #AAA;
+}
+
+#review textarea {
+	height:100px;
+	max-width:100%;
+  resize:none;
+}
+
+#review button[type="submit"] {
+	cursor:pointer;
+	width:100%;
+	border:none;
+	background-color: rgba(215, 177, 121);
+	color:#333;
+	margin:0 0 5px;
+	padding:10px;
+	font-size:15px;
+}
+
+#review button[type="submit"]:hover {
+	background:#09C;
+	-webkit-transition:background 0.3s ease-in-out;
+	-moz-transition:background 0.3s ease-in-out;
+	transition:background-color 0.3s ease-in-out;
+}
+
+#review button[type="submit"]:active { box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.5); }
+
+#review input:focus, #review textarea:focus {
+	outline:0;
+	border:1px solid #999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.product-review-form {
+  height: 100%;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.review-text-body {
+  height: 100px;
+}
+
+.product-review-form input {
+  width: 100%;
+  height: 25px;
+  border: solid #777 1px;
+  padding: 3px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+
 .product-review-form .select {
   width: 500px;
   display: flex;
@@ -474,16 +634,9 @@ a.report  {
 
 .select {
   margin-top: 10px;
-}
+} */
 
-.product-review-form input {
-  width: 50%;
-  height: 25px;
-  border: solid #777 1px;
-  padding: 3px;
-  border-radius: 5px;
-  margin-top: 10px;
-}
+/* END REVIEW FORM */
 
 .response {
   background-color: rgb(235,235,235);
@@ -518,7 +671,7 @@ a.report  {
   left: -50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  height: 600px;
+  height: 700px;
   width: 900px;
   max-width: 80%;
 };

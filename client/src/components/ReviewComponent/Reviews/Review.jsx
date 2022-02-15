@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import Card from '../../sharedComponents/Card.jsx'
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx'
 const checkmark = '../../../../static/checkmark.svg';
 
@@ -45,7 +46,7 @@ const Review = (props) => {
 
 
   return (
-    <div ref={elAnim} className={`review-container animate`}>
+    <Card forwardedRef={elAnim} className={`animate`}>
       <div className="review-title-box">
         <div className="review-star-date">
           <StarRating rating={props.rating} />
@@ -90,7 +91,7 @@ const Review = (props) => {
           <a href="#" className="report">Report</a>
       </div>
       <div className="review-line" />
-    </div>
+    </Card>
   )
 }
 
