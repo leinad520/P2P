@@ -2,7 +2,8 @@ import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import Card from '../../sharedComponents/Card.jsx'
-import StarRating from '../../sharedComponents/starComponent/StarRating.jsx'
+import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
+import Modal from '../../sharedComponents/Modal/Modal.jsx';
 const checkmark = '../../../../static/checkmark.svg';
 
 
@@ -22,9 +23,10 @@ function chopText (text) {
 };
 
 const Review = (props) => {
-  console.log('Review Page Render')
   const [helpfulCount, setHelpfulCount] = useState(props.helpfulness);
   const elAnim = useRef(null);
+  const modal = useRef(null);
+
   const momentDate = moment(props.date);
   const reviewDate = {
     year: momentDate.year(),
@@ -44,6 +46,16 @@ const Review = (props) => {
       .catch(err => console.log(err))
   };
 
+  const renderModal = (photo) => {
+    if (photo.url) {
+      return (
+        <div className='modalContainer' onClick={() => modal.current.close()}>
+          {/* <a className='exitModal' onClick={() => modal.current.close()}>&#10006;</a> */}
+          <img className='modalImage' src={photo.url} onClick={() => modal.current.close()}></img>
+        </div>
+      )
+    }
+  };
 
   return (
     <Card forwardedRef={elAnim} className={`animate`}>
@@ -61,7 +73,16 @@ const Review = (props) => {
 
         {(props.photos.length > 0) && (
           <div className="review-photo-holder">
-            {props.photos.map(photo => <img key={photo.id} src={photo.url} />)}
+            {props.photos.map(photo => {
+              return (
+                <>
+                  <img key={photo.id} src={photo.url} onClick={() => modal.current.open()}/>
+                  <Modal ref={modal}>
+                    {renderModal(photo)}
+                  </Modal>
+                </>
+              )
+            })}
           </div>
         )}
 
