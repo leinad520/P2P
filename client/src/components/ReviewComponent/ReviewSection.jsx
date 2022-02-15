@@ -27,12 +27,6 @@ const ReviewSection = (props) => {
     .catch(err => console.log(err));
   }
 
-  function onHelpfulClick(reviewId) {
-    axios({ method: 'put', url: 'http://localhost:3000/helpful', data: { reviewId }})
-    .then(success => getReviews(sort))
-    .catch(err => console.log(err))
-  }
-
   function sortedByOnChangeHandler (val) {
     setSort(val);
   }
@@ -52,7 +46,7 @@ const ReviewSection = (props) => {
     <section className="ratings-reviews-section">
       <Ratings meta={meta} />
       <Reviews
-        onHelpfulClick={onHelpfulClick}
+        sort={sort}
         sortedByOnChangeHandler={sortedByOnChangeHandler}
         getReviews={getReviews}
         reviews={reviews}

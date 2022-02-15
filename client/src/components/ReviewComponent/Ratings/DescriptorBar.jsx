@@ -11,7 +11,7 @@ const DescriptorBar = (props) => {
 
   const Parentdiv = {
     margin: '5px 0 5px 0',
-    height: 10,
+    height: 15,
     width: '100%',
   }
 

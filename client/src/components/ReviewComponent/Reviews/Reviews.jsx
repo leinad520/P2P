@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import Review from './Review.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import ReviewSort from './ReviewSort.jsx';
+import ModalWindow from '../../sharedComponents/modalComponent/Modal.jsx';
 import axios from 'axios';
 
 
@@ -10,20 +11,27 @@ const Reviews = ({
                   reviews,
                   productId,
                   getReviews,
-                  onHelpfulClick
+                  onHelpfulClick,
+                  sort
                 }) => {
-
+  const [show, setShow] = useState(false);
+  const [count, setCount] = useState(3);
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
   } else {
-    return (
-      <div className="reviews-section">
-        <ReviewForm getReviews={getReviews} productId={productId} />
-        <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
-        {
-          reviews.results.map(review => {
-            return (
-              <Review
+    console.log('Reviews Page Render')
+    function showModal () {
+      setShow(!show);
+    };
+    let allReviewsObj = {
+      reviews: reviews.results,
+      showReviews: () => {
+        const reviewsToShow = allReviewsObj.reviews.slice(0, count);
+        return reviewsToShow.map(review => {
+          return (
+            <Review
+              sort={sort}
+              getReviews={getReviews}
               data-testid="resolved"
               onHelpfulClick={onHelpfulClick}
               key={review.review_id}
@@ -36,10 +44,29 @@ const Reviews = ({
               recommend={review.recommend}
               response={review.response}
               photos={review.photos}
-              />
-            );
-          })
-        }
+            />
+          );
+        })
+      },
+      showThreeMoreReviews: () => {
+        setCount(count + 3);
+      },
+    };
+
+    return (
+      <div className="reviews-section">
+        <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
+
+        { allReviewsObj.showReviews() }
+
+        <div className="review-section-buttons">
+          <button className="btn" onClick={e => {allReviewsObj.showThreeMoreReviews()}}>Show More</button>
+        <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
+        </div>
+
+        <ModalWindow onClose={showModal} show={show}>
+          <ReviewForm getReviews={getReviews} productId={productId} />
+        </ModalWindow>
       </div>
   )
   }

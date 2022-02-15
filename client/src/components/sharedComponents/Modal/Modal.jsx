@@ -23,7 +23,7 @@ export function Modal({ children, defaultOpened = false }, ref) {
   }, [handleEscape, isOpen])
 
   return createPortal(
-    isOpen ? <div className='modal'>{children}</div> : null,
+    isOpen ? <div onClick={() => setIsOpen(false)} className='modal'>{children}</div> : null,
     modalElement
   )
 }
