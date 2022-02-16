@@ -1,62 +1,14 @@
-import React,{useState, useRef} from 'react';
+import React,{useState, useRef, useEffect} from 'react';
+import FormChars from './FormChars.jsx';
 import Review from './Review.jsx';
+import FormStarRating from './FormStarRating.jsx';
+import { onFormSubmit, onFileChange } from './ReviewFormHelpers.jsx';
 import axios from 'axios';
 
 const ReviewForm = (props) => {
-  const [file, setFile] = useState([]);
+  const [imgPreview, setImgPreview] = useState([]);
   const [form, setForm] = useState({});
-  const starOne = useRef(null);
-  const starTwo = useRef(null);
-  const starThree = useRef(null);
-  const starFour = useRef(null);
-  const starFive = useRef(null);
-
-  function onFileChange (e) {
-    e.persist();
-    let reader = new FileReader();
-    let newFile = e.target.files[0];
-    reader.onloadend = () => {
-      setFile([...file, newFile]);
-    };
-    // this method fires onloadend
-    reader.readAsDataURL(newFile)
-  }
-
-  function onFormSubmit (e) {
-    e.preventDefault();
-    e.persist();
-    axios({
-      method: 'GET',
-      url: 'http://localhost:3000/s3Url'
-    })
-    .then(data => {
-      let url = data.data;
-      axios({
-          method: 'PUT',
-          url: url,
-          headers: {"Content-Type": "multipart/form-data"},
-          data: file[0]
-        })
-      .then(url => {
-        // URL of uploaded photo:
-        let productId = props.productId;
-        let photoUrl = url.config.url.split('?')[0];
-        form.photos = [photoUrl];
-        form.product_id = props.productId,
-        form.characteristics = {}
-        axios({
-          method: 'post',
-          url: 'http://localhost:3000/review',
-          data: form
-        })
-        .then(success => {
-          console.log('Successfully posted review - getting reviews');
-          props.getReviews();
-        })
-        .catch(err => console.log(err))
-      })
-    })
-  }
+  const [attributes, setAttributes] = useState({});
 
   function onFormChange(e) {
     if (e.target.name !== 'image') {
@@ -65,42 +17,37 @@ const ReviewForm = (props) => {
         setForm({...form, [e.target.name]: bool})
       } else if (e.target.name === 'rating') {
         let num = Number(e.target.value);
-        setForm({...form, [e.target.name]: num})
+        setForm({...form, [e.target.name]: num});
+      } else if (e.target.dataset.label) {
+        let formCopy = {...form};
+        if (formCopy.characteristics === undefined) {
+          formCopy.characteristics = {};
+        }
+        let value = Number(e.target.value);
+        formCopy.characteristics[e.target.id] = value;
+        setForm(formCopy);
       } else {
         setForm({...form, [e.target.name]: e.target.value})
       }
     }
-  }
+  };
 
   return(
     <div className="form-container">
       <div className="form-image" />
-
       <div className="product-review-form-container">
-        <form id="review" onSubmit={onFormSubmit} onChange={onFormChange}>
+        <form
+          id="review"
+          onSubmit={(e) => onFormSubmit(e, imgPreview, props, form)}
+          onChange={onFormChange}>
           <h3>Submit a Review</h3>
           <h4>Tell us what you think!</h4>
+          <FormStarRating />
           <fieldset>
-
-              <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-                  <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
-
-                  <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star">2</label>
-
-                  <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star">3</label>
-
-                  <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star">4</label>
-
-                  <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star">5</label>
-              </div>
-
-          </fieldset>
-
-          <fieldset>
-            <input name="name" type="text" placeholder="Name" tabIndex="4" required></input>
+            <input name="name" type="text" placeholder="Name" tabIndex="1" autoFocus required></input>
           </fieldset>
           <fieldset>
-            <input name="email" type="email" placeholder="Email" tabIndex="4" required></input>
+            <input name="email" type="email" placeholder="Email" tabIndex="2" required></input>
           </fieldset>
           <div className="select" required>
             <div>Recommmend?</div>
@@ -108,47 +55,30 @@ const ReviewForm = (props) => {
             <div><input name="recommend" type="radio" value="true" required/> Yes</div>
           </div>
           <fieldset>
-
-            <input name="summary" type="text" placeholder="Review Summary" required tabIndex="2" required></input>
-
+            <input name="summary" type="text" placeholder="Review Summary" required tabIndex="3" required></input>
           </fieldset>
           <fieldset>
-            <textarea name="body" placeholder="Type your Message Here...." tabIndex="5" required></textarea>
+            <textarea name="body" placeholder="Type your Message Here...." tabIndex="4" required></textarea>
           </fieldset>
           <fieldset>
-          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+            <FormChars meta={props.meta} />
           </fieldset>
-
-          <fieldset>
+          {(imgPreview.length) && (
+            <div className="review-photo-holder">
+              {imgPreview.map(src => <img key={src} src={src} />)}
+            </div>
+          )}
+          <fieldset className="relative-fieldset">
             <label className="custom-file-upload">
-                <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
+                <input name="image" id="imageInput" type="file" accept="image/*" multiple="multiple" onChange={(e) => onFileChange(e, setImgPreview, imgPreview)}/>
                 <i className="fa fa-cloud-upload"></i> Upload Images
             </label>
           </fieldset>
-
           <fieldset>
             <button name="submit" type="submit" id="review-submit" data-submit="...Sending" tabIndex="6">Submit</button>
           </fieldset>
         </form>
       </div>
-
-      {/* <div className="product-review-form-container">
-        <form className="product-review-form" onSubmit={onFormSubmit} onChange={onFormChange}>
-          <div className="form-title"><h3>Give us your feedback!</h3></div>
-          <input name="rating" type="number" placeholder="Rate Product" required/>
-          <input name="summary" type="text" placeholder="Review Summary"  required/>
-          <div className="select" required>
-            <div>Recommmend?</div>
-            <div><input name="recommend" type="radio" value="false" required/> No</div>
-            <div><input name="recommend" type="radio" value="true" required/> Yes</div>
-          </div>
-          <input className="review-text-body" rows="4" cols="30" name="body" type="textarea" placeholder="Write Your Review" required/>
-          <input name="name" type="text" placeholder="Name"  />
-          <input name="email" type="email" placeholder="Email"  />
-          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
-          <button className="btn mt-10" type="submit">Submit Review</button>
-        </form>
-      </div> */}
     </div>
   );
 }
