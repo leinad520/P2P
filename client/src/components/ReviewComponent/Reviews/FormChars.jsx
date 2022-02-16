@@ -2,7 +2,6 @@ import React from 'react';
 
 const FormChars = ({meta}) => {
   let metaArray = Object.entries(meta.characteristics);
-  console.log(metaArray);
 
   return metaArray.map(attribute => {
     const id = attribute[1].id;

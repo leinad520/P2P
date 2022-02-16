@@ -107,41 +107,96 @@ const ReviewForm = (props) => {
         url: 'http://localhost:3000/s3Url'
       }).then(data => data.data);
 
-      arrOfS3Urls.push(getUrl);
+      arrOfS3UrlPromises.push(getUrl);
     });
 
-    let finalArr = await Promise.all(arrOfS3UrlPromises);
-    console.log(finalArr);
+    let arrOfS3Urls = await Promise.all(arrOfS3UrlPromises);
+    // console.log(arrOfS3Urls);
 
-    let arrOfApiPromises = [];
+    let arrOfS3SuccessPutPromise = [];
 
-    finalArr.forEach((s3url, index) => {
+    arrOfS3Urls.forEach((s3url, index) => {
+      const base64 = imgPreview[index];
+      const base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+      const type = base64.split(';')[0].split('/')[1];
+
       let successCall = axios({
         method: 'PUT',
         url: s3url,
-        headers: {"Content-Type": "multipart/form-data"},
-        data: imgPreview[index]
-      })
-      .then(url => {
-        // URL of uploaded photo:
-        let productId = props.productId;
-        let photoUrl = s3url.config.url.split('?')[0];
-        form.photos = [photoUrl];
-        form.product_id = props.productId,
-        form.characteristics = {}
-        axios({
-          method: 'post',
-          url: 'http://localhost:3000/review',
-          data: form
-        })
-        .then(success => {
-          console.log('Successfully posted review - getting reviews');
-          props.getReviews();
-        })
-        .catch(err => console.log(err))
-      })
+        headers: {
+          'Content-Type': 'image/jpeg',
+          'Content-Encoding': 'base64'
+        },
+        data: base64Data
+      });
+
+      arrOfS3SuccessPutPromise.push(successCall);
     });
+
+    let arrOfS3SuccessPuts = await Promise.all(arrOfS3SuccessPutPromise);
+    console.log(arrOfS3SuccessPuts);
+
+    let s3photoUrlsArray = arrOfS3SuccessPuts.map(s3url => {
+      return s3url.config.url.split('?')[0];
+    });
+    console.log(s3photoUrlsArray);
+
+    let productId = props.productId;
+    form.photos = s3photoUrlsArray;
+    form.product_id = props.productId;
+    form.characteristics = {};
+
+    console.log(form);
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/review',
+      data: form
+    })
+    .then(success => {
+      console.log('Successfully posted review - getting reviews');
+      props.getReviews();
+    })
+    .catch(err => console.log(err))
   }
+
+  // function onFormSubmit (e) {
+  //   e.preventDefault();
+  //   e.persist();
+  //   axios({
+  //     method: 'GET',
+  //     url: 'http://localhost:3000/s3Url'
+  //   })
+  //   .then(data => {
+  //     let url = data.data;
+  //     axios({
+  //         method: 'PUT',
+  //         url: url,
+  //         headers: {"Content-Type": "multipart/form-data"},
+  //         data: file[0]
+  //       })
+  //     .then(url => {
+  //       // URL of uploaded photo:
+  //       let productId = props.productId;
+  //       let photoUrl = url.config.url.split('?')[0];
+  //       form.photos = [photoUrl];
+  //       form.product_id = props.productId,
+  //       form.characteristics = {}
+  //       axios({
+  //         method: 'post',
+  //         url: 'http://localhost:3000/review',
+  //         data: form
+  //       })
+  //       .then(success => {
+  //         console.log('Successfully posted review - getting reviews');
+  //         props.getReviews();
+  //       })
+  //       .catch(err => console.log(err))
+  //     })
+  //   })
+  // }
+
+
 
   function onFormChange(e) {
     if (e.target.name !== 'image') {
@@ -160,6 +215,7 @@ const ReviewForm = (props) => {
 
   return(
     <div className="form-container">
+      <img src={'https://push2production1337.s3.amazonaws.com/image_number_177.96318391939536'} />
       <div className="form-image" />
 
       <div className="product-review-form-container">
@@ -212,7 +268,7 @@ const ReviewForm = (props) => {
 
           {(imgPreview.length) && (
             <div className="review-photo-holder">
-              {imgPreview.map(src => <img src={src} />)}
+              {imgPreview.map(src => <img key={src} src={src} />)}
             </div>
           )}
 
