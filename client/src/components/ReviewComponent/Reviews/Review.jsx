@@ -1,10 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import Card from '../../sharedComponents/Card.jsx'
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
-import Modal from '../../sharedComponents/Modal/Modal.jsx';
 const checkmark = '../../../../static/checkmark.svg';
+import Card from '../../sharedComponents/Card.jsx';
+import ReviewPhotos from './ReviewPhotos.jsx';
 
 
 function chopText (text) {
@@ -23,25 +23,19 @@ function chopText (text) {
 
 const Review = (props) => {
   const [helpfulCount, setHelpfulCount] = useState(props.helpfulness);
-  const [imageValid, setImageValid] = useState(true);
-  const image = useRef(null);
   const elAnim = useRef(null);
-  const modal = useRef(null);
-
-  const momentDate = moment(props.date);
-  const reviewDate = {
-    year: momentDate.year(),
-    month: (momentDate.month() + 1),
-    day: (momentDate.day() +  + 1)
-  }
 
   useEffect(() => {
     elAnim.current.style.transform = 'translateX(0%)'
   });
 
-  const checkValid = () => {
-    if (!image.current.complete || image.current.naturalWidth < 1 || image.current.naturalHeight < 1) setImageValid(false);
-  }
+  const momentDate = moment(props.date);
+
+  const reviewDate = {
+    year: momentDate.year(),
+    month: (momentDate.month() + 1),
+    day: (momentDate.day() +  + 1)
+  };
 
   function onHelpfulClick(reviewId) {
     axios({ method: 'put', url: 'http://localhost:3000/helpful', data: { reviewId }})
@@ -51,16 +45,6 @@ const Review = (props) => {
       .catch(err => console.log(err))
   };
 
-  const renderModal = (photo) => {
-    if (photo.url) {
-      return (
-        <div className='modalContainer' onClick={() => modal.current.close()}>
-          {/* <a className='exitModal' onClick={() => modal.current.close()}>&#10006;</a> */}
-          <img className='modalImage' src={photo.url} onClick={() => modal.current.close()}></img>
-        </div>
-      )
-    }
-  };
 
   return (
     <Card forwardedRef={elAnim} className={`animate`}>
@@ -78,19 +62,7 @@ const Review = (props) => {
 
         {(props.photos.length > 0 && imageValid) && (
           <div className="review-photo-holder">
-            {props.photos.map(photo => {
-              if(imageValid) {
-                return (
-                  <div key={photo.id}>
-                    <img ref={image} onLoad={checkValid} onError={() => setImageValid(false)} key={photo.id} src={photo.url} onClick={() => modal.current.open()}/>
-
-                    <Modal ref={modal}>
-                      {renderModal(photo)}
-                    </Modal>
-                  </div>
-                )
-              }
-            })}
+            {props.photos.map(photo => <ReviewPhotos photo={photo}/>)}
           </div>
         )}
 

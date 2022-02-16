@@ -118,7 +118,7 @@ const ReviewForm = (props) => {
     arrOfS3Urls.forEach((s3url, index) => {
       const base64 = imgPreview[index];
       const base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
-      const type = base64.split(';')[0].split('/')[1];
+      // const type = base64.split(';')[0].split('/')[1];
 
       let successCall = axios({
         method: 'PUT',
@@ -145,8 +145,6 @@ const ReviewForm = (props) => {
     form.photos = s3photoUrlsArray;
     form.product_id = props.productId;
     form.characteristics = {};
-
-    console.log(form);
 
     axios({
       method: 'post',
@@ -215,7 +213,6 @@ const ReviewForm = (props) => {
 
   return(
     <div className="form-container">
-      <img src={'https://push2production1337.s3.amazonaws.com/image_number_177.96318391939536'} />
       <div className="form-image" />
 
       <div className="product-review-form-container">
