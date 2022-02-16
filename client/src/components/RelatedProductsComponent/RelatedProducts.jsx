@@ -8,7 +8,7 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenCard: 42367, //Get from other component's state
+      chosenCard: 42366, //Get from other component's state
       relatedCardIds: [],
       relatedCardObjs: [],
       relatedStyles: []
@@ -56,7 +56,7 @@ class RelatedProducts extends React.Component {
       <div className="title">RELATED PRODUCTS</div>
       <section className="parent">
         {relatedCardObjs.map((card, i) =>
-          <div className="card">
+          <div className="card" key={`related-products-${i}`}>
             <div className="card-picture">
               <img src={this.state.relatedStyles[i]}></img>
               <FontAwesomeIcon icon={faStar} className="corner-star" />
