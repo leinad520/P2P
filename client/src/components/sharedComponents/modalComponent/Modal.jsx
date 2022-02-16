@@ -12,10 +12,6 @@ const modalWindow = (props) => {
 
   const classes = `${props.className}` + ` jim-modal animate`;
 
-  // This modal takes a boolean to reveal
-  // This modal also takes a className prop, that
-  // passes itself onto here:
-
   if (!props.show) {
     return null;
   } else {
@@ -25,10 +21,10 @@ const modalWindow = (props) => {
         {props.children}
         <button id="modal-close-btn" className="btn" onClick={props.onClose}>close</button>
       </div>
-      <div className="jim-modal-backdrop"></div>
+      <div className="jim-modal-backdrop" onClick={props.onClose}></div>
       </>
     )
   }
-}
+};
 
 export default modalWindow;

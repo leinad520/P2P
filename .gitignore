@@ -3,3 +3,4 @@ bundle.js
 config.js
 bundle.js.map
 .env
+.env.local

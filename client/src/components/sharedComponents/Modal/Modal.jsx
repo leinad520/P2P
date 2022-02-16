@@ -1,7 +1,7 @@
 import React, { useState, useImperativeHandle, forwardRef, useCallback, useEffect } from 'react';
-import { createPortal } from 'react-dom'
+import { createPortal } from 'react-dom';
 
-const modalElement = document.getElementById('modal-root')
+const modalElement = document.getElementById('modal-root');
 
 export function Modal({ children, defaultOpened = false }, ref) {
   const [isOpen, setIsOpen] = useState(defaultOpened);

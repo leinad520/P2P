@@ -18,7 +18,8 @@ const App = (props) => {
     <RelatedProductsAndOutfit />
     <QA />
     <ReviewSection />
-  </section>)
+  </section>
+  );
 };
 
 export default App;

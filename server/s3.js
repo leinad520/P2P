@@ -2,7 +2,7 @@ const aws = require('aws-sdk');
 const dotenv = require('dotenv').config();
 
 const region = "us-east-1";
-const bucketName = "pushtoproduction1337";
+const bucketName = "push2production1337";
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
@@ -24,7 +24,7 @@ function generateUploadURL() {
     Bucket: bucketName,
     Key: imageName,
     Expires: 60
-  })
+  });
 
   return s3.getSignedUrlPromise('putObject', params);
 }
