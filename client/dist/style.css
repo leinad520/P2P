@@ -204,6 +204,66 @@ img {
 
 }
 
+/* Matt's Styles */
+
+.searchContainer {
+  display: absolute;
+  height: 50px;
+  width: 100%;
+  padding: 20px 20px 20px 2px;
+}
+
+.searchForm {
+  height: 100%;
+  width: 100%;
+  border-style: solid;
+  border-width: 2px;
+  margin: 0px;
+  padding: 0px
+}
+
+.searchInput {
+  border: none;
+  height: 81%;
+  width: 75%;
+  padding: 2px 2px 2px 2px;
+  /* outline: 0; */
+  background-color: #f5f5f5;
+  outline: none;
+}
+
+#q-btn-search {
+  height: 100%;
+  align-items: center;
+  border: none;
+  background-color:#f5f5f5;
+
+}
+
+.question {
+  padding: 5px;
+  margin: 5px;
+
+}
+
+.answer {
+  padding: 5px;
+  margin: 5px;
+
+}
+
+.answerBody {
+  padding: 5px;
+  margin: 0;
+}
+
+#Q {
+  padding-right: 10px;
+  margin: 2px;
+}
+
+
+
 
 
 /* JIMMY'S STYLES */

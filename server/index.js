@@ -79,7 +79,58 @@ app.get("/api/:id", (req, res) => {
     .catch(err => {
       res.send(err);
     })
+  })
+
+  //product id: 42367
+// Q&A SECTION
+
+app.get('/qa/questions/:id/', (req, res) => {
+  const { id, page, count } = req.params;
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&sort=newest`, {
+    header: {
+      Authorization: process.env.HR_TOKEN
+    }
+  })
+  .then(response => {
+    console.log('this res.data:', response.data);
+    res.send(response.data)})
+  .catch(err => res.send(err))
 })
+
+// GET ALL ANSWERS FOR GIVEN QUESTION
+app.get('/qa/questions/:id/answers', (req, res) => {
+  const {id} = req.params
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`, {
+    headers: {
+      Authorization: process.env.HR_TOKEN
+    }
+  })
+  .then(response => {res.send(response.data);})
+  .catch(err => res.send(err))
+})
+
+//ADD QUESTION
+app.post('/qa/questions/:id', (req, res) => {
+  const {id} = req.params;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}`, req.body)
+  .then(success => {
+    console.log('success');
+    res.sendStatus(201).end();
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
+
+//ADD ANSWER
+
+//MARK QUESTION AS HELPFUL
+
+//REPORT QUESTION
+
+//MARK ANSWER AS HELPFUL
+
+//REPORT ANSWER
 
 // GET & SORT PRODUCTS
 app.get('/productreviews/:id/:sortType', (req, res) => {

@@ -28,10 +28,11 @@ render() {
   }
   return (
     <>
-    <div id="question">
-    {this.props.question.question_body} - {this.props.question.asker_name}
+    <div className="question">
+    <span id="Q">Q:</span>
+    <span>{this.props.question.question_body} - {this.props.question.asker_name}</span>
     </div>
-    <div id="answer">
+    <div className="answer">
     {answers.map((answer, index) => {
       return <Answer answer={answer} key={index}/>
     })}
