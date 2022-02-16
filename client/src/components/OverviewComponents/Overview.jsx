@@ -4,8 +4,6 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductHeader from './ProductHeader.jsx';
 import ImageGallery from './ImageGallery.jsx';
-// import exampleData from './exampleData.js';
-// import exampleStyles from './exampleStyles.js'
 import axios from 'axios';
 
 
@@ -27,7 +25,7 @@ function Overview({ productId }) {
   const getStyle = (currStyle) => {
     setCurrData(currStyle);
   }
-  
+
   const getProduct = async () => {
     try {
       const res = await axios.get(`/products/${productId}`)

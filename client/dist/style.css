@@ -10,12 +10,15 @@
 /* AUSTINS CSS */
 
 body {
+  height: 100vh;
   font-family: sans-serif, arial;
   background-color: grey;
 }
 
 .MegaContainer {
   display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
 }
 
 .productInfoContainer {
@@ -41,8 +44,8 @@ body {
 .styleButtons {
   padding: 8px;
   border-radius: 50%;
-  height: 75px;
-  width: 75px;
+  height: 50px;
+  width: 50px;
 }
 
 .productInfo {
@@ -60,20 +63,25 @@ body {
 }
 
 .heroPhotoContainer {
+  min-width: 900px;
+  min-height: 900px;
   margin-top: 30px;
   margin-left: 30px;
   display: flex;
-  width: 950px;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
 .imageContainer {
-  height: 840px;
+  height: 100%;
   width: 100%;
   position: relative;
-  overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-content: flex-start;
 }
 
 .active-photo {
@@ -85,27 +93,23 @@ body {
 .imageContainer .slide  {
   object-fit: contain;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
 }
 
 .prev,
 .next {
-  overflow: visible;
   right: 60%;
   cursor: pointer;
   position: absolute;
   top: 50%;
-  width: 39%;
+  /* width: 3%; */
   padding: 10px;
   margin-top: -50px;
   color: white;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 0 3px 3px 0;
+  border-radius: 10px;
   user-select: none;
+  z-index: 9999;
 }
 
 .prev:hover,
@@ -113,9 +117,13 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.prev {
+ right: 903px;
+}
+
 .next {
-  right: -39%;
-  border-radius: 3px 0 0 3px;
+  overflow: visible;
+  right: -10px;
 }
 
 .row {
@@ -124,6 +132,7 @@ body {
   width: 100%;
   align-items: flex-start;
   height: 175px;
+  margin-bottom: 2rem;
 }
 
 .column {
@@ -157,7 +166,6 @@ body {
 }
 .thumbnail:focus {
   outline: none;
-
 }
 
 
@@ -166,24 +174,28 @@ body {
 }
 
 .slide {
-  position: relative;
+  /* flex: 1, 1; */
   opacity: 0;
   transition-duration: .5s ease;
 }
 
 .active.slide {
-  position: relative;
+  /* position: relative; */
+  z-index: 9999;
+  width: auto;
+  height: 100%;
   opacity: 1;
   transition-duration: .5s;
   transform: scale(.95);
 }
 
 .active.slide img {
-  object-fit: contain;
-  /* height: 840px;
-  width: 900px; */
+  object-fit: cover;
+  /* height: 100%;
+  width: 100%; */
+  height: 100%;
+  width: 100%;
 }
-
 
 .modal {
   position: fixed;
@@ -194,8 +206,8 @@ body {
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.65);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

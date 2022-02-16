@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
 
 function AddToCart({ currData, defaultStyle }) {
 
-  const [skus, setSize] = useState('');
+  const [skus, setSkus] = useState('');
 
   useEffect(() => {
     if (Object.keys(currData).length) {
-      setSize(Object.keys(currData.skus)[0])
+      setSkus(Object.keys(currData.skus)[0])
     }
   }, [currData])
 
@@ -33,14 +34,20 @@ function AddToCart({ currData, defaultStyle }) {
   }
 
   const onSizeChange = (e) => {
-    setSize(e.target.value)
+    setSkus(e.target.value)
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios.post(`cart/${skus}`)
+    console.log(skus);
   }
 
   return (
     <div>
-      <form>
-        <select onChange={(e) => onSizeChange(e)}>
-          <option value='select size'>Select Size</option>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <select onChange={(e) => onSizeChange(e)} required>
+          <option value=''>Select Size</option>
           {Object.keys(currData).length && renderSizes()}
         </select>
         <select>
@@ -54,15 +61,3 @@ function AddToCart({ currData, defaultStyle }) {
 
 
 export default AddToCart;
-
-/**
-
-const [someVar, setSomeVar] = useState(null);
-
-useEffect(() => {
-  if(somethingIsTrue) {
-    setSomeVar(true)
-  };
-}, [somethingIsTrue]);
-
- */

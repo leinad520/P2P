@@ -59,7 +59,6 @@ function StyleSelector({ productId, getStyle }) {
       STYLE > {currData.name}
       {renderStyleButtons()}
       <AddToCart currData={currData}/>
-      {/* <ImageGallery currData={currData}/> */}
     </div>
   );
 }

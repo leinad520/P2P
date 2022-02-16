@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 const App = (props) => {
 
+  // 42375
   let productId = 42370;
   if (useParams().id) {
     productId = useParams().id
