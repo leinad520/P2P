@@ -62,8 +62,8 @@ class RelatedProducts extends React.Component {
               <FontAwesomeIcon icon={faStar} className="corner-star" />
             </div>
             <div className="card-description">
-              <span>{relatedCardObjs[i].category}</span>
-              <span>{relatedCardObjs[i].name}</span>
+              <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
+              <span className="name">{relatedCardObjs[i].name}</span>
               <span>${relatedCardObjs[i].default_price}</span>
               <span>*****</span>
             </div>

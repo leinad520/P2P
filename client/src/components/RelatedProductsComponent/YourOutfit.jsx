@@ -78,8 +78,8 @@ class YourOutfit extends React.Component {
                 <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} />
               </div>
               <div className="card-description">
-                <span>{outfitCardObjs[i].data.category}</span>
-                <span>{outfitCardObjs[i].data.name}</span>
+                <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>
+                <span className="name">{outfitCardObjs[i].data.name}</span>
                 <span>${outfitCardObjs[i].data.default_price}</span>
                 <span>*****</span>
               </div>

@@ -180,7 +180,22 @@ body {
   border-top: solid;
   display: flex;
   flex-direction: column;
-  font-size: 10px;
+  font-size: 12px;
+}
+
+.card-description span {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.card-description .category {
+  color: grey;
+}
+
+.card-description .name {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .card img {
