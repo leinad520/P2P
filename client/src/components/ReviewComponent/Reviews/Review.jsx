@@ -45,7 +45,6 @@ const Review = (props) => {
       .catch(err => console.log(err))
   };
 
-
   return (
     <Card forwardedRef={elAnim} className={`animate`}>
       <div className="review-title-box">
@@ -60,11 +59,11 @@ const Review = (props) => {
         {chopText(props.text)}
       </div>
 
-        {(props.photos.length > 0 && imageValid) && (
-          <div className="review-photo-holder">
-            {props.photos.map(photo => <ReviewPhotos photo={photo}/>)}
-          </div>
-        )}
+      {(props.photos.length > 0) && (
+        <div className="review-photo-holder">
+          {props.photos.map(photo => <ReviewPhotos key={photo.id} photo={photo}/>)}
+        </div>
+      )}
 
       {(props.recommend) &&
         <div className="review-recommend">

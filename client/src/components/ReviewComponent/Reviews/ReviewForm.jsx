@@ -52,49 +52,24 @@ const ReviewForm = (props) => {
     }
   };
 
-  function updateBlob(blob) {
-    console.log('hi')
-    setImgPreview([...imgPreview, blob])
-  }
-
   async function onFileChange (e) {
     e.persist();
     let arrOfFiles = Object.values(e.target.files);
 
     function getBase64(file) {
       const reader = new FileReader();
-
       return new Promise(resolve => {
         reader.readAsDataURL(file);
-
         reader.onloadend = () => {
           resolve(reader.result);
         }
       });
     };
-
     const promiseArray = [];
-
     arrOfFiles.forEach(file => promiseArray.push(getBase64(file)));
-
     let arrOfBlobs = await Promise.all(promiseArray);
     setImgPreview([...imgPreview].concat(arrOfBlobs));
   }
-
-  // WORKING VERSION
-  // function onFileChange (e) {
-  //   e.persist();
-  //   let newFile = e.target.files[0];
-  //   let reader = new FileReader();
-  //   reader.readAsDataURL(newFile);
-
-  //   console.log(e.target.files)
-
-  //   reader.onloadend = () => {
-  //     setImgPreview([...imgPreview, reader.result])
-  //     setFile([...file, newFile]);
-  //   };
-  // }
 
   async function onFormSubmit (e) {
     e.preventDefault();
@@ -106,19 +81,16 @@ const ReviewForm = (props) => {
         method: 'GET',
         url: 'http://localhost:3000/s3Url'
       }).then(data => data.data);
-
       arrOfS3UrlPromises.push(getUrl);
     });
 
     let arrOfS3Urls = await Promise.all(arrOfS3UrlPromises);
-    // console.log(arrOfS3Urls);
 
     let arrOfS3SuccessPutPromise = [];
 
     arrOfS3Urls.forEach((s3url, index) => {
       const base64 = imgPreview[index];
       const base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
-      // const type = base64.split(';')[0].split('/')[1];
 
       let successCall = axios({
         method: 'PUT',
@@ -134,17 +106,14 @@ const ReviewForm = (props) => {
     });
 
     let arrOfS3SuccessPuts = await Promise.all(arrOfS3SuccessPutPromise);
-    console.log(arrOfS3SuccessPuts);
 
     let s3photoUrlsArray = arrOfS3SuccessPuts.map(s3url => {
       return s3url.config.url.split('?')[0];
     });
-    console.log(s3photoUrlsArray);
 
     let productId = props.productId;
     form.photos = s3photoUrlsArray;
     form.product_id = props.productId;
-    form.characteristics = {};
 
     axios({
       method: 'post',
@@ -158,44 +127,6 @@ const ReviewForm = (props) => {
     .catch(err => console.log(err))
   }
 
-  // function onFormSubmit (e) {
-  //   e.preventDefault();
-  //   e.persist();
-  //   axios({
-  //     method: 'GET',
-  //     url: 'http://localhost:3000/s3Url'
-  //   })
-  //   .then(data => {
-  //     let url = data.data;
-  //     axios({
-  //         method: 'PUT',
-  //         url: url,
-  //         headers: {"Content-Type": "multipart/form-data"},
-  //         data: file[0]
-  //       })
-  //     .then(url => {
-  //       // URL of uploaded photo:
-  //       let productId = props.productId;
-  //       let photoUrl = url.config.url.split('?')[0];
-  //       form.photos = [photoUrl];
-  //       form.product_id = props.productId,
-  //       form.characteristics = {}
-  //       axios({
-  //         method: 'post',
-  //         url: 'http://localhost:3000/review',
-  //         data: form
-  //       })
-  //       .then(success => {
-  //         console.log('Successfully posted review - getting reviews');
-  //         props.getReviews();
-  //       })
-  //       .catch(err => console.log(err))
-  //     })
-  //   })
-  // }
-
-
-
   function onFormChange(e) {
     if (e.target.name !== 'image') {
       if (e.target.name === 'recommend') {
@@ -203,7 +134,16 @@ const ReviewForm = (props) => {
         setForm({...form, [e.target.name]: bool})
       } else if (e.target.name === 'rating') {
         let num = Number(e.target.value);
-        setForm({...form, [e.target.name]: num})
+        setForm({...form, [e.target.name]: num});
+      } else if (e.target.dataset.label) { //NEED TO FIX
+        let formCopy = {...form};
+        if (formCopy.characteristics === undefined) {
+          formCopy.characteristics = {};
+        }
+        let value = Number(e.target.value);
+
+        formCopy.characteristics[e.target.id] = value;
+        setForm(formCopy);
       } else {
         setForm({...form, [e.target.name]: e.target.value})
       }
@@ -211,10 +151,10 @@ const ReviewForm = (props) => {
   };
 
 
+
   return(
     <div className="form-container">
       <div className="form-image" />
-
       <div className="product-review-form-container">
         <form id="review" onSubmit={onFormSubmit} onChange={onFormChange}>
           <h3>Submit a Review</h3>
@@ -281,24 +221,6 @@ const ReviewForm = (props) => {
           </fieldset>
         </form>
       </div>
-
-      {/* <div className="product-review-form-container">
-        <form className="product-review-form" onSubmit={onFormSubmit} onChange={onFormChange}>
-          <div className="form-title"><h3>Give us your feedback!</h3></div>
-          <input name="rating" type="number" placeholder="Rate Product" required/>
-          <input name="summary" type="text" placeholder="Review Summary"  required/>
-          <div className="select" required>
-            <div>Recommmend?</div>
-            <div><input name="recommend" type="radio" value="false" required/> No</div>
-            <div><input name="recommend" type="radio" value="true" required/> Yes</div>
-          </div>
-          <input className="review-text-body" rows="4" cols="30" name="body" type="textarea" placeholder="Write Your Review" required/>
-          <input name="name" type="text" placeholder="Name"  />
-          <input name="email" type="email" placeholder="Email"  />
-          <input name="image" id="imageInput" type="file" accept="image/*" onChange={onFileChange}/>
-          <button className="btn mt-10" type="submit">Submit Review</button>
-        </form>
-      </div> */}
     </div>
   );
 }
