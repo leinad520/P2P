@@ -19,18 +19,26 @@ class QAListEntry extends React.Component {
   }
 
 
-
+//need to display up to two answers initially
+//remaining questions and answers should be hidden until user loads them by hitting more Answered Questions button
 
 render() {
   var answers = [];
   for (let answer in this.props.question.answers) {
     answers.push(this.props.question.answers[answer]);
   }
+
+  console.log('this.props.question:', this.props.question);
+
   return (
     <>
     <div className="question">
     <span id="Q">Q:</span>
     <span>{this.props.question.question_body} - {this.props.question.asker_name}</span>
+    <span>{'     '} Helpful?
+    <u>Yes</u> ({this.props.question.question_helpfulness}) |
+    <span>{'     '} Report</span>
+    </span>
     </div>
     <div className="answer">
     {answers.map((answer, index) => {
