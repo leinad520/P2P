@@ -3,6 +3,21 @@
   margin: 0;
 }
 
+@media screen and (max-width: 800px) {
+  .ratings-reviews-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .reviews-section {
+    max-width: 390px;
+  }
+
+  .review-container {
+    width: 90% !important;
+  }
+}
+
 /*
   rem is based off of font size of the documents root
   em is relative sizing to parent element
@@ -278,6 +293,8 @@ img {
   width: 80%;
   margin: 0 auto;
 }
+
+
 
 .ratings-section {
   padding: 10px;
@@ -766,3 +783,6 @@ fieldset {
 
 
 /* END JIMMY'S STYLES */
+
+
+
