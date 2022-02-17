@@ -24,11 +24,16 @@
     "@fortawesome/free-regular-svg-icons": "^6.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
+    "aws-sdk": "^2.1073.0",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-router-dom": "^6.2.1",
     "underscore": "^1.12.1"
   }
 }

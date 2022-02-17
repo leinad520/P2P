@@ -7,7 +7,7 @@ module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR
+    path: DIST_DIR,
   },
   devtool: 'source-map',
   module: {
@@ -31,7 +31,18 @@ module.exports = {
             ]
           }
         }
-      }
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   }
 };
