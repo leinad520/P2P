@@ -12,7 +12,6 @@ class RelatedProducts extends React.Component {
       relatedCardIds: [],
       relatedCardObjs: [],
       relatedStyles: []
-
     };
 
   }
@@ -73,7 +72,6 @@ class RelatedProducts extends React.Component {
       </>
     )
   }
-
 }
 
 export default RelatedProducts;
