@@ -168,7 +168,6 @@ app.get('/productmeta/:id', (req, res) => {
 // GET SECURE URL from AWS:
 app.get('/s3Url', (req, res) => {
   s3().then(url => {
-    console.log(url);
     res.status(200).send(url)
   });
 })
