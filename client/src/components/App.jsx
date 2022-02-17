@@ -4,6 +4,7 @@ import Overview from './OverviewComponents/Overview.jsx';
 import RelatedProductsAndOutfit from './RelatedProductsAndOutfit.jsx';
 import ReviewSection from './ReviewComponent/ReviewSection.jsx';
 import { useParams } from 'react-router-dom';
+import { ColorProvider } from "./colorContext.jsx";
 
 const App = (props) => {
   let productId = 42370;
@@ -11,11 +12,14 @@ const App = (props) => {
     productId = useParams().id
   }
 
-  return (<section>
-    {/* <Overview productId={productId}/>
-    <RelatedProductsAndOutfit />
-    <QA /> */}
-    <ReviewSection />
+  return (
+  <section>
+    <ColorProvider>
+      {/* <Overview productId={productId}/> */}
+      {/* <RelatedProductsAndOutfit /> */}
+      {/* <QA /> */}
+      <ReviewSection />
+    </ColorProvider>
   </section>
   );
 };

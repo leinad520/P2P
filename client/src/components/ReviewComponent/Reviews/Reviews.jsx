@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import Review from './Review.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ModalWindow from '../../sharedComponents/modalComponent/Modal.jsx';
+import { ColorContext } from '../../colorContext.jsx';
 
 const Reviews = ({
                   sortedByOnChangeHandler,
@@ -15,6 +16,9 @@ const Reviews = ({
                 }) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(3);
+  const colors = useContext(ColorContext);
+  // console.log(colors);
+
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
   } else {
