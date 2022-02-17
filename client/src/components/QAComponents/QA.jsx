@@ -68,7 +68,7 @@ render () {
       </div>
     </section>
     <div id="qa-list">
-    <QAList data={this.state.questions}/>
+    <QAList getAllQuestions={this.getAllQuestions} data={this.state.questions}/>
     </div>
     <div>
       <div>

@@ -11,7 +11,7 @@ var Answer = (props) => {
         <span>| Helpful?
         <span id="answer-helpfulness">
         <span><u>Yes</u> ({props.answer.helpfulness}) |</span>      </span></span>
-        <span id="report">Report</span>
+        <span id="report"><u>Report</u></span>
       </div>
     </div>
   )

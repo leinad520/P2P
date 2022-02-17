@@ -8,7 +8,7 @@ const QAList = (props) => {
   <div>
   {slicedFour.map((question, index) => {
     {/* {console.log('question' , props.data.results)} */}
-    return <QAListEntry question={question} key={index}/>
+    return <QAListEntry getAllQuestions={props.getAllQuestions} question={question} key={index}/>
   })}
   </div>
 )
