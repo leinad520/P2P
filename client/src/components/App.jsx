@@ -6,8 +6,11 @@ import ReviewSection from './ReviewComponent/ReviewSection.jsx';
 import { useParams } from 'react-router-dom';
 import { ColorProvider } from "./colorContext.jsx";
 
+import {  }
+
 const App = (props) => {
   let productId = 42370;
+
   if (useParams().id) {
     productId = useParams().id
   }
