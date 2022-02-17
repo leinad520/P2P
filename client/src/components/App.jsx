@@ -15,9 +15,9 @@ const App = (props) => {
 
   return (<section>
     <Overview productId={productId}/>
-    {/* <RelatedProductsAndOutfit />
-    <QA />
-    <ReviewSection /> */}
+    <RelatedProductsAndOutfit />
+    <QA productId={productId}/>
+    <ReviewSection />
   </section>
   );
 };
