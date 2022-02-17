@@ -12,12 +12,12 @@ function ProductHeader({ currStyle, currData }) {
     if (currData.sale_price) {
       return (
         <div>
-          <span className='original-price'>{currData.original_price}</span>
-          <span>{currData.sale_price}</span>
+          <span className='original-price'>{`$${currData.original_price}`}</span>
+          <span>{`$${currData.sale_price}`}</span>
         </div>
       )
     } else {
-      return <div>{currStyle.default_price}</div>
+      return <div>{`$${currData.original_price}`}</div>
     }
   }
 
