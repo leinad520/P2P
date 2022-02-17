@@ -1,15 +1,17 @@
 import React from 'react';
 import QAListEntry from './QAListEntry.jsx';
 
-const QAList = (props) => (
-  // {console.log('this is props within QAList: ', props.data)};
+const QAList = (props) => {
+  let slicedFour = props.data.results.slice(0, 4);
+  // console.log('this is slicedFour: ', slicedFour);
+  return (
   <div>
-  {props.data.results.map((question, index) => {
+  {slicedFour.map((question, index) => {
     {/* {console.log('question' , props.data.results)} */}
-    return <QAListEntry question={question} key={index}/>
+    return <QAListEntry productId={props.productId} getAllQuestions={props.getAllQuestions} question={question} key={index}/>
   })}
   </div>
-
-);
+)
+};
 
 export default QAList;

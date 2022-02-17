@@ -91,15 +91,14 @@ app.get("/api/:id", (req, res) => {
   //product id: 42367
 // Q&A SECTION
 
-app.get('/qa/questions/:id/', (req, res) => {
+app.get('/qa/questions/:id', (req, res) => {
   const { id, page, count } = req.params;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&sort=newest`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&sort=newest&count=5`, {
     header: {
       Authorization: process.env.HR_TOKEN
     }
   })
   .then(response => {
-    console.log('this res.data:', response.data);
     res.send(response.data)})
   .catch(err => res.send(err))
 })
@@ -107,19 +106,16 @@ app.get('/qa/questions/:id/', (req, res) => {
 // GET ALL ANSWERS FOR GIVEN QUESTION
 app.get('/qa/questions/:id/answers', (req, res) => {
   const {id} = req.params
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`, {
-    headers: {
-      Authorization: process.env.HR_TOKEN
-    }
-  })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`)
   .then(response => {res.send(response.data);})
   .catch(err => res.send(err))
 })
 
 //ADD QUESTION
 app.post('/qa/questions/:id', (req, res) => {
-  const {id} = req.params;
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}`, req.body)
+  const {id} = req.params
+  // console.log('this is req.body:', req.body);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions`, req.body)
   .then(success => {
     console.log('success');
     res.sendStatus(201).end();
@@ -130,14 +126,71 @@ app.post('/qa/questions/:id', (req, res) => {
 })
 
 //ADD ANSWER
+app.post('/qa/questions/:id/answers', (req, res) => {
+  const { id } = req.params;
+  // console.log(req.body)
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`, req.body)
+  .then(success => {
+    res.sendStatus(201).end();
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
 
 //MARK QUESTION AS HELPFUL
+app.put('/qa/questions/:id/helpful', (req, res) => {
+  const { id } = req.params
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/helpful`, req.body)
+  .then(success => {
+    res.sendStatus(201).end();
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
 
 //REPORT QUESTION
+app.put('/qa/questions/:id/report', (req, res) => {
+  const { id } = req.params
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/report`, req.body)
+  .then(success => {
+    console.log('question successfully reported');
+    res.sendStatus(201).end();
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
 
 //MARK ANSWER AS HELPFUL
+app.put('/qa/answers/:id/helpful', (req, res) => {
+  const { id } = req.params
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/helpful`, req.body)
+  .then(success => {
+    console.log('successfully marked answer as helpful')
+    res.sendStatus(201).end();
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
 
-//REPORT ANSWER
+//REPORT ANSWER // NEED TO NOT GET ON
+app.put('qa/answers/:id/report', (req, res) => {
+  const { id } = req.params
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/report`, req.body)
+  .then(success => {
+    console.log('successfuly reported answer')
+    res.sendStatus(201).end()
+  })
+  .catch(err => {
+    res.send(err);
+  })
+})
+
+
+
 
 // GET & SORT PRODUCTS
 app.get('/productreviews/:id/:sortType', (req, res) => {
