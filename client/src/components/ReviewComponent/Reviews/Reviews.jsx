@@ -12,17 +12,18 @@ const Reviews = ({
                   productId,
                   getReviews,
                   onHelpfulClick,
-                  sort
+                  sort,
+                  meta
                 }) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(3);
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
   } else {
-    console.log('Reviews Page Render')
     function showModal () {
       setShow(!show);
     };
+
     let allReviewsObj = {
       reviews: reviews.results,
       showReviews: () => {
@@ -65,7 +66,11 @@ const Reviews = ({
         </div>
 
         <ModalWindow onClose={showModal} show={show}>
-          <ReviewForm getReviews={getReviews} productId={productId} />
+          <ReviewForm
+            meta={meta}
+            getReviews={getReviews}
+            productId={productId}
+          />
         </ModalWindow>
       </div>
   )

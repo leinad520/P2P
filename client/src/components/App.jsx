@@ -6,7 +6,6 @@ import ReviewSection from './ReviewComponent/ReviewSection.jsx';
 import { useParams } from 'react-router-dom';
 
 const App = (props) => {
-
   let productId = 42370;
   if (useParams().id) {
     productId = useParams().id
@@ -17,7 +16,8 @@ const App = (props) => {
     <RelatedProductsAndOutfit />
     <QA productId={productId}/>
     <ReviewSection />
-  </section>)
+  </section>
+  );
 };
 
 export default App;
