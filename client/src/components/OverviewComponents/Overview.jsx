@@ -4,10 +4,10 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductHeader from './ProductHeader.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import DarkMode from '../DarkMode.jsx';
 import axios from 'axios';
 
 
-// do not nest hooks
 
 function Overview({ productId }) {
 
@@ -48,9 +48,10 @@ function Overview({ productId }) {
     <div className='MegaContainer'>
       <ImageGallery currData={currData} />
       <div className='productInfoContainer'>
-        <ProductHeader currStyle={product} />
+        <ProductHeader currStyle={product} currData={currData}/>
         <StyleSelector productId={productId} getStyle={getStyle}/>
         <ProductInfo currStyle={product} />
+        <DarkMode />
       </div>
     </div>
   )

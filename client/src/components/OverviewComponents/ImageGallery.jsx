@@ -6,82 +6,33 @@ function ImageGallery({ currData }) {
   const modal = useRef(null);
   const imgElement = useRef(null);
   const [currPhotoIndex, setCurrPhotoIndex] = useState(0);
-  const [portraitData, setPortraitData] = useState([]);
+  const [[x, y], setXY] = useState([0, 0]);
   const length = currData.photos ? currData.photos.length : 0;
 
   useEffect(() => {
     if (currData.photos) {
-      getIfPortrait().then(res => setPortraitData(res));
+      if (currPhotoIndex > currData.photos.length - 1) {
+        setCurrPhotoIndex(0);
+      }
     }
   }, [currData])
 
-  const getIfPortrait = async () => {
-    let isPortrait = false
-
-      function ifPortrait(currImage) {
-        const image = new Image();
-        image.src = currImage;
-        return new Promise(resolve => {
-          image.onload = () => {
-            if (image.height > image.width) {
-              resolve(true);
-            } else {
-              resolve(false);
-            }
-          }
-        })
-      }
-      const promiseArray = [];
-      currData.photos.forEach(photo => {
-        promiseArray.push(ifPortrait(photo.url));
-      })
-      let resolvedArray = await Promise.all(promiseArray);
-      return resolvedArray;
+  const onMouseMove = (e) => {
+    const { width, height } = e.currentTarget.getBoundingClientRect();
+    setXY([e.screenX, e.screenY]);
   }
 
   const renderImage = () => {
     if (currData.photos) {
-
       return currData.photos.map((photo, index) => {
-        if (portraitData[index]) {
-          return (
-            <div className={index === currPhotoIndex ? 'active slide portrait' : 'slide'} key={`${photo.style_id} ${index}`}>
-            {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
-            </div>
-          )
-        }
         return (
           <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
-            {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
+            {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onMouseMove={(e) => onMouseMove(e)} onClick={() => modal.current.open()}></img>)}
           </div>
         )
       })
     }
   }
-
-  // const renderImage = () => {
-  //   if (currData.photos) {
-  //     let isPortrait = false
-  //     return currData.photos.map((photo, index) => {
-  //       let imgHeights = {}
-  //       let image = new Image();
-  //       image.src = photo.url
-  //       image.onload = () => {
-  //         imgHeights['height'] = image.height;
-  //         imgHeights['width'] = image.width;
-  //         if (image.height > image.width) {
-  //           isPortrait = true;
-  //         }
-  //       };
-  //       console.log(isPortrait)
-  //       return (
-  //         <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
-  //           {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
-  //         </div>
-  //       )
-  //     })
-  //   }
-  // }
 
   const renderThumbnails = () => {
     if (currData.photos) {
@@ -122,17 +73,31 @@ function ImageGallery({ currData }) {
 
   const renderModal = () => {
     if (currData.photos) {
-      return (
-        <div className='modalContainer' onClick={() => modal.current.close()}>
-          <img
-            className='modalImage'
-            src={currData.photos[currPhotoIndex].url}
-            // onMouseOver={() => modal.current.open()}
-            // onMouseLeave={() => modal.current.close()}
-            onClick={() => modal.current.close()}>
-          </img>
-        </div>
-      )
+      if (currData.photos[currPhotoIndex]) {
+        return (
+          <div className='modalContainer' onClick={() => modal.current.close()}>
+            <img
+              className='modalImage'
+              src={currData.photos[currPhotoIndex].url}
+              // onMouseOver={() => modal.current.open()}
+              // onMouseLeave={() => modal.current.close()}
+              onClick={() => modal.current.close()}>
+            </img>
+          </div>
+        )
+      } else {
+        return (
+          <div className='modalContainer' onClick={() => modal.current.close()}>
+            <img
+              className='modalImage'
+              src={currData.photos[0].url}
+              // onMouseOver={() => modal.current.open()}
+              // onMouseLeave={() => modal.current.close()}
+              onClick={() => modal.current.close()}>
+            </img>
+          </div>
+        )
+      }
     }
   }
 
@@ -143,11 +108,9 @@ function ImageGallery({ currData }) {
         <a className="prev" onClick={() => moveSlide(-1)}>&#10094;</a>
         <a className="next" onClick={() => moveSlide(1)}>&#10095;</a>
       </div>
-
       <Modal ref={modal}>
         {renderModal()}
       </Modal>
-
       <div className='row'>
         {renderThumbnails()}
       </div>
@@ -156,3 +119,57 @@ function ImageGallery({ currData }) {
 }
 
 export default ImageGallery;
+
+  // const [portraitData, setPortraitData] = useState([]);
+
+  // useEffect(() => {
+  //   if (currData.photos) {
+  //     getIfPortrait().then(res => setPortraitData(res));
+  //   }
+  // }, [currData])
+
+  // const getIfPortrait = async () => {
+  //   let isPortrait = false
+
+  //     function ifPortrait(currImage) {
+  //       const image = new Image();
+  //       image.src = currImage;
+  //       return new Promise(resolve => {
+  //         image.onload = () => {
+  //           if (image.height > image.width) {
+  //             resolve(true);
+  //           } else {
+  //             resolve(false);
+  //           }
+  //         }
+  //       })
+  //     }
+  //     const promiseArray = [];
+  //     currData.photos.forEach(photo => {
+  //       promiseArray.push(ifPortrait(photo.url));
+  //     })
+  //     let resolvedArray = await Promise.all(promiseArray);
+  //     return resolvedArray;
+  // }
+
+  // const renderImage = () => {
+  //   if (currData.photos) {
+
+  //     return currData.photos.map((photo, index) => {
+  //       if (portraitData[index]) {
+  //         return (
+  //           <div className={index === currPhotoIndex ? 'active slide portrait' : 'slide'} key={`${photo.style_id} ${index}`}>
+  //           {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
+  //           </div>
+  //         )
+  //       }
+  //       return (
+  //         <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
+  //           {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onMouseMove={(e) => onMouseMove(e)} onClick={() => modal.current.open()}></img>)}
+  //         </div>
+  //       )
+  //     })
+  //   }
+  // }
+
+

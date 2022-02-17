@@ -5,21 +5,38 @@ function AddToCart({ currData, defaultStyle }) {
 
   const [skus, setSkus] = useState('');
 
-  useEffect(() => {
-    if (Object.keys(currData).length) {
-      setSkus(Object.keys(currData.skus)[0])
-    }
-  }, [currData])
+  // useEffect(() => {
+  //   if (Object.keys(currData).length) {
+  //     setSkus(Object.keys(currData.skus)[0])
+  //   }
+  // }, [currData])
 
   const renderSizes = () => {
     let results = [];
     const sizeContainer = currData.skus;
+
     for (let skus in sizeContainer) {
-      results.push(
-        <option key={skus} value={skus}>{sizeContainer[skus].size}</option>
+      if (skus !== 'null') {
+        results.push(
+          <option key={skus} value={skus}>{sizeContainer[skus].size}</option>
+        )
+      }
+    }
+
+    if (!results.length) {
+      return (
+        <select disabled>
+          <option value=''>Out Of Stock</option>
+        </select>
       )
     }
-    return results;
+
+    return (
+      <select className='sizeDropDown' onChange={(e) => onSizeChange(e)} required>
+        <option value=''>Select Size</option>
+        {results}
+      </select>
+    );
   }
 
   const renderQuantity = () => {
@@ -34,6 +51,7 @@ function AddToCart({ currData, defaultStyle }) {
   }
 
   const onSizeChange = (e) => {
+    document.getElementById('quantity').disabled = false;
     setSkus(e.target.value)
   }
 
@@ -45,12 +63,9 @@ function AddToCart({ currData, defaultStyle }) {
 
   return (
     <div>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <select onChange={(e) => onSizeChange(e)} required>
-          <option value=''>Select Size</option>
-          {Object.keys(currData).length && renderSizes()}
-        </select>
-        <select>
+      <form className='formData' onSubmit={(e) => onSubmit(e)}>
+        {Object.keys(currData).length && renderSizes()}
+        <select id='quantity' disabled>
           {renderQuantity()}
         </select>
         <input type='submit' value='Add to Cart'></input>

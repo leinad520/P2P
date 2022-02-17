@@ -1,3 +1,13 @@
+:root {
+  --font-color: #333;
+  --background-color: #eee;
+}
+
+[data-theme='dark'] {
+  --font-color: #eee;
+  --background-color: #333;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -27,7 +37,80 @@
 body {
   height: 100vh;
   font-family: sans-serif, arial;
-  background-color: grey;
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+
+.darkswitch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.darkswitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.circle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(115, 232, 65);
+  border-radius: 50%;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(27px);
+  -ms-transform: translateX(27px);
+  transform: translateX(27px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 .MegaContainer {
@@ -37,7 +120,7 @@ body {
 }
 
 .productInfoContainer {
-  background: lightgrey;
+  background: var(--background-color);
   border-radius: 20px;
   margin:30px;
   padding: 30px;
@@ -47,6 +130,12 @@ body {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+.original-price {
+  padding: 5px;
+  text-decoration: line-through;
+  color: red;
+}
+
 /* Product Info Header */
 .productHeader {
   padding: 20px 0;
@@ -54,6 +143,15 @@ body {
 
 .productHeader h2 {
   padding: 10px 0;
+}
+
+.grid-container {
+  display: grid;
+  width: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+}
+
 .hidden {
   position: absolute;
   opacity: 0;
@@ -62,8 +160,8 @@ body {
 .styleButtons {
   padding: 8px;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 8em;
+  width: 8em;
 }
 
 .productInfo {
@@ -106,6 +204,7 @@ body {
   border-radius: 20px;
   height: 100%;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .imageContainer .slide  {
@@ -119,7 +218,6 @@ body {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  /* width: 3%; */
   padding: 10px;
   margin-top: -50px;
   color: white;
@@ -144,6 +242,31 @@ body {
   right: -10px;
 }
 
+.selected {
+  z-index: 9999;
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  color: white;
+}
+
+#quantity {
+  margin-right: 10px;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.25em;
+}
+
+.sizeDropDown {
+  margin-right: 10px;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.25em;
+}
+
+.selectedStyle {
+  position: relative;
+  border-radius: 50%;
+}
+
 .row {
   border-radius: 20px;
   display: flex;
@@ -154,12 +277,12 @@ body {
 }
 
 .column {
-  flex: 1 1 25%;
+  /* flex: 1 1 25%; */
   flex-wrap: wrap;
+  display: flex;
   position: relative;
   height: 175px;
   margin: 3px;
-  /* max-width: 200px; */
 }
 
 .thumbnailPhoto {
@@ -174,6 +297,7 @@ body {
 .thumbnail {
   cursor: pointer;
   width: 100%;
+  flex: 1 1;
   height: 100%;
   position: absolute;
   top: 0;
@@ -209,10 +333,13 @@ body {
 
 .active.slide img {
   object-fit: cover;
-  /* height: 100%;
-  width: 100%; */
   height: 100%;
   width: 100%;
+}
+
+.modalImage {
+  width: 90%;
+  height: 90%;
 }
 
 .modal {

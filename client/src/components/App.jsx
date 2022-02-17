@@ -8,16 +8,16 @@ import { useParams } from 'react-router-dom';
 const App = (props) => {
 
   // 42375
-  let productId = 42370;
+  let productId = 42373;
   if (useParams().id) {
     productId = useParams().id
   }
 
   return (<section>
     <Overview productId={productId}/>
-    <RelatedProductsAndOutfit />
+    {/* <RelatedProductsAndOutfit />
     <QA />
-    <ReviewSection />
+    <ReviewSection /> */}
   </section>
   );
 };

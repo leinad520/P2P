@@ -1,10 +1,23 @@
 import React from 'react';
 
-function ProductHeader({ currStyle }) {
+function ProductHeader({ currStyle, currData }) {
 
   function renderProductOverView() {
     if (currStyle.productOverview) {
       return <div>{currStyle.productOverview}</div>
+    }
+  }
+
+  function renderSalePrice() {
+    if (currData.sale_price) {
+      return (
+        <div>
+          <span className='original-price'>{currData.original_price}</span>
+          <span>{currData.sale_price}</span>
+        </div>
+      )
+    } else {
+      return <div>{currStyle.default_price}</div>
     }
   }
 
@@ -13,7 +26,7 @@ function ProductHeader({ currStyle }) {
       <h2>{currStyle.name}</h2>
       <div>stars READ ALL REVIEWS</div>
       <h3>{currStyle.category}</h3>
-      <div>{currStyle.default_price}</div>
+      {renderSalePrice()}
       {renderProductOverView()}
     </div>
   );

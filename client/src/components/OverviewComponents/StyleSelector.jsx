@@ -18,24 +18,32 @@ function StyleSelector({ productId, getStyle }) {
       const res = await axios.get(`/products/${productId}/styles`)
       setStyles(res.data.results);
       setCurrData(res.data.results[0]);
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   }
 
   const renderStyleButtons = () => {
     if (styles.length) {
-      return styles.map(style => {
+      return styles.map((style, index) => {
         return (
-        <input
-          key={style.style_id}
-          type='image'
-          value={style.style_id}
-          onClick={handleClick}
-          name={style.name}
-          src={style.photos[0].thumbnail_url}
-          className='styleButtons'
-        />)
+          <div className='selectedStyle'>
+            <input
+              key={style.style_id}
+              type='image'
+              value={style.style_id}
+              onClick={handleClick}
+              name={style.name}
+              src={style.photos[0].thumbnail_url}
+              className='styleButtons'
+            ></input>
+            {currData.style_id === style.style_id &&
+              <div key={`${index} style selected`} className='circle'>
+                <span className='selected'>&#10003;</span>
+              </div>
+            }
+          </div>
+        )
       })
     } else {
       return <h1>LOADING...</h1>
@@ -57,10 +65,14 @@ function StyleSelector({ productId, getStyle }) {
   return (
     <div className='styleContainer'>
       STYLE > {currData.name}
-      {renderStyleButtons()}
-      <AddToCart currData={currData}/>
+      <div className='grid-container'>
+        {renderStyleButtons()}
+      </div>
+      <AddToCart currData={currData} />
     </div>
   );
 }
 
 export default StyleSelector;
+
+// {currData.style_id === style.style_id ?? <span>&#10003;</span>}
