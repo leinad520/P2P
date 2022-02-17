@@ -334,22 +334,10 @@ input:checked + .slider:before {
 }
 
 .active.slide img {
-<<<<<<< HEAD
-  object-fit: contain;
-  height: 522px;
-  width: 800px;
-}
-
-/* img {
-  width: 100%;
-  height: auto;
-} */
-=======
   object-fit: cover;
   height: 100%;
   width: 100%;
 }
->>>>>>> master
 
 .modalImage {
   width: 90%;
@@ -395,7 +383,6 @@ input:checked + .slider:before {
 
 .exitModal:hover {
   cursor: pointer;
-<<<<<<< HEAD
 }
 
 /* Daniel */
@@ -405,9 +392,6 @@ input:checked + .slider:before {
   margin-left: 10px;
   margin-top: 30px;
 }
-=======
-} */
->>>>>>> master
 
 .parent {
   display: flex;
