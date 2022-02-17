@@ -35,9 +35,15 @@ render() {
     <div className="question">
     <span id="Q">Q:</span>
     <span>{this.props.question.question_body} - {this.props.question.asker_name}</span>
-    <span>{'     '} Helpful?
+    <span className="question-utility">
+    <span id="q-helpful">{'     '} Helpful? {'     '}
     <u>Yes</u> ({this.props.question.question_helpfulness}) |
-    <span>{'     '} Report</span>
+    <span>{'     '}
+    <button id="add-answer-btn">
+     Add Answer
+    </button>
+    </span>
+    </span>
     </span>
     </div>
     <div className="answer">

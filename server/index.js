@@ -92,7 +92,6 @@ app.get('/qa/questions/:id', (req, res) => {
     }
   })
   .then(response => {
-    console.log('this res.data:', response.data);
     res.send(response.data)})
   .catch(err => res.send(err))
 })
@@ -100,19 +99,16 @@ app.get('/qa/questions/:id', (req, res) => {
 // GET ALL ANSWERS FOR GIVEN QUESTION
 app.get('/qa/questions/:id/answers', (req, res) => {
   const {id} = req.params
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`, {
-    headers: {
-      Authorization: process.env.HR_TOKEN
-    }
-  })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`)
   .then(response => {res.send(response.data);})
   .catch(err => res.send(err))
 })
 
 //ADD QUESTION
 app.post('/qa/questions/:id', (req, res) => {
-  const {id} = req.params;
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}`, req.body)
+  const {id} = req.params
+  // console.log('this is req.body:', req.body);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions`, req.body)
   .then(success => {
     console.log('success');
     res.sendStatus(201).end();
@@ -125,6 +121,7 @@ app.post('/qa/questions/:id', (req, res) => {
 //ADD ANSWER
 app.post('/qa/questions/:id/answers', (req, res) => {
   const { id } = req.params;
+  // console.log(req.body)
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/answers`, req.body)
   .then(success => {
     res.sendStatus(201).end();
@@ -172,10 +169,10 @@ app.put('/qa/answers/:id/helpful', (req, res) => {
   })
 })
 
-//REPORT ANSWER
+//REPORT ANSWER // NEED TO NOT GET ON
 app.put('qa/answers/:id/report', (req, res) => {
   const { id } = req.params
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/helpful`, req.body)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/report`, req.body)
   .then(success => {
     console.log('successfuly reported answer')
     res.sendStatus(201).end()

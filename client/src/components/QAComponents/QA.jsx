@@ -54,11 +54,12 @@ class QA extends React.Component {
 
 
 render () {
-  console.log('this is this.state.questions:', this.state.questions);
   return (
     <>
     <h3>QUESTION & ANSWERS</h3>
-    <section>
+    <div className="questions-answers-main">
+    <section >
+
     <div className="searchContainer">
       <form className="searchForm">
         <input className="searchInput" onChange={this.searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
@@ -75,6 +76,7 @@ render () {
       <button>Add a Question           +</button>
 
       </div>
+    </div>
     </div>
     </>
   )
