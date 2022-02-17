@@ -24,60 +24,68 @@ class QAListEntry extends React.Component {
 //need to display up to two answers initially
 //remaining questions and answers should be hidden until user loads them by hitting more Answered Questions button
 
-handleHelpfulQuestionClick (e) {
-  console.log('helpful question click firing');
-  console.log('this.props.question:', this.props.question);
-  const { question_id } = this.props.question
-  axios.put(`/qa/questions/${question_id}/helpful`, {
-    question_helpfulness: this.props.question.question_helpfulness++
-  })
-  .then(response => {
-    this.props.getAllQuestions();
-  })
-  .then(response => {
-    this.setState({
-      helpful: !this.state.helpful
-    })
-  })
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  })
-}
-
+  handleHelpfulQuestionClick(e) {
+    if (!this.state.helpful) {
+      const { question_id } = this.props.question
+      axios.put(`/qa/questions/${question_id}/helpful`, {
+        question_helpfulness: this.props.question.question_helpfulness++
+      })
+        .then(response => {
+          this.props.getAllQuestions();
+        })
+        .then(response => {
+          this.setState({
+            helpful: !this.state.helpful
+          })
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    }
+  }
 
 
 render() {
-  var answers = [];
+  let answers = [];
   for (let answer in this.props.question.answers) {
     answers.push(this.props.question.answers[answer]);
   }
+  let slicedAns = answers.slice(0, 2);
+  let remainingAns = answers.slice(2);
 
 
 
   return (
     <>
-    <div className="question">
-    <span id="Q">Q:</span>
-    <span>{this.props.question.question_body} - {this.props.question.asker_name}</span>
-    <span className="question-utility">
-    <span id="q-helpful" onClick={this.handleHelpfulQuestionClick}>{'     '} Helpful? {'     '}
-    <u>Yes</u> ({this.props.question.question_helpfulness}) |
-    <span>{'     '}
-    <button id="add-answer-btn">
-    <u>Add Answer</u>
-    </button>
-    </span>
-    </span>
-    </span>
-    </div>
-    <div className="answer">
-    {answers.map((answer, index) => {
-      return <Answer answer={answer} key={index}/>
-    })}
-    </div>
+      <div className="question">
+        <span id="Q">Q:</span>
+        <span>{this.props.question.question_body}</span>
+        <span className="question-utility">
+          <span id="q-helpful">
+            <span>{'     '} Helpful? {'     '} </span>
+            <u onClick={this.handleHelpfulQuestionClick}>Yes</u> ({this.props.question.question_helpfulness}) |
+            <span>{'     '}</span>
+            <span className="add-answer">
+              <button id="add-answer-btn">
+                <u>Add Answer</u>
+              </button>
+            </span>
+          </span>
+        </span>
+      </div>
+      <div className="answer">
+        <div>
+          <span id="A">A: </span>
+          <span>
+            {slicedAns.map((answer, index) => {
+              return <Answer answer={answer} key={index} />
+            })}
+          </span>
+        </div>
+      </div>
     </>
   );
 }
