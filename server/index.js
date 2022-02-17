@@ -21,6 +21,13 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 axios.defaults.headers.common['Authorization'] = process.env.HR_TOKEN;
 
+app.post('/cart/:sku', (req, res) => {
+  const { sku } = req.params;
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart', sku)
+    .then(response => res.send(response))
+    .catch(err => res.send(err))
+})
+
 app.get('/products', (req, res) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/', {
     headers: {
