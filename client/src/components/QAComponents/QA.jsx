@@ -17,11 +17,13 @@ class QA extends React.Component {
 
     this.state = {
       search: '',
-      questions: [],
-      answers: [],
+      questions: {
+        results: [],
+      },
     }
 
     this.searchHandler = this.searchHandler.bind(this);
+    this.getAllQuestions = this.getAllQuestions.bind(this);
   }
 
   //create handler to change state of search to whatever the input user provides
@@ -35,18 +37,29 @@ class QA extends React.Component {
     });
   }
 
-  // componentDidMount() {
-  //   axios.get()
-  // }
+  componentDidMount() {
+    this.getAllQuestions();
+  }
+
+  getAllQuestions() {
+    axios.get(`/qa/questions/${this.props.productId}`)
+      .then((response) => {
+        this.setState({
+          questions: response.data
+        });
+      })
+      .catch(() => { console.log('error'); });
+  }
 
 
 
 render () {
-  // console.log('this is data:', data);
   return (
     <>
     <h3>QUESTION & ANSWERS</h3>
-    <section>
+    <div className="questions-answers-main">
+    <section >
+
     <div className="searchContainer">
       <form className="searchForm">
         <input className="searchInput" onChange={this.searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
@@ -55,7 +68,7 @@ render () {
       </div>
     </section>
     <div id="qa-list">
-    <QAList data={data}/>
+    <QAList getAllQuestions={this.getAllQuestions} data={this.state.questions}/>
     </div>
     <div>
       <div>
@@ -63,6 +76,7 @@ render () {
       <button>Add a Question           +</button>
 
       </div>
+    </div>
     </div>
     </>
   )
