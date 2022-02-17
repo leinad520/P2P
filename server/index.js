@@ -38,6 +38,7 @@ app.get('/products', (req, res) => {
     .catch(err => res.send(err))
 })
 
+// Austin
 app.get('/products/:id', (req, res) => {
   const { id } = req.params
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, {
@@ -49,6 +50,7 @@ app.get('/products/:id', (req, res) => {
     .catch(err => res.send(err))
 })
 
+// Austin
 app.get('/products/:id/styles', (req, res) => {
   const { id } = req.params
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/styles`, {

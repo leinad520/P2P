@@ -158,6 +158,7 @@ input:checked + .slider:before {
   opacity: 0;
 }
 
+/* Austin */
 .styleButtons {
   padding: 8px;
   border-radius: 50%;
@@ -382,7 +383,15 @@ input:checked + .slider:before {
 
 .exitModal:hover {
   cursor: pointer;
-} */
+}
+
+/* Daniel */
+
+.title {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 30px;
+}
 
 .parent {
   display: flex;
@@ -397,14 +406,72 @@ input:checked + .slider:before {
   margin: 10px;
 }
 
+.outfit-card {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  height: 300px;
+  border: solid;
+  margin: 10px;
+}
+
+.empty-card {
+  width: 150px;
+  height: 300px;
+  position: absolute;
+}
+
 
 .card-picture {
-  height: 150px;
+  height: 200px;
 }
 
 .card-description {
-  height: 150px;
+  height: 100px;
+  border-top: solid;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
 
+.card-description span {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.card-description .category {
+  color: grey;
+}
+
+.card-description .name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.corner-star {
+  position: relative;
+  bottom: 200px;
+  left: 125px;
+
+}
+
+.corner-xmark {
+  position: relative;
+  bottom: 200px;
+  left: 125px;
+
+}
+
+.circle-plus {
+  position: relative;
+  top: 100px;
+  left: 35px;
 }
 
 /* Matt's Styles */
