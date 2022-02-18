@@ -556,47 +556,6 @@ a.report  {
   color: whitesmoke;
 }
 
-.attribute-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.attribute-container label {
-  font-size: small;
-  font-style: italic;
-  color: rgba(43, 35, 35, 0.632);
-}
-
-.attribute-left {
-  display: flex;
-  justify-content: left;
-  width: 100px;
-}
-.attribute-middle {
-  display: flex;
-  justify-content: center;
-  width: 100px;
-}
-.attribute-right {
-  display: flex;
-  justify-content: right;
-  width: 100px;
-}
-
-.attribute-radio {
-  display: flex;
-  flex: 1 0 20%;
-  justify-content: space-between;
-}
-
-.attribute-descriptor {
-  display: flex;
-  justify-content: space-between;
-  font-size: x-small;
-  color: rgba(89, 89, 89, 0.632);
-}
-
 /* Star Styling */
 
 .starrating > input {display: none;}  /* Remove radio buttons */

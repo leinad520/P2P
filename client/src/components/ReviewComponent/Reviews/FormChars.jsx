@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import css from './FormChars.css';
 
 const FormChars = ({meta}) => {
   const [val, setVal] = useState(3)
