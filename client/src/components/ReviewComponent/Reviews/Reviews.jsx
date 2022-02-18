@@ -22,6 +22,7 @@ const Reviews = ({
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
   } else {
+
     function showModal () {
       setShow(!show);
     };
@@ -64,7 +65,8 @@ const Reviews = ({
 
         <div className="review-section-buttons">
           <button className="btn" onClick={e => {allReviewsObj.showThreeMoreReviews()}}>Show More</button>
-        <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
+            {/* MODAL BUTTON */}
+          <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
         </div>
 
         <ModalWindow onClose={showModal} show={show}>

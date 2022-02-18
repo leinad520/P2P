@@ -1,3 +1,13 @@
+:root {
+  --font-color: #333;
+  --background-color: #eee;
+}
+
+[data-theme='dark'] {
+  --font-color: #eee;
+  --background-color: #333;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,12 +16,128 @@
 
 
 /*
-  rem is based off of font size of the documents root
-  em is relative sizing to parent element
+  rem is based off of font size of the documents root ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  em is relative sizing to parent element ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+/* AUSTINS CSS */
+
 body {
+  height: 100vh;
   font-family: sans-serif, arial;
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+
+.darkswitch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.darkswitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.circle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(115, 232, 65);
+  border-radius: 50%;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(27px);
+  -ms-transform: translateX(27px);
+  transform: translateX(27px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.MegaContainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+.productInfoContainer {
+  background: var(--background-color);
+  border-radius: 20px;
+  margin:30px;
+  padding: 30px;
+  flex: 1 1;
+  display:flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.original-price {
+  padding: 5px;
+  text-decoration: line-through;
+  color: red;
+}
+
+/* Product Info Header */
+.productHeader {
+  padding: 20px 0;
+}
+
+.productHeader h2 {
+  padding: 10px 0;
+}
+
+.grid-container {
+  display: grid;
+  width: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
 }
 
 .hidden {
@@ -19,11 +145,12 @@ body {
   opacity: 0;
 }
 
+/* Austin */
 .styleButtons {
   padding: 8px;
   border-radius: 50%;
-  height: 75px;
-  width: 75px;
+  height: 8em;
+  width: 8em;
 }
 
 .productInfo {
@@ -40,40 +167,54 @@ body {
   margin: 5px;
 }
 
-.imageContainer {
-  height: 840px;
-  width: 560px;
-  position: relative;
-  margin: 30px;
+.heroPhotoContainer {
+  min-width: 900px;
+  min-height: 900px;
+  margin-top: 30px;
+  margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.imageContainer .slide img {
+.imageContainer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.active-photo {
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.imageContainer .slide  {
   object-fit: contain;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
 }
 
 .prev,
 .next {
+  right: 60%;
   cursor: pointer;
   position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
+  top: 50%;
+  padding: 10px;
   margin-top: -50px;
   color: white;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 0 3px 3px 0;
+  border-radius: 10px;
   user-select: none;
-}
-
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+  z-index: 9999;
 }
 
 .prev:hover,
@@ -81,51 +222,114 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.prev {
+ right: 903px;
+}
+
+.next {
+  overflow: visible;
+  right: -10px;
+}
+
+.selected {
+  z-index: 9999;
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  color: white;
+}
+
+#quantity {
+  margin-right: 10px;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.25em;
+}
+
+.sizeDropDown {
+  margin-right: 10px;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.25em;
+}
+
+.selectedStyle {
+  position: relative;
+  border-radius: 50%;
+}
+
 .row {
+  border-radius: 20px;
   display: flex;
+  width: 100%;
+  align-items: flex-start;
+  height: 175px;
+  margin-bottom: 2rem;
 }
 
 .column {
+  /* flex: 1 1 25%; */
+  flex-wrap: wrap;
+  display: flex;
   position: relative;
+  height: 175px;
+  margin: 3px;
+}
+
+.thumbnailPhoto {
+  width: 225px;
+  height: 175px;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: 80% 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .thumbnail {
-  opacity: 0.6;
+  cursor: pointer;
+  width: 100%;
+  flex: 1 1;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background: transparent;
+  border: none !important;
 }
+.thumbnail:focus {
+  outline: none;
+}
+
 
 .thumbnail:hover {
   opacity: 1;
 }
 
 .slide {
-  position: relative;
+  /* flex: 1, 1; */
   opacity: 0;
   transition-duration: .5s ease;
 }
 
 .active.slide {
-  position: relative;
+  /* position: relative; */
+  z-index: 9999;
+  width: auto;
+  height: 100%;
   opacity: 1;
   transition-duration: .5s;
-  transform: scale(1.05);
+  transform: scale(.95);
 }
 
 .active.slide img {
-  object-fit: contain;
-  height: 522px;
-  width: 800px;
-}
-
-img {
+  object-fit: cover;
+  height: 100%;
   width: 100%;
-  height: auto;
 }
 
-.imageContainer {
-  height: 522px;
-  width: 800px;
+.modalImage {
+  width: 90%;
+  height: 90%;
 }
-
 
 .modal {
   position: fixed;
@@ -136,8 +340,8 @@ img {
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.65);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +370,15 @@ img {
 
 .exitModal:hover {
   cursor: pointer;
-} */
+}
+
+/* Daniel */
+
+.title {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 30px;
+}
 
 .parent {
   display: flex;
@@ -181,17 +393,78 @@ img {
   margin: 10px;
 }
 
+.outfit-card {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  height: 300px;
+  border: solid;
+  margin: 10px;
+}
+
+.empty-card {
+  width: 150px;
+  height: 300px;
+  position: absolute;
+}
+
 
 .card-picture {
-  height: 150px;
+  height: 200px;
 }
 
 .card-description {
-  height: 150px;
+  height: 100px;
+  border-top: solid;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.card-description span {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.card-description .category {
+  color: grey;
+}
+
+.card-description .name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.corner-star {
+  position: relative;
+  bottom: 200px;
+  left: 125px;
 
 }
 
+.corner-xmark {
+  position: relative;
+  bottom: 200px;
+  left: 125px;
+
+}
+
+.circle-plus {
+  position: relative;
+  top: 100px;
+  left: 35px;
+}
+
 /* Matt's Styles */
+
+/* .questions-answers-main {
+} */
 
 .searchContainer {
   display: absolute;
@@ -201,6 +474,8 @@ img {
 }
 
 .searchForm {
+  display: flex;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
   border-style: solid;
@@ -211,32 +486,44 @@ img {
 
 .searchInput {
   border: none;
-  height: 81%;
+  height: 100%;
   width: 75%;
-  padding: 2px 2px 2px 2px;
+  padding: 2px 2px 2px 15px;
   /* outline: 0; */
-  background-color: #f5f5f5;
+  background-color: transparent;
   outline: none;
 }
 
 #q-btn-search {
   height: 100%;
-  align-items: center;
+  padding-right: 20px;
   border: none;
-  background-color:#f5f5f5;
+  background-color: transparent;
 
 }
 
 .question {
   padding: 5px;
-  margin: 5px;
+  margin: 2px;
 
 }
 
 .answer {
   padding: 5px;
-  margin: 5px;
+  margin: 2px;
+}
 
+#add-answer-btn {
+  border: none;
+  background-color: transparent;
+}
+
+.question-utility {
+  float: right;
+}
+
+#q-helpful {
+  font-size: smaller;
 }
 
 .answerBody {
@@ -245,7 +532,12 @@ img {
 }
 
 #Q {
-  padding-right: 10px;
+  padding-right: 5px;
+  margin: 2px;
+}
+
+#A {
+  padding-right: 5px;
   margin: 2px;
 }
 

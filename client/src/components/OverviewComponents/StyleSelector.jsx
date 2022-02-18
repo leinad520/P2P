@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import ProductContext from '../Context/ProductContext.jsx';
 
 import axios from 'axios'
 
-function StyleSelector({ productId }) {
+function StyleSelector() {
 
-  const [styles, setStyles] = useState([]);
-  const [currData, setCurrData] = useState({});
+  const productContext = useContext(ProductContext);
+  const { styles, product, getStyles, getProduct, productId, getProductStyles, productStyles, changeStyle } = productContext;
 
   useEffect(() => {
     getStyles();
-  }, [])
-
-  const getStyles = async () => {
-    try {
-      const res = await axios.get(`/products/${productId}/styles`)
-      setStyles(res.data.results);
-      setCurrData(res.data.results[0]);
-    } catch(err) {
-      console.error(err);
-    }
-  }
+    getProductStyles(productId);
+  }, [productId])
 
   const renderStyleButtons = () => {
-    if (styles.length) {
-      return styles.map(style => {
+    if (productStyles.length) {
+      return productStyles.map((style, index) => {
         return (
-        <input
-          key={style.style_id}
-          type='image'
-          value={style.style_id}
-          onClick={handleClick}
-          name={style.name}
-          src={style.photos[0].thumbnail_url}
-          className='styleButtons'
-        />)
+          <div className='selectedStyle' key={`${index} style selected`}>
+            <input
+              key={style.style_id}
+              type='image'
+              value={style.style_id}
+              onClick={handleClick}
+              name={style.name}
+              src={style.photos[0].thumbnail_url}
+              className='styleButtons'
+            ></input>
+            {styles.style_id === style.style_id &&
+              <div className='circle'>
+                <span className='selected'>&#10003;</span>
+              </div>
+            }
+          </div>
+        )
       })
     } else {
       return <h1>LOADING...</h1>
@@ -44,23 +44,27 @@ function StyleSelector({ productId }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    let data;
-    styles.forEach(style => {
+    let selectedStyle;
+    productStyles.forEach(style => {
       if (style.style_id === Number(e.target.value)) {
-        data = style
+        console.log('style match')
+        selectedStyle = style;
       }
-    })
-    setCurrData(data);
+    });
+    changeStyle(selectedStyle);
   }
 
   return (
     <div className='styleContainer'>
-      STYLE > {currData.name}
-      {renderStyleButtons()}
-      <AddToCart currData={currData}/>
-      <ImageGallery currData={currData}/>
+      STYLE > {styles.name}
+      <div className='grid-container'>
+        {renderStyleButtons()}
+      </div>
+      <AddToCart currData={styles} />
     </div>
   );
 }
 
 export default StyleSelector;
+
+// {currData.style_id === style.style_id ?? <span>&#10003;</span>}
