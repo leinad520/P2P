@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Ratings from './Ratings/Ratings.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import axios from 'axios';
+import css from './ReviewSection.css';
 
 const ReviewSection = (props) => {
   const [reviews, setReviews] = useState({});
