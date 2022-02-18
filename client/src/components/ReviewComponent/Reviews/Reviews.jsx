@@ -3,6 +3,7 @@ import Review from './Review.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ModalWindow from '../../sharedComponents/modalComponent/Modal.jsx';
+import css from './Reviews.css';
 
 const Reviews = ({
                   sortedByOnChangeHandler,
