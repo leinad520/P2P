@@ -392,8 +392,6 @@ img {
 
 .review-container {
   transform: translateX(250%);
-
-  /* border-radius: 10px; */
   padding: 15px;
   box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
   width: 100%;
@@ -408,24 +406,6 @@ img {
   transform: translateY(0px);
 }
 
-.review-container-sort {
-  padding: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  width: 100%;
-  margin-top: 25px;
-  display: flex;
-  flex-direction: row;
-}
-
-.review-select-sort {
-  -webkit-appearance: none;
-  border: none;
-  text-decoration: underline;
-}
-
-
-
-/* MODAL SHARED - GLOBAL STYLES */
 .jim-modal-backdrop {
   position: fixed;
   top: 0;
@@ -435,6 +415,7 @@ img {
   background-color: rgba(0, 0, 0, 0.666);
   z-index: 1;
 }
+
 .jim-modal {
   z-index: 100;
   transition: all 0.2s ease-in;
