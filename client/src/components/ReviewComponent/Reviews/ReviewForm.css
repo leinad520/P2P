@@ -116,7 +116,6 @@ fieldset {
   width: 95%;
   height: 3rem;
   border: 3px dashed #333;
-  /* display: inline-block; */
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -129,4 +128,17 @@ fieldset {
 
 .custom-file-upload:active {
   background-color: rgba(255, 255, 255, 0.557);
+}
+
+fieldset i {
+  margin-right: 0.5rem;
+}
+
+input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
 }
