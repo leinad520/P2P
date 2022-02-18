@@ -13,7 +13,6 @@ class RelatedProducts extends React.Component {
       relatedCardObjs: [],
       relatedStyles: []
     };
-
   }
 
   componentDidMount() {
