@@ -3,6 +3,7 @@ import axios from 'axios';
 export async function onFormSubmit (e, imgArrays, props, form) {
   e.preventDefault();
   e.persist();
+  props.onClose();
   let arrOfS3UrlPromises = [];
 
   imgArrays.forEach(img => {

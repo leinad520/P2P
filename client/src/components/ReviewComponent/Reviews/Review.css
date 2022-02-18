@@ -1,0 +1,27 @@
+.review-text {
+  width: 100%;
+}
+.review-photo-holder {
+  display: flex;
+  gap: 10px;
+  height: 50px;
+  width: 50px;
+}
+.review-photo-holder img {
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
+.review-recommend img {
+  width: 15px;
+  height: 15px;
+}
+
+.response {
+  background-color: rgb(235,235,235);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
