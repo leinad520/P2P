@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Modal from '../sharedComponents/Modal/Modal.jsx';
 
-function ImageGallery({ currData }) {
+function ImageGallery({ selectedStyle }) {
 
   const modal = useRef(null);
   const imgElement = useRef(null);
   const [currPhotoIndex, setCurrPhotoIndex] = useState(0);
   const [[x, y], setXY] = useState([0, 0]);
-  const length = currData.photos ? currData.photos.length : 0;
+  const length = selectedStyle.photos ? selectedStyle.photos.length : 0;
 
   useEffect(() => {
-    if (currData.photos) {
-      if (currPhotoIndex > currData.photos.length - 1) {
+    if (selectedStyle.photos) {
+      if (currPhotoIndex > selectedStyle.photos.length - 1) {
         setCurrPhotoIndex(0);
       }
     }
-  }, [currData])
+  }, [selectedStyle])
 
   const onMouseMove = (e) => {
     const { width, height } = e.currentTarget.getBoundingClientRect();
@@ -23,8 +23,8 @@ function ImageGallery({ currData }) {
   }
 
   const renderImage = () => {
-    if (currData.photos) {
-      return currData.photos.map((photo, index) => {
+    if (selectedStyle.photos) {
+      return selectedStyle.photos.map((photo, index) => {
         return (
           <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
             {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onMouseMove={(e) => onMouseMove(e)} onClick={() => modal.current.open()}></img>)}
@@ -35,16 +35,16 @@ function ImageGallery({ currData }) {
   }
 
   const renderThumbnails = () => {
-    if (currData.photos) {
+    if (selectedStyle.photos) {
       let photoSet;
-      if (currData.photos.length >= 4) {
-        if (currData.photos[currPhotoIndex + 4]) {
-          photoSet = currData.photos.slice(currPhotoIndex, currPhotoIndex + 4);
+      if (selectedStyle.photos.length >= 4) {
+        if (selectedStyle.photos[currPhotoIndex + 4]) {
+          photoSet = selectedStyle.photos.slice(currPhotoIndex, currPhotoIndex + 4);
         } else {
-          photoSet = currData.photos.slice(currData.photos.length - 4);
+          photoSet = selectedStyle.photos.slice(selectedStyle.photos.length - 4);
         }
       } else {
-        photoSet = currData.photos;
+        photoSet = selectedStyle.photos;
       }
       return photoSet.map((photo, index) => {
         return (
@@ -72,13 +72,13 @@ function ImageGallery({ currData }) {
   }
 
   const renderModal = () => {
-    if (currData.photos) {
-      if (currData.photos[currPhotoIndex]) {
+    if (selectedStyle.photos) {
+      if (selectedStyle.photos[currPhotoIndex]) {
         return (
           <div className='modalContainer' onClick={() => modal.current.close()}>
             <img
               className='modalImage'
-              src={currData.photos[currPhotoIndex].url}
+              src={selectedStyle.photos[currPhotoIndex].url}
               // onMouseOver={() => modal.current.open()}
               // onMouseLeave={() => modal.current.close()}
               onClick={() => modal.current.close()}>
@@ -90,7 +90,7 @@ function ImageGallery({ currData }) {
           <div className='modalContainer' onClick={() => modal.current.close()}>
             <img
               className='modalImage'
-              src={currData.photos[0].url}
+              src={selectedStyle.photos[0].url}
               // onMouseOver={() => modal.current.open()}
               // onMouseLeave={() => modal.current.close()}
               onClick={() => modal.current.close()}>
@@ -123,10 +123,10 @@ export default ImageGallery;
   // const [portraitData, setPortraitData] = useState([]);
 
   // useEffect(() => {
-  //   if (currData.photos) {
+  //   if (selectedStyle.photos) {
   //     getIfPortrait().then(res => setPortraitData(res));
   //   }
-  // }, [currData])
+  // }, [selectedStyle])
 
   // const getIfPortrait = async () => {
   //   let isPortrait = false
@@ -145,7 +145,7 @@ export default ImageGallery;
   //       })
   //     }
   //     const promiseArray = [];
-  //     currData.photos.forEach(photo => {
+  //     selectedStyle.photos.forEach(photo => {
   //       promiseArray.push(ifPortrait(photo.url));
   //     })
   //     let resolvedArray = await Promise.all(promiseArray);
@@ -153,9 +153,9 @@ export default ImageGallery;
   // }
 
   // const renderImage = () => {
-  //   if (currData.photos) {
+  //   if (selectedStyle.photos) {
 
-  //     return currData.photos.map((photo, index) => {
+  //     return selectedStyle.photos.map((photo, index) => {
   //       if (portraitData[index]) {
   //         return (
   //           <div className={index === currPhotoIndex ? 'active slide portrait' : 'slide'} key={`${photo.style_id} ${index}`}>
