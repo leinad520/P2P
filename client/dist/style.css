@@ -541,14 +541,7 @@ input:checked + .slider:before {
   margin: 2px;
 }
 
-
-
-
-
-/* JIMMY'S STYLES */
-
-
-
+/* GLOBAL STYLE */
 .animate {
   transition: all 1s ease-in;
 }
@@ -561,17 +554,7 @@ input:checked + .slider:before {
   display: flex;
 }
 
-.marker {
-  transition: all 3s ease-in;
-  left: 0%;
-  position: absolute;
-  transform: translate(-50%, 0%);
-  height: 100%;
-  width: 1.5rem;
-  background-color: #333;
-  border-radius: 40px;
-  /* transition: all 1.5s cubic-bezier(.33,.98,1,.99); */
-}
+
 
 
 
@@ -644,11 +627,7 @@ input:checked + .slider:before {
   justify-content: space-between;
 }
 
-.meta {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-}
+
 
 /* REVIEWS */
 .reviews-section {
