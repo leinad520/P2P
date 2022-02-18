@@ -2,6 +2,7 @@ import React from 'react';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
 import ProgressBar from './RatingsProgressBar.jsx';
 import DescriptorBar from './DescriptorBar.jsx';
+import css from './Ratings.css';
 
 function avgRating(ratings) {
   let totalStars = 0;

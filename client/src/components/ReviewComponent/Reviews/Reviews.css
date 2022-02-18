@@ -10,6 +10,12 @@
   background-color: rgb(51,51,51);
 }
 
+.reviews-section {
+  position: relative;
+  flex: 1 1 80%;
+  padding: 10px;
+}
+
 @media screen and (max-width: 800px) {
   .ratings-reviews-section {
     flex-direction: row;
@@ -24,3 +30,4 @@
     width: 90% !important;
   }
 }
+

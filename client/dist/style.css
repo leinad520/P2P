@@ -546,17 +546,11 @@ input:checked + .slider:before {
   transition: all 1s ease-in;
 }
 
-.star {
-  width: 0%;
-}
-
-.star-rating {
-  display: flex;
-}
 
 
 
 
+/* GLOBAL STYLES BELOW */
 
 .btn {
   background-color: rgba(51, 51, 51, 0.05);
@@ -581,49 +575,20 @@ input:checked + .slider:before {
   touch-action: manipulation;
   width: 150px;
 }
-
 .btn:active {
   background-color: #333;
 }
-
 .mt-10 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
 .main-section {
   margin: auto;
   max-width: 1200px;
 }
-
-/* RATINGS */
-
-
-
-
-
-
-
-
-
-
-
-
-/* REVIEWS */
-.reviews-section {
-  position: relative;
-  flex: 1 1 80%;
-  padding: 10px;
-}
-
-
-
-/* Review.jsx */
-
 .review-container.animate {
   transition-duration: 0.4s;
 }
-
 .review-container {
   transform: translateX(250%);
   padding: 15px;
@@ -634,7 +599,6 @@ input:checked + .slider:before {
   flex-direction: column;
   gap: 20px;
 }
-
 .review-container.visible {
   opacity: 1;
   transform: translateY(0px);

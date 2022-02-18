@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import onReady, { useState } from '../../animate.js';
+import css from './DescriptorBar.css';
 
 const DescriptorBar = (props) => {
   const elInput = useRef(null);

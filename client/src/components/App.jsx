@@ -16,8 +16,7 @@ const App = (props) => {
 
   const newId = useParams().id;
 
-  console.log('outside useEffect')
-  console.log(newId)
+
   useEffect(() => {
     changeProduct(newId);
   }, [])
