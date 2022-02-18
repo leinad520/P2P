@@ -66,7 +66,7 @@ const QAListEntry = (props) => {
               </button>
               <div>
               <ModalWindow onClose={showModal} show={show}>
-                <AddQuestionForm />
+                <AddQuestionForm props={props}/>
               </ModalWindow>
               </div>
             </span>
