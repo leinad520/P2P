@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import css from './FormStarRating.css';
 
 const FormStarRating = () => {
   const starOne = useRef(null);
