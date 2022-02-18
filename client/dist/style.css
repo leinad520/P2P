@@ -440,11 +440,6 @@ img {
   width: 100%;
 }
 
-.review-star-date{
-  display: flex;
-  justify-content: space-between;
-}
-
 .review-links {
   display: flex;
   justify-content: space-between;
