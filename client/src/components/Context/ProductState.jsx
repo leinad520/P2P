@@ -5,7 +5,10 @@ import ProductReducer from './ProductReducer.jsx';
 import {
   GET_PRODUCT,
   GET_STYLES,
+  GET_PRODUCT_STYLES,
   ERROR,
+  CHANGE_STYLE,
+  CHANGE_PRODUCT,
 } from './types.js';
 
 // goal: get style / get product
@@ -14,12 +17,14 @@ const ProductState = ({ children }) => {
   const initalState = {
     product: {},
     styles: {},
+    productStyles: [],
+    productId: null,
     error: null,
   }
 
   const [state, dispatch] = useReducer(ProductReducer, initalState);
 
-  const getProduct = async () => {
+  const getProduct = async ( productId ) => {
     try {
       const res = await axios.get(`/products/${productId}`)
       dispatch({
@@ -34,12 +39,12 @@ const ProductState = ({ children }) => {
     }
   }
 
-  const getStyles = async () => {
+  const getStyles = async ( productId ) => {
     try {
       const res = await axios.get(`/products/${productId}/styles`)
       dispatch({
         type: GET_STYLES,
-        payload: res.data
+        payload: res.data.results[0]
       })
     } catch (err) {
       dispatch({
@@ -49,12 +54,46 @@ const ProductState = ({ children }) => {
     }
   }
 
+  const getProductStyles = async (productId) => {
+    try {
+      const res = await axios.get(`/products/${productId}/styles`)
+      dispatch({
+        type: GET_PRODUCT_STYLES,
+        payload: res.data.results
+      })
+    } catch (err) {
+      dispatch({
+        type: ERROR,
+        payload: err.message
+      })
+    }
+  }
+
+  const changeStyle = (selectedStyle) => {
+    dispatch({
+      type: CHANGE_STYLE,
+      payload: selectedStyle
+    })
+  }
+
+  const changeProduct = (productId) => {
+    dispatch({
+      type: CHANGE_PRODUCT,
+      payload: productId
+    })
+  }
+
   return (
     <ProductContext.Provider value={{
       product: state.product,
       styles: state.styles,
+      productId: state.productId,
+      productStyles: state.productStyles,
       getProduct,
       getStyles,
+      changeStyle,
+      changeProduct,
+      getProductStyles,
     }}>
       { children }
     </ProductContext.Provider>

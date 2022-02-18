@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import ProductContext from '../Context/ProductContext.jsx';
 
 import axios from 'axios'
 
-function StyleSelector({ productId, getStyle }) {
+function StyleSelector() {
 
-  const [styles, setStyles] = useState([]);
-  const [currData, setCurrData] = useState({});
+  const productContext = useContext(ProductContext);
+  const { styles, product, getStyles, getProduct, productId, getProductStyles, productStyles, changeStyle } = productContext;
 
   useEffect(() => {
     getStyles();
-  }, [])
-
-  const getStyles = async () => {
-    try {
-      const res = await axios.get(`/products/${productId}/styles`)
-      setStyles(res.data.results);
-      setCurrData(res.data.results[0]);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+    getProductStyles(productId);
+  }, [productId])
 
   const renderStyleButtons = () => {
-    if (styles.length) {
-      return styles.map((style, index) => {
+    if (productStyles.length) {
+      return productStyles.map((style, index) => {
         return (
-          <div className='selectedStyle'>
+          <div className='selectedStyle' key={`${index} style selected`}>
             <input
               key={style.style_id}
               type='image'
@@ -37,8 +29,8 @@ function StyleSelector({ productId, getStyle }) {
               src={style.photos[0].thumbnail_url}
               className='styleButtons'
             ></input>
-            {currData.style_id === style.style_id &&
-              <div key={`${index} style selected`} className='circle'>
+            {styles.style_id === style.style_id &&
+              <div className='circle'>
                 <span className='selected'>&#10003;</span>
               </div>
             }
@@ -52,23 +44,23 @@ function StyleSelector({ productId, getStyle }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    let data;
-    styles.forEach(style => {
+    let selectedStyle;
+    productStyles.forEach(style => {
       if (style.style_id === Number(e.target.value)) {
-        data = style
+        console.log('style match')
+        selectedStyle = style;
       }
-    })
-    getStyle(data);
-    setCurrData(data);
+    });
+    changeStyle(selectedStyle);
   }
 
   return (
     <div className='styleContainer'>
-      STYLE > {currData.name}
+      STYLE > {styles.name}
       <div className='grid-container'>
         {renderStyleButtons()}
       </div>
-      <AddToCart currData={currData} />
+      <AddToCart currData={styles} />
     </div>
   );
 }

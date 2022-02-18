@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 
-function ProductInfo({ currStyle }) {
+function ProductInfo({ productInfo }) {
   return (
     <div className='productInfo'>
       <h5>Product Information</h5>
-      <h3>{currStyle.slogan}</h3>
-      <p>{currStyle.description}</p>
+      <h3>{productInfo.slogan}</h3>
+      <p>{productInfo.description}</p>
     </div>
   )
 }
