@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductHeader from './ProductHeader.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import DarkMode from '../DarkMode.jsx';
+import ProductContext from '../Context/ProductContext.jsx';
 import axios from 'axios';
-
-
 
 function Overview({ productId }) {
 
   const [product, setProduct] = useState({});
   const [currData, setCurrData] = useState({});
+  const productContext = useContext(ProductContext);
+
+  // const { getProduct, getStyles, product, styles } = productContext;
 
   useEffect(() => {
     getStyles();
@@ -26,6 +28,7 @@ function Overview({ productId }) {
     setCurrData(currStyle);
   }
 
+
   const getProduct = async () => {
     try {
       const res = await axios.get(`/products/${productId}`)
@@ -34,6 +37,7 @@ function Overview({ productId }) {
       console.error(err);
     }
   }
+
 
   const getStyles = async () => {
     try {
