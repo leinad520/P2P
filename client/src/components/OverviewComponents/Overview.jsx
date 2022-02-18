@@ -1,41 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
 import ProductHeader from './ProductHeader.jsx';
 import ImageGallery from './ImageGallery.jsx';
-// import exampleData from './exampleData.js';
-// import exampleStyles from './exampleStyles.js'
-import axios from 'axios';
+import DarkMode from '../DarkMode.jsx';
+import ProductContext from '../Context/ProductContext.jsx';
 
+// function Overview({productId}) {
+function Overview() {
 
-// do not nest hooks
-
-function Overview({ productId }) {
-
-  const [product, setProduct] = useState({});
+  const productContext = useContext(ProductContext);
+  const { getProduct, getStyles, product , styles, changeProduct, productId } = productContext;
 
   useEffect(() => {
-    getProduct();
-  }, [])
-
-  const getProduct = async () => {
-    try {
-      const res = await axios.get(`/products/${prodcutId}`)
-      setProduct(res.data);
-    } catch(err) {
-      console.error(err);
-    }
-  }
-
+    getStyles(productId);
+    getProduct(productId);
+  }, [productId])
 
   return (
-    <div>
-      {/* <ImageGallery styles={exampleStyles}/> */}
-      <ProductHeader currStyle={product}/>
-      <StyleSelector productId={productId}/>
-      {/* <AddToCart styles={exampleStyles}/> */}
-      <ProductInfo currStyle={product}/>
+    <div className='MegaContainer'>
+      <ImageGallery selectedStyle={styles} />
+      <div className='productInfoContainer'>
+        <ProductHeader productInfo={product} selectedStyle={styles}/>
+        <StyleSelector productId={productId}/>
+        <ProductInfo productInfo={product} />
+        <DarkMode />
+      </div>
     </div>
   )
 }

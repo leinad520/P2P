@@ -1,16 +1,40 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import QA from './QAComponents/QA.jsx';
 import Overview from './OverviewComponents/Overview.jsx';
-import RelatedProductsAndOutfit from './RelatedProductsAndOutfit.jsx';
+import RelatedProductsAndOutfit from './RelatedProductsComponent/RelatedProductsAndOutfit.jsx';
 import ReviewSection from './ReviewComponent/ReviewSection.jsx';
-import { useParams } from 'react-router-dom';
+import ProductState from './Context/ProductState.jsx';
+import ProductContext from './Context/ProductContext.jsx';
+
 
 const App = (props) => {
-  let productId = 42370;
-  if (useParams().id) {
-    productId = useParams().id
+  const productContext = useContext(ProductContext);
+  const { product, productId, changeProduct} = productContext;
+
+  // 🧠
+
+  const newId = useParams().id;
+
+
+  useEffect(() => {
+    changeProduct(newId);
+  }, [])
+
+  if (productId) {
+    return (
+      <section>
+        <Overview />
+        <RelatedProductsAndOutfit />
+        <QA productId={productId} />
+        <ReviewSection />
+      </section>
+    );
+  } else {
+    return <div> ~~~~ LOADING ~~~~ </div>
   }
 
+<<<<<<< HEAD
   return (<section>
     {/* <Overview productId={productId}/>
     <RelatedProductsAndOutfit /> */}
@@ -18,6 +42,17 @@ const App = (props) => {
     {/* <ReviewSection /> */}
   </section>
   );
+=======
+  // return (
+  //     <section>
+  //       {/* <Overview productId={productId} /> */}
+  //       <Overview />
+  //       <RelatedProductsAndOutfit />
+  //       {/* <QA productId={productId} /> */}
+  //       <ReviewSection />
+  //     </section>
+  // );
+>>>>>>> master
 };
 
 export default App;

@@ -1,8 +1,6 @@
 import React from 'react';
 
-
 const ReviewSort = ({sortedByOnChangeHandler}) => {
-
   return (
     <div className="review-container-sort">
       <span>248 Reviews, sorted by ...</span>

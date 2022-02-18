@@ -1,5 +1,6 @@
 import React from 'react';
 import RelatedProducts from './RelatedProducts.jsx';
+import YourOutfit from './YourOutfit.jsx'
 
 class RelatedProductsAndOutfit extends React.Component {
   constructor(props) {
@@ -12,7 +13,10 @@ class RelatedProductsAndOutfit extends React.Component {
 
   render() {
     return (
+      <>
       <RelatedProducts />
+      <YourOutfit />
+      </>
     )
   }
 

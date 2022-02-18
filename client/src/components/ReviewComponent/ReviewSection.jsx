@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Ratings from './Ratings/Ratings.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import axios from 'axios';
+import css from './ReviewSection.css';
 
 const ReviewSection = (props) => {
   const [reviews, setReviews] = useState({});
   const [meta, setMeta] = useState({});
   const [sort, setSort] = useState(1);
-  let id = 42366;
+  // console.log(colors);
+  let id = 42371;
 
   function getReviews(arg = '1') {
     axios({
@@ -44,6 +46,7 @@ const ReviewSection = (props) => {
 
   return (
     <section className="ratings-reviews-section">
+      {/* {console.log(colors)} */}
       <Ratings meta={meta} />
       <Reviews
         meta={meta}
