@@ -42,10 +42,12 @@ class YourOutfit extends React.Component {
   }
 
   addOutfit(index) {
-    let outfitCardIdsCopy = this.state.outfitCardIds.slice();
-    outfitCardIdsCopy[index] = this.state.chosenCard;
+    if (!this.state.outfitCardIds.includes(this.state.chosenCard)) {
+      let outfitCardIdsCopy = this.state.outfitCardIds.slice();
+      outfitCardIdsCopy[index] = this.state.chosenCard;
 
-    this.setOutfitCardsHelper(outfitCardIdsCopy);
+      this.setOutfitCardsHelper(outfitCardIdsCopy);
+    }
   }
 
   deleteOutfit(index) {
