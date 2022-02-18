@@ -68,6 +68,7 @@ const Reviews = ({
 
         <ModalWindow onClose={showModal} show={show}>
           <ReviewForm
+            onClose={showModal}
             meta={meta}
             getReviews={getReviews}
             productId={productId}

@@ -3,6 +3,7 @@ import axios from 'axios';
 export async function onFormSubmit (e, imgArrays, props, form) {
   e.preventDefault();
   e.persist();
+  props.onClose();
   let arrOfS3UrlPromises = [];
 
   imgArrays.forEach(img => {
@@ -19,9 +20,7 @@ export async function onFormSubmit (e, imgArrays, props, form) {
 
   arrOfS3Urls.forEach((s3url, index) => {
     const base64 = imgArrays[index];
-    console.log(base64)
     const base64Data = new Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
-    console.log(base64Data)
     let successCall = axios({
       method: 'PUT',
       url: s3url,

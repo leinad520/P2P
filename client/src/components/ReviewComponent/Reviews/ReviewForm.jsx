@@ -7,8 +7,8 @@ import axios from 'axios';
 
 const ReviewForm = (props) => {
   const [imgPreview, setImgPreview] = useState([]);
-  const [form, setForm] = useState({});
   const [attributes, setAttributes] = useState({});
+  const [form, setForm] = useState({});
 
   function onFormChange(e) {
     if (e.target.name !== 'image') {
