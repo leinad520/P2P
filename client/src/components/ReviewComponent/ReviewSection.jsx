@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Ratings from './Ratings/Ratings.jsx';
 import Reviews from './Reviews/Reviews.jsx';
-import { ColorContext } from '../colorContext.jsx';
 import axios from 'axios';
 
 const ReviewSection = (props) => {
   const [reviews, setReviews] = useState({});
   const [meta, setMeta] = useState({});
   const [sort, setSort] = useState(1);
-  const colors = useContext(ColorContext);
   // console.log(colors);
   let id = 42366;
 
