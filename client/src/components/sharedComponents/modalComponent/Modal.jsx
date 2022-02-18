@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import css from './Modal.css';
 
 const modalWindow = (props) => {
   const elInput = useRef(null);
