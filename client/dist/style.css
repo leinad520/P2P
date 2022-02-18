@@ -601,31 +601,11 @@ input:checked + .slider:before {
 
 
 
-.ratings-section {
-  padding: 10px;
-  margin-right: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  flex: 1 0 20%;
-  min-width: 245px;
-}
-
-.rating-summary-top {
-  display: flex;
-  gap: 10px;
-  align-items: end;
-}
-.rating-summary-top span {
-  font-size: 45px;
-}
 
 
-.progress-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
+
+
 
 
 
