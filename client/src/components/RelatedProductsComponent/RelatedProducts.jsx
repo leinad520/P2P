@@ -8,7 +8,7 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenCard: 42366, //Get from other component's state
+      chosenCard: this.props.productId, //Get from other component's state
       relatedCardIds: [],
       relatedCardObjs: [],
       relatedStyles: []

@@ -15,7 +15,7 @@ const App = (props) => {
 
   return (<section>
     <Overview productId={productId}/>
-    <RelatedProductsAndOutfit />
+    <RelatedProductsAndOutfit productId={productId} />
     <QA productId={productId}/>
     <ReviewSection />
   </section>

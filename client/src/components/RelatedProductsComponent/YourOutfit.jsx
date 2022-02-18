@@ -9,7 +9,7 @@ class YourOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenCard: 42366, //Get from other component's state
+      chosenCard: this.props.productId, //Get from other component's state
       outfitCardIds: Array(4).fill(null), // [42367, null, null, null]
       outfitCardObjs: Array(4).fill(null), // [{}, null, null, null]
       styles: []
