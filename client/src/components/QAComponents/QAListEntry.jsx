@@ -14,7 +14,7 @@ import AddQuestionForm from './AddQuestionForm.jsx';
 const QAListEntry = (props) => {
   const [helpful, setHelpful] = useState(false);
   const [report, setReport] = useState(false);
-  const [helpfulQCount, setHelpfulQCount] = useState(props.question.question_helpfulness)
+  const [helpfulQCount, setHelpfulQCount] = useState(props.question.question_helpfulness);
   const [show, setShow] = useState(false);
 
   let handleHelpfulQuestionClick = (e) => {
@@ -47,7 +47,6 @@ const QAListEntry = (props) => {
   }
 
   let slicedAns = answers.slice(0, 2);
-
   let remainingAns = answers.slice(2);
 
 
@@ -65,9 +64,11 @@ const QAListEntry = (props) => {
               <button id="add-answer-btn" onClick={e => showModal()}>
                 <u>Add Answer</u>
               </button>
+              <div>
               <ModalWindow onClose={showModal} show={show}>
-              this is the modal window
+                <AddQuestionForm />
               </ModalWindow>
+              </div>
             </span>
           </span>
         </span>
@@ -87,6 +88,7 @@ const QAListEntry = (props) => {
 
 }
 
+export default QAListEntry;
 // class QAListEntry extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -150,5 +152,3 @@ const QAListEntry = (props) => {
 //   );
 // }
 // }
-
-export default QAListEntry;
