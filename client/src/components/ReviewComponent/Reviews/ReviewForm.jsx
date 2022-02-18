@@ -3,12 +3,13 @@ import FormChars from './FormChars.jsx';
 import Review from './Review.jsx';
 import FormStarRating from './FormStarRating.jsx';
 import { onFormSubmit, onFileChange } from './ReviewFormHelpers.jsx';
+import css from './ReviewForm.css';
 import axios from 'axios';
 
 const ReviewForm = (props) => {
   const [imgPreview, setImgPreview] = useState([]);
-  const [form, setForm] = useState({});
   const [attributes, setAttributes] = useState({});
+  const [form, setForm] = useState({});
 
   function onFormChange(e) {
     if (e.target.name !== 'image') {
@@ -49,6 +50,7 @@ const ReviewForm = (props) => {
           <fieldset>
             <input name="email" type="email" placeholder="Email" tabIndex="2" required></input>
           </fieldset>
+          {/* delete className select if not needed */}
           <div className="select" required>
             <div>Recommmend?</div>
             <div><input name="recommend" type="radio" value="false" required/> No</div>

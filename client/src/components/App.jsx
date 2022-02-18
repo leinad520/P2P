@@ -7,6 +7,7 @@ import ReviewSection from './ReviewComponent/ReviewSection.jsx';
 import ProductState from './Context/ProductState.jsx';
 import ProductContext from './Context/ProductContext.jsx';
 
+
 const App = (props) => {
   const productContext = useContext(ProductContext);
   const { product, productId, changeProduct} = productContext;
@@ -15,8 +16,7 @@ const App = (props) => {
 
   const newId = useParams().id;
 
-  console.log('outside useEffect')
-  console.log(newId)
+
   useEffect(() => {
     changeProduct(newId);
   }, [])

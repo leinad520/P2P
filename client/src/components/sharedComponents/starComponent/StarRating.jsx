@@ -4,6 +4,7 @@ const star = '../../../../static/star.svg';
 const starOneQuarter = '../../../../static/star-one-quarter.svg';
 const starHalf = '../../../../static/star-half.svg';
 const starThreeQuarter = '../../../../static/star-three-quarter.svg';
+import css from './StarRating.css';
 // const starThreeQuarter = '/client/static';
 
 const StarRating = (props) => {

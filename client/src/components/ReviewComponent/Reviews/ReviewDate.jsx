@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
+import css from './ReviewDate.css';
 
 const ReviewDate = ({ rating, username, date }) => {
   const momentDate = moment(date);
