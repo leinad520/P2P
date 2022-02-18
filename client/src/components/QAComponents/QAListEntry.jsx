@@ -15,7 +15,9 @@ class QAListEntry extends React.Component {
 
     this.state = {
       helpful: false,
-      report: false
+      report: false,
+      helpfulQCount: this.props.question.question_helpfulness,
+
     }
     this.handleHelpfulQuestionClick = this.handleHelpfulQuestionClick.bind(this)
   }
@@ -25,30 +27,31 @@ class QAListEntry extends React.Component {
 //remaining questions and answers should be hidden until user loads them by hitting more Answered Questions button
 
   handleHelpfulQuestionClick(e) {
+    // console.log('this is firing');
+    const { question_id } = this.props.question
     if (!this.state.helpful) {
-      const { question_id } = this.props.question
-      axios.put(`/qa/questions/${question_id}/helpful`, {
-        question_helpfulness: this.props.question.question_helpfulness++
+    axios.put(`/qa/questions/${question_id}/helpful`)
+      .then(response => {
+        let updatedCount = this.state.helpfulQCount + 1;
+        // console.log('state is being changed');
+        // console.log('this is updatedCount: ', updatedCount);
+        this.setState({
+          helpfulQCount: updatedCount,
+          helpful: !this.state.helpful
+        })
       })
-        .then(response => {
-          this.props.getAllQuestions();
-        })
-        .then(response => {
-          this.setState({
-            helpful: !this.state.helpful
-          })
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(err => {
-          console.error(err);
-        })
+      .catch(err => {
+        console.error(err);
+      })
     }
   }
 
 
+
+
+
 render() {
+  // console.log('this is this.props.question:', this.props.question.answers);
   let answers = [];
   for (let answer in this.props.question.answers) {
     answers.push(this.props.question.answers[answer]);
@@ -66,7 +69,7 @@ render() {
         <span className="question-utility">
           <span id="q-helpful">
             <span>{'     '} Helpful? {'     '} </span>
-            <u onClick={this.handleHelpfulQuestionClick}>Yes</u> ({this.props.question.question_helpfulness}) |
+            <u onClick={this.handleHelpfulQuestionClick}>Yes</u> ({this.state.helpfulQCount}) |
             <span>{'     '}</span>
             <span className="add-answer">
               <button id="add-answer-btn">
