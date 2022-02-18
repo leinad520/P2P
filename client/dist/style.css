@@ -436,9 +436,7 @@ img {
   text-decoration: underline;
 }
 
-.review-text {
-  width: 100%;
-}
+
 
 .review-links {
   display: flex;
@@ -502,23 +500,8 @@ a.report  {
 
 
 
-.review-recommend img {
-  width: 15px;
-  height: 15px;
-}
 
-.review-photo-holder {
-  display: flex;
-  gap: 10px;
-  height: 50px;
-  width: 50px;
-}
-.review-photo-holder img {
-  border-radius: 5px;
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-}
+
 
 .review-section-buttons {
   display: flex;
@@ -558,24 +541,9 @@ a.report  {
 
 /* Star Styling */
 
-
-
-
 .goldcolor {
   color: hsl(47, 90%, 39%);
 }
-
-
-
-
-.response {
-  background-color: rgb(235,235,235);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 
 .jim-modal-backdrop {
   position: fixed;
