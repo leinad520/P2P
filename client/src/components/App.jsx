@@ -21,15 +21,9 @@ const App = (props) => {
     changeProduct(newId);
   }, [])
 
-  // 42375
-  // let productId = 42373;
-  // if (useParams().id) {
-  //   productId = useParams().id
-  // }
   if (productId) {
     return (
       <section>
-        <Overview productId={productId} />
         <Overview />
         <RelatedProductsAndOutfit />
         <QA productId={productId} />
