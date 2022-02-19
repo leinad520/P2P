@@ -1,48 +1,73 @@
 import React from 'react';
 
-const ComparisonTable = ({item}) => {
+const ComparisonTable = ({mainItem, item}) => {
+
+  var mainItemArr = [];
+  var mainItemArrValues = [];
+  var itemArr = [];
+  var itemArrValues = [];
+
+  mainItem.features.forEach(obj => {
+    mainItemArr.push(obj.feature);
+    mainItemArrValues.push(obj.value)
+  })
+
+  item.features.forEach(obj => {
+    itemArr.push(obj.feature);
+    itemArrValues.push(obj.value)
+
+  })
+
+  const filteredArray = mainItemArr.filter(feature => itemArr.includes(feature));
 
   return (
     <>
     <h2>Comparing</h2>
+    <br></br>
 
     <table>
     <tbody>
         <tr>
-          <th>first item</th>
+          <th>{mainItem.name}</th>
           <th>Characteristic</th>
           <th>{item.name}</th>
         </tr>
         <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
+          <td>{mainItem.category}</td>
+          <td>Category</td>
+          <td>{item.category}</td>
         </tr>
         <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
+          <td>${mainItem.default_price}</td>
+          <td>Price</td>
+          <td>${item.default_price}</td>
         </tr>
         <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
+          <td>{mainItem.slogan}</td>
+          <td>Slogan</td>
+          <td>{item.slogan}</td>
         </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-        </tr>
+        {filteredArray.map(filteredFeature =>
+            <tr>
+              <td>{mainItemArrValues[mainItemArr.indexOf(filteredFeature)]}</td>
+              <td>{filteredFeature}</td>
+              <td>{itemArrValues[itemArr.indexOf(filteredFeature)]}</td>
+          </tr>
+          )}
+        {mainItem.features.map(feature =>
+            <tr>
+              <td>{feature.value}</td>
+              <td>{feature.feature}</td>
+              <td>n/a</td>
+          </tr>
+          )}
+        {item.features.map(feature =>
+            <tr>
+              <td>n/a</td>
+              <td>{feature.feature}</td>
+              <td>{feature.value}</td>
+          </tr>
+          )}
       </tbody>
     </table>
     </>

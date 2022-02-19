@@ -7,6 +7,7 @@ const DanModal = ({ handleClose, show, children }) => {
     <div className={showHideClassName}>
       <section className="dan-modal-main">
         {children}
+        <br></br>
         <button type="button" onClick={handleClose}>
           Close
         </button>

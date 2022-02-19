@@ -11,11 +11,12 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       chosenCard: this.props.productId, //Get from other component's state
+      chosenCardData: [],
       relatedCardIds: [],
       relatedCardObjs: [],
       relatedStyles: [],
       show: false,
-      modalIndex: 0
+      modalIndex: ''
     };
 
     this.showModal = this.showModal.bind(this);
@@ -34,6 +35,12 @@ class RelatedProducts extends React.Component {
     axios.get(`/api/${this.state.chosenCard}/related`)
       .then(res => {
         this.setState({ relatedCardIds: res.data })
+      })
+      .then(() => {
+        return axios.get(`/api/${this.state.chosenCard}`)
+      })
+      .then(res => {
+        this.setState({chosenCardData: res.data})
       })
       .then(() => {
         let promiseArr = this.state.relatedCardIds.map(id =>
@@ -63,7 +70,7 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    var { relatedCardObjs } = this.state;
+    var { relatedCardObjs, chosenCardData } = this.state;
     return (
       <>
         <div className="title">RELATED PRODUCTS</div>
@@ -83,10 +90,11 @@ class RelatedProducts extends React.Component {
             </div>
           )}
         </section>
+        {this.state.modalIndex !== '' &&
         <DanModal show={this.state.show} handleClose={this.hideModal}>
-          <ComparisonTable item={relatedCardObjs[this.state.modalIndex]} />
-          {/* <h3>hi</h3> */}
+          <ComparisonTable mainItem={chosenCardData} item={relatedCardObjs[this.state.modalIndex]} />
         </DanModal>
+        }
       </>
     )
   }
