@@ -5,6 +5,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 
+
 class YourOutfit extends React.Component {
   constructor(props) {
     super(props);
@@ -12,13 +13,12 @@ class YourOutfit extends React.Component {
       chosenCard: this.props.productId, //Get from other component's state
       outfitCardIds: Array(4).fill(null), // [42367, null, null, null]
       outfitCardObjs: Array(4).fill(null), // [{}, null, null, null]
-      styles: []
+      styles: [],
     };
 
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
   }
-
 
   setOutfitCardsHelper(outfitCardIdsCopy) {
     this.setState({ outfitCardIds: outfitCardIdsCopy }, () => {
@@ -74,7 +74,7 @@ class YourOutfit extends React.Component {
             </div>
             :
             //filled outfit card
-            <div className="card" key={`your-outfit-${i}`}>
+            <div className="card" key={`your-outfit-${i}`} >
               <div className="card-picture">
                 <img src={styles[i] ? styles[i].data.results[0].photos[0].thumbnail_url : null }></img>
                 <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} />
