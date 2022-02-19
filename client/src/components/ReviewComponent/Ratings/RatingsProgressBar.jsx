@@ -1,11 +1,12 @@
 import React, {useRef, useEffect} from 'react';
-
+import css from './RatingsProgressBar.css';
 
 const ProgressBar = (props) => {
   const starInput = useRef(null);
 
   useEffect(() => {
     starInput.current.style.width =`${props.percentage}%`;
+    // console.log(props.percentage);
   }, []);
 
 

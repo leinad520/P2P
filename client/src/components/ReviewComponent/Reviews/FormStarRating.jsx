@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import css from './FormStarRating.css';
 
 const FormStarRating = () => {
   const starOne = useRef(null);
@@ -43,7 +44,7 @@ const FormStarRating = () => {
       }
     }
   };
-  
+
   return (
     <fieldset>
         <div className="starrating risingstar d-flex justify-content-center flex-row-reverse" onClick={onStarClick}>
