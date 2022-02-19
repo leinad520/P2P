@@ -1,0 +1,15 @@
+.starrating > input {
+  display: none;
+}
+
+.starrating > label:before {
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.starrating > label {
+  color: #222222; /* Start color when not clicked */
+}

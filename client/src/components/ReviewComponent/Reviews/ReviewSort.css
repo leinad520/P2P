@@ -1,0 +1,14 @@
+.review-container-sort {
+  padding: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.review-select-sort {
+  -webkit-appearance: none;
+  border: none;
+  text-decoration: underline;
+}

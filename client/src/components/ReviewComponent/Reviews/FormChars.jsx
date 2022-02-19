@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import css from './FormChars.css';
 
 const FormChars = ({meta}) => {
   const [val, setVal] = useState(3)
@@ -19,30 +20,30 @@ const FormChars = ({meta}) => {
         <div className="attribute-descriptor">
           { (attribute[0] === 'Fit') &&
             <>
-              <div>Too loose</div>
-              <div>Just right</div>
-              <div>Too tight</div>
+              <div className="attribute-left">Too loose</div>
+              <div className="attribute-middle">Just right</div>
+              <div className="attribute-right">Too tight</div>
             </>
           }
           { (attribute[0] === 'Length') &&
             <>
-              <div>Too short</div>
-              <div>Just right</div>
-              <div>Too long</div>
+              <div className="attribute-left">Too short</div>
+              <div className="attribute-middle">Just right</div>
+              <div className="attribute-right">Too long</div>
             </>
           }
           { (attribute[0] === 'Comfort') &&
             <>
-              <div>Sandpaper</div>
-              <div>Just right</div>
-              <div>Never taking them off</div>
+              <div className="attribute-left">Sandpaper</div>
+              <div className="attribute-middle">Just right</div>
+              <div className="attribute-right">Never taking them off</div>
             </>
           }
           { (attribute[0] === 'Quality') &&
             <>
-              <div>Garbage</div>
-              <div>OK</div>
-              <div>Great Value</div>
+              <div className="attribute-left">Garbage</div>
+              <div className="attribute-middle">OK</div>
+              <div className="attribute-right">Great Value</div>
             </>
           }
         </div>

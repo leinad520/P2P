@@ -3,6 +3,8 @@ import axios from 'axios';
 export async function onFormSubmit (e, imgArrays, props, form) {
   e.preventDefault();
   e.persist();
+  props.onClose();
+
   let arrOfS3UrlPromises = [];
 
   imgArrays.forEach(img => {
@@ -37,7 +39,7 @@ export async function onFormSubmit (e, imgArrays, props, form) {
   });
   let productId = props.productId;
   form.photos = s3photoUrlsArray;
-  form.product_id = props.productId;
+  form.product_id = Number(props.productId);
   axios({
     method: 'post',
     url: 'http://localhost:3000/review',

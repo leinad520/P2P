@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import moment from 'moment';
 import axios from 'axios';
+import css from './Review.css';
 
 const checkmark = '../../../../static/checkmark.svg';
 import Card from '../../sharedComponents/Card.jsx';
@@ -31,7 +32,7 @@ const Review = (props) => {
 
   return (
     <Card forwardedRef={elAnim} className={`animate`}>
-      <div className="review-title-box">
+      <div>
         <ReviewDate rating={props.rating} username={props.username} date={props.date}/>
         <h3>{props.title}</h3>
       </div>
