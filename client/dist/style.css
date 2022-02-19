@@ -466,8 +466,14 @@ input:checked + .slider:before {
 /* .questions-answers-main {
 } */
 
+.questions-answers-main {
+  display: relative;
+  max-width: 85%;
+}
+
+
 .searchContainer {
-  display: absolute;
+  display: flex;
   height: 50px;
   width: 100%;
   padding: 20px 20px 20px 2px;
@@ -530,6 +536,87 @@ input:checked + .slider:before {
   padding: 5px;
   margin: 0;
 }
+
+.add-answer-modal-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.add-answer-form-container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  width: 90%;
+  height: 100%;
+}
+
+#add-answer-form {
+  border: solid 2px black;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+}
+
+#add-answer-title {
+
+  text-align: center;
+  padding-top: 1px;
+}
+
+#add-answer-description {
+  text-align: center;
+}
+
+
+
+#add-answer-submit {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background-color: rgba(215, 177, 121);
+  color: #333;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#mAnswer {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100px;
+  width: 95%;
+  border: 1px solid #CCC;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 5px;
+  /* overflow-wrap: break-word; */
+}
+
+#mNickname {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 95%;
+  border: 1px solid #CCC;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 5px;
+}
+
+#mEmail {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 95%;
+  border: 1px solid #CCC;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 5px;
+}
+
 
 #Q {
   padding-right: 5px;

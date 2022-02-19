@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import axios from 'axios';
 import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
-import AddQuestionForm from './AddQuestionForm.jsx';
-//main component that will have many things
-
-//contains
-  //questionEntry (might want to be it's own component)
-  //AnswerEntry (might want to be it's own component)
-
-  //text which displays what username submitted answer
+import AddAnswerForm from './AddAnswerForm.jsx';
 
 const QAListEntry = (props) => {
   const [helpful, setHelpful] = useState(false);
@@ -18,14 +11,11 @@ const QAListEntry = (props) => {
   const [show, setShow] = useState(false);
 
   let handleHelpfulQuestionClick = (e) => {
-    // console.log('this is firing');
     const { question_id } = props.question;
     if (!helpful) {
     axios.put(`/qa/questions/${question_id}/helpful`)
       .then(response => {
         let updatedCount = helpfulQCount + 1;
-        // console.log('state is being changed');
-        // console.log('this is updatedCount: ', updatedCount);
         setHelpfulQCount(updatedCount);
         setHelpful(!helpful);
       })
@@ -45,7 +35,7 @@ const QAListEntry = (props) => {
   for (let answer in props.question.answers) {
     answers.push(props.question.answers[answer]);
   }
-
+  //for initial load and load more answers button click load
   let slicedAns = answers.slice(0, 2);
   let remainingAns = answers.slice(2);
 
@@ -66,7 +56,7 @@ const QAListEntry = (props) => {
               </button>
               <div>
               <ModalWindow onClose={showModal} show={show}>
-                <AddQuestionForm props={props}/>
+                <AddAnswerForm props={props}/>
               </ModalWindow>
               </div>
             </span>

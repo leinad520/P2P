@@ -11,6 +11,9 @@ import QAList from './QAList.jsx';
 //has a Load More Answers Button
   //this button allows for more answers to appear
 
+
+
+  //need to refactor to functional and use Hooks to use modal
 class QA extends React.Component {
   constructor(props) {
     super(props);
@@ -26,11 +29,7 @@ class QA extends React.Component {
     this.getAllQuestions = this.getAllQuestions.bind(this);
   }
 
-  //create handler to change state of search to whatever the input user provides
-
   searchHandler(e) {
-    console.log('this is firing');
-    console.log('this is e.target.value: ', e.target.value);
     e.preventDefault();
     this.setState({
       search: e.target.value
@@ -51,7 +50,7 @@ class QA extends React.Component {
       .catch(() => { console.log('error'); });
   }
 
-
+//need to add Modal and AddQuestionForm under button
 
 render () {
   return (
