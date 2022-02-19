@@ -6,6 +6,7 @@ import {
   CHANGE_STYLE,
   CHANGE_PRODUCT,
   GET_PRODUCT_STYLES,
+  GET_PRODUCT_META,
 } from './types.js';
 
 export default (state, action) => {
@@ -34,6 +35,11 @@ export default (state, action) => {
       return {
         ...state,
         productId: action.payload
+      }
+    case GET_PRODUCT_META:
+      return {
+        ...state,
+        productMeta: action.payload
       }
     case ERROR:
       return {

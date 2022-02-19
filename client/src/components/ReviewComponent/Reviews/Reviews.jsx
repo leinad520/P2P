@@ -4,6 +4,7 @@ import ReviewForm from './ReviewForm.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ModalWindow from '../../sharedComponents/modalComponent/Modal.jsx';
 import css from './Reviews.css';
+import ProductContext from '../../Context/ProductContext.jsx';
 
 const Reviews = ({
                   sortedByOnChangeHandler,
@@ -12,12 +13,13 @@ const Reviews = ({
                   getReviews,
                   onHelpfulClick,
                   sort,
-                  meta
+                  // meta
                 }) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(3);
+  const productContext = useContext(ProductContext);
+  const { meta } = productContext;
 
-  // console.log(colors);
 
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
