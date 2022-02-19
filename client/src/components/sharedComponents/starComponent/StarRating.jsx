@@ -46,13 +46,13 @@ let returnStars = (rating) => {
   return starCount;
 };
 
-const StarRating = ({ratingsObject}) => {
-  if (ratingsObject === null) {
+const StarRating = ({ratingsObjectOrNumber}) => {
+  if (ratingsObjectOrNumber === null) {
     return <div>LOADING</div>
   } else {
-    if ((typeof ratingsObject) === 'object') {
-      let starNumber = Object.keys(ratingsObject).map(stringNum => Number(stringNum));
-      let starCount = Object.values(ratingsObject).map(stringNum => Number(stringNum));
+    if ((typeof ratingsObjectOrNumber) === 'object') {
+      let starNumber = Object.keys(ratingsObjectOrNumber).map(stringNum => Number(stringNum));
+      let starCount = Object.values(ratingsObjectOrNumber).map(stringNum => Number(stringNum));
 
       let ratingAvg = avgRating(starNumber, starCount);
       console.log(ratingAvg);
@@ -63,11 +63,11 @@ const StarRating = ({ratingsObject}) => {
       );
     } else {
 
-      console.log(ratingsObject);
+      console.log(ratingsObjectOrNumber);
 
       return (
         <div className="star-rating">
-          {returnStars(ratingsObject)}
+          {returnStars(ratingsObjectOrNumber)}
         </div>
       );
     }

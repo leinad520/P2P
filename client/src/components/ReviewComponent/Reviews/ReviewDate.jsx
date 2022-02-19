@@ -14,7 +14,7 @@ const ReviewDate = ({ rating, username, date }) => {
   return (
     <div className="review-star-date">
       {/* NEEDS META RATING */}
-      <StarRating ratingsObject={rating} />
+      <StarRating ratingsObjectOrNumber={rating} />
       <span>{username} - {reviewDate.month}/{reviewDate.day}/{reviewDate.year}</span>
     </div>
   );

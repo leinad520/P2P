@@ -52,7 +52,7 @@ const Ratings = ({ meta }) => {
         uncomment when ready
         <div className="rating-summary-top">
           <span>{ratingAverage.average}</span>
-          <StarRating ratingsObject={meta.ratings}/>
+          <StarRating ratingsObjectOrNumber={meta.ratings}/>
         </div>
 
         <div className="rating-bar-container">
