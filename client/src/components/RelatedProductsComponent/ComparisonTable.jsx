@@ -2,9 +2,12 @@ import React from 'react';
 
 const ComparisonTable = ({mainItem, item}) => {
 
+  // Features
   var mainItemArr = [];
-  var mainItemArrValues = [];
   var itemArr = [];
+
+  // Values
+  var mainItemArrValues = [];
   var itemArrValues = [];
 
   mainItem.features.forEach(obj => {
@@ -19,6 +22,29 @@ const ComparisonTable = ({mainItem, item}) => {
   })
 
   const filteredArray = mainItemArr.filter(feature => itemArr.includes(feature));
+
+  var mainItemArrCopy = mainItemArr.slice();
+  var itemArrCopy = itemArr.slice();
+  var mainItemArrValuesCopy = mainItemArrValues.slice();
+  var itemArrValuesCopy = itemArrValues.slice();
+
+  filteredArray.forEach(feature => {
+    mainItemArrCopy.splice(mainItemArrCopy.indexOf(feature), 1);
+    mainItemArrValuesCopy.splice(mainItemArrValuesCopy.indexOf(feature), 1);
+    itemArrCopy.splice(itemArrCopy.indexOf(feature), 1);
+    itemArrValuesCopy.splice(itemArrValuesCopy.indexOf(feature), 1);
+  })
+
+  var mainItemObjs = [];
+  var itemObjs = [];
+
+  for (let i = 0; i < mainItemArrCopy.length; i++) {
+    mainItemObjs.push({feature: mainItemArrCopy[i], value: mainItemArrValuesCopy[i]});
+  }
+
+  for (let i = 0; i < itemArrCopy.length; i++) {
+    itemObjs.push({feature: itemArrCopy[i], value: itemArrValuesCopy[i]});
+  }
 
   return (
     <>
@@ -54,18 +80,18 @@ const ComparisonTable = ({mainItem, item}) => {
               <td>{itemArrValues[itemArr.indexOf(filteredFeature)]}</td>
           </tr>
           )}
-        {mainItem.features.map(feature =>
+          {mainItemObjs.map(obj =>
             <tr>
-              <td>{feature.value}</td>
-              <td>{feature.feature}</td>
+              <td>{obj.value}</td>
+              <td>{obj.feature}</td>
               <td>n/a</td>
           </tr>
           )}
-        {item.features.map(feature =>
+          {itemObjs.map(obj =>
             <tr>
               <td>n/a</td>
-              <td>{feature.feature}</td>
-              <td>{feature.value}</td>
+              <td>{obj.feature}</td>
+              <td>{obj.value}</td>
           </tr>
           )}
       </tbody>
