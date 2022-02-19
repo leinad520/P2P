@@ -4,59 +4,82 @@ import ProgressBar from './RatingsProgressBar.jsx';
 import DescriptorBar from './DescriptorBar.jsx';
 import css from './Ratings.css';
 
-function avgRating(ratings) {
+function avgRatingAndTotalCount(rNum, rCount) {
   let totalStars = 0;
   let totalRatings = 0;
-
-  ratings.forEach((numRating, i) => {
-    let star = i + 1;
-    totalStars += (numRating * star);
-    totalRatings += numRating;
+  rNum.forEach((num, index) => {
+    totalStars += (num * rCount[index]);
+    totalRatings += rCount[index];
   });
-
-  return (totalStars/totalRatings).toFixed(1);
+  return {
+    totalRatings,
+    average: Number((totalStars/totalRatings).toFixed(1)),
+  }
 };
+
+function objectOfRatings (robj) {
+  let obj = {
+    '1': 0,
+    '2': 0,
+    '3': 0,
+    '4': 0,
+    '5': 0,
+  };
+  robj.forEach(arr => obj[arr[0]] = arr[1]);
+  return obj;
+}
 
 const Ratings = ({ meta }) => {
   if (meta.ratings === undefined) {
     return <div>loading...</div>
   } else {
-    const metaRating = Object.values(meta.ratings).map(rating => Number(rating));
-    const rating = avgRating(metaRating);
+    const ratingNum = Object.keys(meta.ratings).map(rating => Number(rating));
+    const ratingCount = Object.values(meta.ratings).map(count => Number(count));
+    console.log(ratingNum);
+    console.log(ratingCount);
+    const ratingObj = Object.entries(meta.ratings).map(arr => {
+      return [arr[0], Number(arr[1])];
+    });
+    const ratingAverage = avgRatingAndTotalCount(ratingNum, ratingCount);
+    const ratingObject = objectOfRatings(ratingObj);
     const characteristicsKeys = Object.keys(meta.characteristics);
-    const characteristics = Object.values(meta.characteristics).map((metadata, index) => { return {id: metadata.id, characteristic: characteristicsKeys[index], value: Number(metadata.value)}});
+    const characteristics = Object.values(meta.characteristics).map((metadata, index) => {
+      return {id: metadata.id, characteristic: characteristicsKeys[index], value: Number(metadata.value)}
+    });
 
     return (
       <div className="ratings-section">
+        uncomment when ready
         <div className="rating-summary-top">
-          <span>{rating}</span>
-          <StarRating rating={rating}/>
+          <span>{ratingAverage.average}</span>
+          <StarRating ratingsObjectOrNumber={meta.ratings}/>
         </div>
 
         <div className="rating-bar-container">
+          onClick
           <div className="progress-bar">
             <span>5 stars</span>
-            <ProgressBar percentage={metaRating[4]} />
+            <ProgressBar percentage={(ratingObject['5'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <span>4 stars</span>
-            <ProgressBar percentage={metaRating[3]} />
+            <ProgressBar percentage={(ratingObject['4'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <span>3 stars</span>
-            <ProgressBar percentage={metaRating[2]} />
+            <ProgressBar percentage={(ratingObject['3'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <span>2 stars</span>
-            <ProgressBar percentage={metaRating[1]} />
+            <ProgressBar percentage={(ratingObject['2'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <span>1 stars</span>
-            <ProgressBar percentage={metaRating[0]} />
+            <ProgressBar percentage={(ratingObject['1'] / ratingAverage.totalRatings) * 100} />
           </div>
         </div>
 
