@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ProductContext from '../Context/ProductContext.jsx'
+import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
 
 function ProductHeader({ productInfo, selectedStyle }) {
+
+  const productContext = useContext(ProductContext);
+  const { styles } = productContext;
+  console.log(styles);
 
   function renderProductOverView() {
     if (productInfo.productOverview) {
@@ -24,8 +30,9 @@ function ProductHeader({ productInfo, selectedStyle }) {
   return (
     <div className='productHeader'>
       <h2>{productInfo.name}</h2>
-      <div>stars READ ALL REVIEWS</div>
+      <StarRating />
       <h3>{productInfo.category}</h3>
+      <h3>{styles.name}</h3>
       {renderSalePrice()}
       {renderProductOverView()}
     </div>

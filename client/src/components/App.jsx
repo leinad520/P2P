@@ -15,8 +15,6 @@ const App = (props) => {
 
   const newId = useParams().id;
 
-  console.log('outside useEffect')
-  console.log(newId)
   useEffect(() => {
     changeProduct(newId);
   }, [])
@@ -25,9 +23,9 @@ const App = (props) => {
     return (
       <section>
         <Overview />
-        <RelatedProductsAndOutfit />
+        {/* <RelatedProductsAndOutfit />
         <QA productId={productId} />
-        <ReviewSection />
+        <ReviewSection /> */}
       </section>
     );
   } else {

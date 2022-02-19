@@ -13,8 +13,6 @@ function Overview() {
   const { getProduct, getStyles, product , styles, changeProduct, productId } = productContext;
 
   useEffect(() => {
-    console.log('API CALL Product Id');
-    console.log(productId);
     getStyles(productId);
     getProduct(productId);
   }, [productId])
@@ -23,10 +21,10 @@ function Overview() {
     <div className='MegaContainer'>
       <ImageGallery selectedStyle={styles} />
       <div className='productInfoContainer'>
+        <DarkMode />
         <ProductHeader productInfo={product} selectedStyle={styles}/>
         <StyleSelector productId={productId}/>
         <ProductInfo productInfo={product} />
-        <DarkMode />
       </div>
     </div>
   )

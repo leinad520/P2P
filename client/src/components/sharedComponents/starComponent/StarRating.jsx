@@ -7,6 +7,7 @@ const starThreeQuarter = '../../../../static/star-three-quarter.svg';
 // const starThreeQuarter = '/client/static';
 
 const StarRating = (props) => {
+
   let returnStars = (rating) => {
     let starCount = [];
     while (rating > 0) {

@@ -56,9 +56,10 @@ function StyleSelector() {
 
   return (
     <div className='styleContainer'>
-      STYLE > {styles.name}
       <div className='grid-container'>
-        {renderStyleButtons()}
+        <div className='grid'>
+          {renderStyleButtons()}
+        </div>
       </div>
       <AddToCart currData={styles} />
     </div>
