@@ -47,7 +47,6 @@ function StyleSelector() {
     let selectedStyle;
     productStyles.forEach(style => {
       if (style.style_id === Number(e.target.value)) {
-        console.log('style match')
         selectedStyle = style;
       }
     });

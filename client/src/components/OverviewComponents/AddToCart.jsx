@@ -5,12 +5,6 @@ function AddToCart({ currData, defaultStyle }) {
 
   const [skus, setSkus] = useState('');
 
-  // useEffect(() => {
-  //   if (Object.keys(currData).length) {
-  //     setSkus(Object.keys(currData.skus)[0])
-  //   }
-  // }, [currData])
-
   const renderSizes = () => {
     let results = [];
     const sizeContainer = currData.skus;

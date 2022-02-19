@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Modal from '../sharedComponents/Modal/Modal.jsx';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function ImageGallery({ selectedStyle }) {
 
-  const glassDimensions = 300;
+  const glassDimensions = 500;
   const zoomPerc = 2.5;
   const modal = useRef(null);
   const imgElement = useRef(null);
@@ -174,8 +176,8 @@ function ImageGallery({ selectedStyle }) {
     <div className="heroPhotoContainer">
       <div className='imageContainer'>
         {renderHeroImage()}
-        <a className="prev" onClick={() => moveSlide(-1)}>&#20094;</a>
-        <a className="next" onClick={() => moveSlide(1)}>&#20095;</a>
+        <FontAwesomeIcon icon={ faArrowLeft } className='prev' onClick={() => moveSlide(-1)}/>
+        <FontAwesomeIcon icon={ faArrowRight } className='next' onClick={() => moveSlide(1)}/>
       </div>
       <Modal ref={modal}>
         {renderModal()}
@@ -188,19 +190,3 @@ function ImageGallery({ selectedStyle }) {
 }
 
 export default ImageGallery;
-
-
-{/* <div
-  className='glass'
-  style={{
-    display: showGlass ? '' : 'none',
-    height: `${200}px`,
-    width: `${200}px`,
-    top: `${y - 200 / 2}px`,
-    left: `${x - 200 / 2}px`,
-    backgroundSize: `${imgWidth * 1.5}px ${imgHeight * 1.5}px`,
-    backgroundImage: `url('${glassImage}')`,
-    backgroundPositionX: `${-x * 1.5 + 200 / 2}px`,
-    backgroundPositionY: `${-y * 1.5 + 200 / 2}px`,
-  }}>
-</div> */}

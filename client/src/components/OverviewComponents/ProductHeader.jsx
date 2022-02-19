@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ProductContext from '../Context/ProductContext.jsx'
 import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
+import DarkMode from '../DarkMode.jsx';
 
 function ProductHeader({ productInfo, selectedStyle }) {
 
   const productContext = useContext(ProductContext);
-  const { styles } = productContext;
-  console.log(styles);
+  const { styles, productMeta } = productContext;
+
+
+  useEffect(() => {
+    // console.log(productMeta)
+  }, [styles])
 
   function renderProductOverView() {
     if (productInfo.productOverview) {
@@ -30,7 +35,7 @@ function ProductHeader({ productInfo, selectedStyle }) {
   return (
     <div className='productHeader'>
       <h2>{productInfo.name}</h2>
-      <StarRating />
+      <StarRating ratingsObjectOrNumber={productMeta.ratings}/>
       <h3>{productInfo.category}</h3>
       <h3>{styles.name}</h3>
       {renderSalePrice()}

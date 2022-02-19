@@ -55,16 +55,13 @@ const StarRating = ({ratingsObjectOrNumber}) => {
       let starCount = Object.values(ratingsObjectOrNumber).map(stringNum => Number(stringNum));
 
       let ratingAvg = avgRating(starNumber, starCount);
-      console.log(ratingAvg);
+
       return (
         <div className="star-rating">
           {returnStars(ratingAvg)}
         </div>
       );
     } else {
-
-      console.log(ratingsObjectOrNumber);
-
       return (
         <div className="star-rating">
           {returnStars(ratingsObjectOrNumber)}

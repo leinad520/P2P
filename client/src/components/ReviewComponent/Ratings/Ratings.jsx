@@ -35,8 +35,8 @@ const Ratings = ({ meta }) => {
   } else {
     const ratingNum = Object.keys(meta.ratings).map(rating => Number(rating));
     const ratingCount = Object.values(meta.ratings).map(count => Number(count));
-    console.log(ratingNum);
-    console.log(ratingCount);
+    // console.log(ratingNum);
+    // console.log(ratingCount);
     const ratingObj = Object.entries(meta.ratings).map(arr => {
       return [arr[0], Number(arr[1])];
     });
