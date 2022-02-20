@@ -537,6 +537,8 @@ input:checked + .slider:before {
   margin: 0;
 }
 
+/*Add Answer Modal*/
+
 .add-answer-modal-container {
   display: flex;
   align-items: flex-start;
@@ -617,6 +619,109 @@ input:checked + .slider:before {
   padding: 5px;
 }
 
+
+/* Add Questions Modal */
+.add-question-modal-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.add-question-form-container {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  width: 90%;
+  height: 100%;
+}
+
+#add-question-form {
+  border: solid 2px black;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+}
+
+#add-question-title {
+  align-items: flex-start;
+  text-align: center;
+  padding: 2px;
+  margin: 0 0 15px;
+}
+
+#add-question-subtitle {
+  text-align: center;
+  padding: 2px;
+  margin: 0 0 25px;
+}
+
+#q-priv-span {
+  font-size: x-small;
+  font-style: oblique;
+}
+
+#q-auth-span {
+  font-size: x-small;
+  font-style: oblique;
+}
+
+#q-nickname-div {
+  padding-bottom: 50px;
+}
+
+
+#q-email-div {
+  padding-bottom: 50px;
+}
+
+
+
+#add-question-submit {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background-color: rgba(215, 177, 121);
+  color: #333;
+  margin: 5px 0 25px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#qQuestion {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100px;
+  width: 95%;
+  border: 1px solid #CCC;
+  background: #FFF;
+  margin: 5px 0 25px;
+  padding: 5px;
+  /* overflow-wrap: break-word; */
+}
+
+#qNickname {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 95%;
+  border: 1px solid #CCC;
+  background: #FFF;
+  margin: 5px 0 0px;
+  padding: 5px;
+}
+
+#qEmail {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 95%;
+  border: 1px solid #CCC;
+  background: #FFF;
+  margin: 5px 0 0px;
+  padding: 5px;
+}
 
 #Q {
   padding-right: 5px;

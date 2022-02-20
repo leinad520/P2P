@@ -55,13 +55,13 @@ const AddAnswerForm = (props) => {
             <div> What is your nickname?*
             <textarea id="mNickname" type="text" name="mNickname" placeholder="Example: jack543!" value={state.mNickname} onChange={handleFormChange} />
             </div>
-            <span>For privacy reasons, do not use your full name or email address</span>
+            <span id="q-priv-span">For privacy reasons, do not use your full name or email address</span>
           </div>
           <div>
             <div>Your e-mail
             <textarea id="mEmail" type="text" name="mEmail" placeholder="Example: jack@email.com" value={state.mEmail} onChange={handleFormChange}/>
             </div>
-            <span>For authentication reasons, you will not be emailed</span>
+            <span id="q-auth-span">For authentication reasons, you will not be emailed</span>
           </div>
           <input placeholder="Upload your photos"/>
           <div>

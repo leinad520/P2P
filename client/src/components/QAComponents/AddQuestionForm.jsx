@@ -4,7 +4,7 @@ import ProductContext from '../Context/ProductContext.jsx';
 
 
 
-const AddQuestionForm = (props) =》 {
+const AddQuestionForm = (props) => {
   const [state, setState] = useState({
     qQuestion: '',
     qNickname: '',
@@ -21,15 +21,17 @@ const AddQuestionForm = (props) =》 {
     })
   }
 
-  {console.log('this is product,': product)};
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
-    axios.post(`/qa/questions/{}`, {
+    axios.post(`/qa/questions/${product.id}`, {
       body: state.qQuestion,
       name: state.qNickname,
       email: state.qEmail,
-      product_id:
+      product_id: product.id,
     })
+    .then(response => {console.log('questions was succesfully posted');
+    })
+    .catch(err => {console.error(err);})
   }
 
   return(
@@ -37,23 +39,23 @@ const AddQuestionForm = (props) =》 {
     <div className="add-question-modal-container">
       <div className="add-question-form-container">
         <form id="add-question-form" onSubmit={handleQuestionSubmit}>
-          <h3 id="add-question-title">Ask Your Question</h3>
+          <h2 id="add-question-title">Ask Your Question</h2>
           <h4 id="add-question-subtitle">About the {product.name}</h4>
           <div>
-            <div>Your Question
+            <div>Your Question*
             <textarea id="qQuestion" type="text" name="qQuestion" placeholder="Your question here" value={state.mQuestion} onChange={handleQFormChange}/>
             </div>
-            <div>
-              <div>What is your nickname?
+            <div id="q-nickname-div">
+              <div >What is your nickname?*
               <textarea id="qNickname" type="text" name="qNickname" placeholder="Example: jackson11!" value={state.qNickname} onChange={handleQFormChange}/>
               </div>
-              <span>For privacy reasons, do not use your full name or email address</span>
+              <div id="q-priv-span">*For privacy reasons, do not use your full name or email address*</div>
             </div>
-            <div>
-              <div>Your email
+            <div id="q-email-div">
+              <div >Your email*
               <textarea id="qEmail" type="text" name="qEmail" placeholder="Why did you like the product or not?" value={state.mEmail} onChange={handleQFormChange}/>
               </div>
-              <span>For authentication reasons, you will not be emailed</span>
+              <div id="q-auth-span">*For authentication reasons, you will not be emailed*</div>
             </div>
             <button type="submit" id="add-question-submit">Submit Question</button>
           </div>
