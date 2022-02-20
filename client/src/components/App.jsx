@@ -25,24 +25,14 @@ const App = (props) => {
     return (
       <section>
         <Overview />
-        {/* <RelatedProductsAndOutfit /> */}
+        <RelatedProductsAndOutfit />
         <QA />
-        {/* <ReviewSection /> */}
+        <ReviewSection />
       </section>
     );
   } else {
     return <div> ~~~~ LOADING ~~~~ </div>
   }
-
-  // return (
-  //     <section>
-  //       {/* <Overview productId={productId} /> */}
-  //       <Overview />
-  //       <RelatedProductsAndOutfit />
-  //       {/* <QA productId={productId} /> */}
-  //       <ReviewSection />
-  //     </section>
-  // );
 };
 
 export default App;
