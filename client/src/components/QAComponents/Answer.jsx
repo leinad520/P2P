@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 class Answer extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Answer extends React.Component {
     }
     this.handleHelpfulAnswerClick = this.handleHelpfulAnswerClick.bind(this)
     this.newDate = this.newDate.bind(this);
+    this.answererName = this.answererName.bind(this);
   }
 
   handleHelpfulAnswerClick(e) {
@@ -38,16 +39,24 @@ class Answer extends React.Component {
 
   }
 
+  answererName() {
+    let answerer;
+    if (this.props.answer.answerer_name === "Seller") {
+      answerer = <b>{this.props.answer.answerer_name}</b>
+    } else {
+      answerer = this.props.answer.answerer_name;
+    }
+    return answerer;
+  }
 
   render() {
-    // let newDate = new Date(this.props.answer.date).toString().slice(4, 15);
-    // console.log(newDate);
+
     return (
       <div className="answerBody">
         <div id="answer">
           <span>{this.props.answer.body}</span>
         </div>
-        <div id="sellerInfo">by {this.props.answer.answerer_name} , {this.newDate(this.props.answer.date)}
+        <div id="sellerInfo">by {this.answererName()} , {this.newDate(this.props.answer.date)}
           <span>| Helpful?
             <span id="answer-helpfulness">
               <span> <u onClick={this.handleHelpfulAnswerClick}>Yes</u>
