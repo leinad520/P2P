@@ -9,6 +9,7 @@ import {
   ERROR,
   CHANGE_STYLE,
   CHANGE_PRODUCT,
+  GET_PRODUCT_META,
 } from './types.js';
 
 // goal: get style / get product
@@ -19,6 +20,7 @@ const ProductState = ({ children }) => {
     styles: {},
     productStyles: [],
     productId: null,
+    productMeta: {},
     error: null,
   }
 
@@ -83,17 +85,39 @@ const ProductState = ({ children }) => {
     })
   }
 
+  const getMetaData = (productId) => {
+    axios({
+      method: 'get',
+      url: `http://localhost:3000/productmeta/${productId}`
+    }).
+    then(data => {
+      // setMeta(data.data)
+      dispatch({
+        type: GET_PRODUCT_META,
+        payload: data.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: ERROR,
+        payload: err.message
+      });
+    });
+  }
+
   return (
     <ProductContext.Provider value={{
       product: state.product,
       styles: state.styles,
       productId: state.productId,
       productStyles: state.productStyles,
+      productMeta: state.productMeta,
       getProduct,
       getStyles,
       changeStyle,
       changeProduct,
       getProductStyles,
+      getMetaData,
     }}>
       { children }
     </ProductContext.Provider>
