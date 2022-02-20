@@ -6,7 +6,7 @@ const ProgressBar = (props) => {
 
   useEffect(() => {
     starInput.current.style.width =`${props.percentage}%`;
-    console.log(props.percentage);
+    // console.log(props.percentage);
   }, []);
 
 

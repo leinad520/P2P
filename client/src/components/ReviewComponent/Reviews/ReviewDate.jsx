@@ -5,7 +5,6 @@ import css from './ReviewDate.css';
 
 const ReviewDate = ({ rating, username, date }) => {
   const momentDate = moment(date);
-
   const reviewDate = {
     year: momentDate.year(),
     month: (momentDate.month() + 1),
@@ -14,10 +13,11 @@ const ReviewDate = ({ rating, username, date }) => {
 
   return (
     <div className="review-star-date">
-      <StarRating rating={rating} />
+      {/* NEEDS META RATING */}
+      <StarRating ratingsObjectOrNumber={rating} />
       <span>{username} - {reviewDate.month}/{reviewDate.day}/{reviewDate.year}</span>
     </div>
-  )
+  );
 }
 
 export default ReviewDate;
