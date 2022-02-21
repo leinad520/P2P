@@ -85,7 +85,7 @@ class RelatedProducts extends React.Component {
     var { relatedCardObjs, chosenCardData } = this.state;
     return (
       <>
-        <div className="title">RELATED PRODUCTS</div>
+        <h3 className="title">RELATED PRODUCTS</h3>
         <section className="parent">
           {relatedCardObjs.map((card, i) =>
             <div className="card" key={`related-products-${i}`}>

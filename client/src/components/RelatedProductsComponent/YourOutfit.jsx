@@ -59,7 +59,9 @@ class YourOutfit extends React.Component {
   }
 
   addOutfit(index) {
-    if (!this.state.outfitCardIds.includes(this.state.chosenCard)) {
+    if (this.state.outfitCardIds.includes(this.state.chosenCard)) {
+      alert(`You have already added this item to your outfits`);
+    } else {
       let outfitCardIdsCopy = this.state.outfitCardIds.slice();
       outfitCardIdsCopy[index] = this.state.chosenCard;
 
@@ -83,7 +85,7 @@ class YourOutfit extends React.Component {
 
     return (
     <>
-      <div className="title">YOUR OUTFIT</div>
+      <h3 className="title">YOUR OUTFIT</h3>
         <section className="parent">
           {outfitCardObjs.map((card, i) => card === null ?
             //empty outfit card
