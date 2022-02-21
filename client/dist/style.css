@@ -387,7 +387,7 @@ input:checked + .slider:before {
 }
 
 .card {
-  width: 150px;
+  width: 175px;
   height: 300px;
   border: solid;
   margin: 10px;
@@ -396,21 +396,25 @@ input:checked + .slider:before {
 .outfit-card {
   display: flex;
   justify-content: center;
-  width: 150px;
+  align-items: center;
+  position: relative;
+  width: 175px;
   height: 300px;
   border: solid;
   margin: 10px;
 }
 
-.empty-card {
-  width: 150px;
-  height: 300px;
+.outfit-card h3 {
   position: absolute;
-}
-
+  bottom: 90%;}
 
 .card-picture {
+  position: relative;
   height: 200px;
+}
+
+.card-picture img {
+  object-fit: cover;
 }
 
 .card-description {
@@ -419,6 +423,11 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   font-size: 12px;
+}
+
+.card-description .star-rating img {
+  height: 15px;
+  width: 15px;
 }
 
 .card-description span {
@@ -442,23 +451,20 @@ input:checked + .slider:before {
 }
 
 .corner-star {
-  position: relative;
-  bottom: 200px;
-  left: 125px;
-
+  position: absolute;
+  bottom: 90%;
+  left: 85%;
 }
 
 .corner-xmark {
-  position: relative;
-  bottom: 200px;
-  left: 125px;
+  position: absolute;
+  bottom: 90%;
+  left: 85%;
 
 }
 
 .circle-plus {
-  position: relative;
-  top: 100px;
-  left: 35px;
+  position: absolute;
 }
 
 /* Dan Modal */

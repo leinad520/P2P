@@ -6,7 +6,6 @@ import DanModal from './DanModal.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
 
-
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +14,7 @@ class RelatedProducts extends React.Component {
       chosenCardData: [],
       relatedCardIds: [],
       relatedCardObjs: [],
+      relatedCardReviews: [],
       relatedStyles: [],
       show: false,
       modalIndex: ''
@@ -65,6 +65,17 @@ class RelatedProducts extends React.Component {
             })
           })
       })
+      .then(() => {
+        let promiseArr = this.state.relatedCardIds.map(id =>
+          axios.get(`/productmeta/${id}`)
+        )
+        Promise.all(promiseArr)
+          .then(values => {
+            values.forEach(obj => {
+              this.setState({ relatedCardReviews: [...this.state.relatedCardReviews, obj.data.ratings] })
+            })
+          })
+      })
       .catch(err => console.log(err))
 
 
@@ -86,7 +97,7 @@ class RelatedProducts extends React.Component {
                 <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
                 <span className="name">{relatedCardObjs[i].name}</span>
                 <span>${relatedCardObjs[i].default_price}</span>
-                {/* <StarComponent rating={} /> */}
+                <StarRating ratingsObjectOrNumber={this.state.relatedCardReviews[i]} />
               </div>
             </div>
           )}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
 
 
 
@@ -14,6 +15,7 @@ class YourOutfit extends React.Component {
       outfitCardIds: Array(4).fill(null), // [42367, null, null, null]
       outfitCardObjs: Array(4).fill(null), // [{}, null, null, null]
       styles: [],
+      relatedCardReviews: []
     };
 
     this.addOutfit = this.addOutfit.bind(this);
@@ -37,6 +39,21 @@ class YourOutfit extends React.Component {
       .then(values => {
         this.setState({ outfitCardObjs: values })
       })
+    })
+    .then(() => {
+      let promiseArr = this.state.outfitCardIds.map(id =>
+        id === null ? null : axios.get(`/productmeta/${id}`)
+      )
+      Promise.all(promiseArr)
+        .then(values => {
+          values.forEach(obj => {
+            if (obj === null) {
+              this.setState({relatedCardReviews: [...this.state.relatedCardReviews, null]})
+            } else {
+              this.setState({relatedCardReviews: [...this.state.relatedCardReviews, obj.data.ratings]})
+            }
+          })
+        })
     })
     });
   }
@@ -70,11 +87,9 @@ class YourOutfit extends React.Component {
         <section className="parent">
           {outfitCardObjs.map((card, i) => card === null ?
             //empty outfit card
-            <div className="outfit-card" key={`your-outfit-${i}`}>
+            <div className="outfit-card" key={`your-outfit-${i}`} onClick={() => this.addOutfit(i)}>
               <h3>Add to Outfit</h3>
-              <div className="empty-card" onClick={() => this.addOutfit(i)}>
-                <FontAwesomeIcon icon={faCirclePlus} className="circle-plus" size='5x' />
-              </div>
+              <FontAwesomeIcon icon={faCirclePlus} className="circle-plus" size='5x' />
             </div>
             :
             //filled outfit card
@@ -87,7 +102,7 @@ class YourOutfit extends React.Component {
                 <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>
                 <span className="name">{outfitCardObjs[i].data.name}</span>
                 <span>${outfitCardObjs[i].data.default_price}</span>
-                <span>*****</span>
+                <StarRating ratingsObjectOrNumber={this.state.relatedCardReviews[i]} />
               </div>
             </div>
           )}
