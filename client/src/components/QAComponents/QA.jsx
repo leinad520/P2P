@@ -16,12 +16,11 @@ import AddQuestionForm from './AddQuestionForm.jsx';
 
 const QA = () => {
   const [search, setSearch] = useState('');
-  const [initialQuestions, setInitialQuestions] = useState({
-    results: []
-  });
+  const [initialQuestions, setInitialQuestions] = useState([]);
   // this state variable is for the filtered/sliced array to pass down for rendering
   // const [passedQuestions, setPassedQuestions] = useState([]);
   const [show, setShow] = useState(false);
+  const [counter, setCounter] = useState(2);
 
   const productContext = useContext(ProductContext);
   const { product } = productContext;
@@ -43,7 +42,9 @@ const QA = () => {
   let getAllQuestions = () => {
     axios.get(`/qa/questions/${product.id}`)
       .then(response => {
-        setInitialQuestions(response.data)
+
+
+        setInitialQuestions(response.data.results)
       })
       .catch(() => { console.log('error'); });
   };
@@ -52,16 +53,22 @@ const QA = () => {
     setShow(!show);
   };
 
-  console.log('this is initialQuestions:', initialQuestions.results);
+  // console.log('this is initialQuestions:', initialQuestions.results);
+  console.log('this is initialQuestions:', initialQuestions);
 
   //filter the questions array based on the search state when search state is greater than or equal to 3
 
   let moreAnswerQuestionsButton = () => {
-    if (initialQuestions.results.length > 2) {
-      return <button>More Answered Questions</button>
+    if (initialQuestions.length > 2) {
+      return <button onClick={onMoreAnsweredQuestionsClick}>More Answered Questions</button>
     } else {
       return <></>
     }
+  }
+
+  let onMoreAnsweredQuestionsClick = () => {
+    let count = counter + 2
+    setCounter(count);
   }
 
   // var filteredArr = props.userMovies.filter((movie) => {
@@ -81,7 +88,7 @@ const QA = () => {
           </div>
         </section>
         <div id="qa-list">
-          <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} />
+          <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} counter={counter} />
         </div>
         <div>
           <div>
