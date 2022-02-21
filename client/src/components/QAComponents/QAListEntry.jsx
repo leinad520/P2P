@@ -31,7 +31,6 @@ const QAListEntry = (props) => {
 
 
   let answers = [];
-
   for (let answer in props.question.answers) {
     answers.push(props.question.answers[answer]);
   }
@@ -39,6 +38,9 @@ const QAListEntry = (props) => {
   let slicedAns = answers.slice(0, 2);
   let remainingAns = answers.slice(2);
 
+  //if answers array has more than 2 answers, a link "see more answers" should be below the list
+    //on "see more answers" button click, remaining answers are displayed
+      //"see more answers" changes to "collapse answers"
 
   return (
     <>

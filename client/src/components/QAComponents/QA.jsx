@@ -19,7 +19,8 @@ const QA = () => {
   const [initialQuestions, setInitialQuestions] = useState({
     results: []
   });
-  const [passedQuestions, setPassedQuestions] = useState([]);
+  // this state variable is for the filtered/sliced array to pass down for rendering
+  // const [passedQuestions, setPassedQuestions] = useState([]);
   const [show, setShow] = useState(false);
 
   const productContext = useContext(ProductContext);
