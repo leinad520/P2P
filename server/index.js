@@ -145,7 +145,7 @@ app.put('/qa/questions/:id/helpful', (req, res) => {
   const { id } = req.params
   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${id}/helpful`, req.body)
   .then(success => {
-    res.sendStatus(201).end();
+    res.status(201).send();
   })
   .catch(err => {
     res.send(err);
@@ -230,7 +230,6 @@ app.get('/productmeta/:id', (req, res) => {
 // GET SECURE URL from AWS:
 app.get('/s3Url', (req, res) => {
   s3().then(url => {
-    console.log(url);
     res.status(200).send(url)
   });
 })

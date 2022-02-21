@@ -1,0 +1,4 @@
+.review-star-date{
+  display: flex;
+  justify-content: space-between;
+}

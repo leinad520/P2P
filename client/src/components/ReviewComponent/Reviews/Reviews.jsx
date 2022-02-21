@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Review from './Review.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import ReviewSort from './ReviewSort.jsx';
 import ModalWindow from '../../sharedComponents/modalComponent/Modal.jsx';
-import axios from 'axios';
-
+import css from './Reviews.css';
+import ProductContext from '../../Context/ProductContext.jsx';
 
 const Reviews = ({
                   sortedByOnChangeHandler,
@@ -13,13 +13,18 @@ const Reviews = ({
                   getReviews,
                   onHelpfulClick,
                   sort,
-                  meta
+                  // meta
                 }) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(3);
+  const productContext = useContext(ProductContext);
+  const { meta } = productContext;
+
+
   if (reviews.product === undefined) {
     return <div data-testid="loading">loading...</div>
   } else {
+
     function showModal () {
       setShow(!show);
     };
@@ -62,11 +67,13 @@ const Reviews = ({
 
         <div className="review-section-buttons">
           <button className="btn" onClick={e => {allReviewsObj.showThreeMoreReviews()}}>Show More</button>
-        <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
+            {/* MODAL BUTTON */}
+          <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
         </div>
 
         <ModalWindow onClose={showModal} show={show}>
           <ReviewForm
+            onClose={showModal}
             meta={meta}
             getReviews={getReviews}
             productId={productId}
