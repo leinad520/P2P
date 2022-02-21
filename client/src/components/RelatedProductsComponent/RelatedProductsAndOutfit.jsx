@@ -14,8 +14,8 @@ class RelatedProductsAndOutfit extends React.Component {
   render() {
     return (
       <>
-      <RelatedProducts />
-      <YourOutfit />
+      <RelatedProducts productId={this.props.productId}/>
+      <YourOutfit productId={this.props.productId}/>
       </>
     )
   }

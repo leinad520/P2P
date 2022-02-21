@@ -461,6 +461,45 @@ input:checked + .slider:before {
   left: 35px;
 }
 
+/* Dan Modal */
+
+.dan-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:60%;
+  height: auto;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.dan-modal-main {
+  position:fixed;
+  background: white;
+  width: auto;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
 /* Matt's Styles */
 
 /* .questions-answers-main {
