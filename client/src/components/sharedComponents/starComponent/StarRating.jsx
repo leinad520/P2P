@@ -15,16 +15,18 @@ import css from './StarRating.css';
 //     "5": "66"
 // }
 
-function avgRating(rNum, rCount) {
+export function avgRating(rNum, rCount) {
   let totalStars = 0;
   let totalRatings = 0;
   rNum.forEach((num, index) => {
     totalStars += (num * rCount[index]);
     totalRatings += rCount[index];
   });
-
+  console.log(Number((totalStars/totalRatings).toFixed(1)), 'this is avgRating')
   return Number((totalStars/totalRatings).toFixed(1));
 };
+
+avgRating([1, 2, 3, 4, 5], [15, 10, 2, 20, 50]);
 
 let returnStars = (rating) => {
   let starCount = [];

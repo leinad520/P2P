@@ -54,14 +54,18 @@ function StyleSelector() {
   }
 
   return (
-    <div className='styleContainer'>
-      <div className='grid-container'>
-        <div className='grid'>
-          {renderStyleButtons()}
+    <>
+      <div className='styleContainer'>
+        <div className='grid-container'>
+          <div className='grid'>
+            {renderStyleButtons()}
+          </div>
         </div>
       </div>
-      <AddToCart currData={styles} />
-    </div>
+      <div className='cart-container'>
+        <AddToCart currData={styles} />
+      </div>
+    </>
   );
 }
 
