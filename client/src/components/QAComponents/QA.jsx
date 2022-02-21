@@ -16,9 +16,10 @@ import AddQuestionForm from './AddQuestionForm.jsx';
 
 const QA = () => {
   const [search, setSearch] = useState('');
-  const [questions, setQuestions] = useState({
+  const [initialQuestions, setInitialQuestions] = useState({
     results: []
   });
+  const [passedQuestions, setPassedQuestions] = useState([]);
   const [show, setShow] = useState(false);
 
   const productContext = useContext(ProductContext);
@@ -41,7 +42,7 @@ const QA = () => {
   let getAllQuestions = () => {
     axios.get(`/qa/questions/${product.id}`)
       .then(response => {
-        setQuestions(response.data)
+        setInitialQuestions(response.data)
       })
       .catch(() => { console.log('error'); });
   };
@@ -50,7 +51,20 @@ const QA = () => {
     setShow(!show);
   };
 
+  console.log('this is initialQuestions:', initialQuestions.results);
 
+  //filter the questions array based on the search state when search state is greater than or equal to 3
+
+  let moreAnswerQuestionsButton = () => {
+    if (initialQuestions.results.length > 2) {
+      return <button>More Answered Questions</button>
+    } else {
+      return <></>
+    }
+  }
+
+  // var filteredArr = props.userMovies.filter((movie) => {
+  //   return movie.title.toLowerCase().includes(props.currentSearch.toLowerCase());
 
 
   return (
@@ -66,11 +80,11 @@ const QA = () => {
           </div>
         </section>
         <div id="qa-list">
-          <QAList getAllQuestions={getAllQuestions} data={questions} />
+          <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} />
         </div>
         <div>
           <div>
-            <button>More Answered Questions</button>
+            {moreAnswerQuestionsButton()}
             <span className="add-question">
             <button id="add-question-btn" onClick={e => showModal()}>Add a Question           +</button>
             <div>
