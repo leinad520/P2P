@@ -57,6 +57,10 @@ class YourOutfit extends React.Component {
     this.setOutfitCardsHelper(outfitCardIdsCopy);
   }
 
+  componentDidUpdate() {
+    localStorage.setItem("outfitCardObjs", JSON.stringify(this.state.outfitCardObjs))
+  }
+
   render() {
       var {outfitCardObjs, styles} = this.state;
 

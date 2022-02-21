@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
 import DanModal from './DanModal.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
+import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
 
 
 class RelatedProducts extends React.Component {
@@ -85,7 +86,7 @@ class RelatedProducts extends React.Component {
                 <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
                 <span className="name">{relatedCardObjs[i].name}</span>
                 <span>${relatedCardObjs[i].default_price}</span>
-                <span>*****</span>
+                {/* <StarComponent rating={} /> */}
               </div>
             </div>
           )}
