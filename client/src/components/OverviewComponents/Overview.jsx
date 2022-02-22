@@ -6,11 +6,10 @@ import ImageGallery from './ImageGallery.jsx';
 import DarkMode from '../DarkMode.jsx';
 import ProductContext from '../Context/ProductContext.jsx';
 
-// function Overview({productId}) {
 function Overview() {
 
   const productContext = useContext(ProductContext);
-  const { getProduct, getStyles, product , styles, changeProduct, productId } = productContext;
+  const { getProduct, getStyles, product, styles, changeProduct, productId } = productContext;
 
   useEffect(() => {
     getStyles(productId);
@@ -21,10 +20,10 @@ function Overview() {
     <div className='MegaContainer'>
       <ImageGallery selectedStyle={styles} />
       <div className='productInfoContainer'>
-        <ProductHeader productInfo={product} selectedStyle={styles}/>
-        <StyleSelector productId={productId}/>
+        {/* <DarkMode /> */}
+        <ProductHeader productInfo={product} selectedStyle={styles} />
+        <StyleSelector productId={productId} />
         <ProductInfo productInfo={product} />
-        <DarkMode />
       </div>
     </div>
   )
