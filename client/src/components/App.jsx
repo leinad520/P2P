@@ -14,8 +14,10 @@ const App = (props) => {
 
   // 🧠
   // 🧠
-    // 🧠
   // 🧠
+  // 🧠
+
+  console.log('i hate this bundle')
 
   const newId = useParams().id;
 
