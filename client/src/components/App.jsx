@@ -13,6 +13,7 @@ const App = (props) => {
   const { product, productId, changeProduct} = productContext;
 
   // 🧠
+  // 🧠
 
   const newId = useParams().id;
 
