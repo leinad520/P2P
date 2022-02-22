@@ -15,7 +15,8 @@ class YourOutfit extends React.Component {
       outfitCardIds: JSON.parse(localStorage.getItem("outfitCardIds")) || Array(4).fill(null), // [42367, null, null, null]
       outfitCardObjs: JSON.parse(localStorage.getItem("outfitCardObjs")) || Array(4).fill(null), // [{}, null, null, null]
       styles: JSON.parse(localStorage.getItem("styles")) || [], // thumbnail image urls
-      starReviews: JSON.parse(localStorage.getItem("starReviews")) || [] // star component
+      starReviews: JSON.parse(localStorage.getItem("starReviews")) || [], // star component
+      hoverIndex: ''
     };
 
     this.addOutfit = this.addOutfit.bind(this);
@@ -78,7 +79,7 @@ class YourOutfit extends React.Component {
   }
 
   render() {
-      var {outfitCardObjs, styles, starReviews} = this.state;
+      var {outfitCardObjs, styles, starReviews, hoverIndex} = this.state;
 
     return (
     <>
@@ -96,8 +97,10 @@ class YourOutfit extends React.Component {
             <div className="card" key={`your-outfit-${i}`} >
               <div className="card-picture">
                 <img src={styles[i] ? styles[i].data.results[0].photos[0].thumbnail_url : null }></img>
-                <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} />
-                <div className="corner-cover corner-cover-two"></div>
+                {/* <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} />
+                <div className="corner-cover corner-cover-two"></div> */}
+                <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} onMouseEnter={()=>this.setState({hoverIndex: i})} onMouseLeave={()=>this.setState({hoverIndex: ''})} />
+                <div className={ hoverIndex === i ? "corner-cover corner-cover-red" : "corner-cover corner-cover-two"} ></div>
               </div>
               <div className="card-description">
                 <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>

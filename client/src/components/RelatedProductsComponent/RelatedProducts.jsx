@@ -21,6 +21,7 @@ class RelatedProducts extends React.Component {
       relatedStyles: [],
       show: false,
       modalIndex: '',
+      hoverIndex: ''
     };
 
     this.showModal = this.showModal.bind(this);
@@ -86,7 +87,7 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    var { relatedCardObjs, chosenCardData, modalIndex } = this.state;
+    var { relatedCardObjs, chosenCardData, modalIndex, hoverIndex } = this.state;
     return (
       <>
         <h3 className="title">RELATED PRODUCTS</h3>
@@ -98,8 +99,8 @@ class RelatedProducts extends React.Component {
                 <img src={this.state.relatedStyles[i]}></img>
                 <div className="corner-cover"></div>
                 {/* <FontAwesomeIcon icon={ modalIndex === i ? faStarSolid : faStar } className={ modalIndex === i ? "corner-star-full" : "corner-star" } onClick={() => this.showModal(i)}/> */}
-                <FontAwesomeIcon icon={ faStar } className={ "corner-star" } onClick={() => this.showModal(i)}/>
-                <FontAwesomeIcon icon={ faStarSolid } className={ modalIndex === i ? "corner-star corner-star-yellow" : "corner-star corner-star-full"}/>
+                <FontAwesomeIcon icon={ faStar } className={ "corner-star" } onClick={() => this.showModal(i)} onMouseEnter={()=>this.setState({hoverIndex: i})} onMouseLeave={()=>this.setState({hoverIndex: ''})}/>
+                <FontAwesomeIcon icon={ faStarSolid } className={ modalIndex === i || hoverIndex === i ? "corner-star corner-star-yellow" : "corner-star corner-star-full"} />
               </div>
               <div className="card-description">
                 <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>

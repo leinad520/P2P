@@ -494,6 +494,17 @@ input:checked + .slider:before {
   border-style: none;
   height: 28px;
   width: 28px;
+  bottom: 88.1%;
+  left: 86.1%;
+}
+
+.corner-cover-red {
+  border-style: none;
+  height: 28px;
+  width: 28px;
+  background-color: red;
+  bottom: 88.1%;
+  left: 86.1%;
 }
 
 .circle-plus {
