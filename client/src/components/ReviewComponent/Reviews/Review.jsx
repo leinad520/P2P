@@ -10,38 +10,36 @@ import ReviewDate from './ReviewDate.jsx';
 import ReviewLinks from './ReviewLinks.jsx';
 
 
-function chopText (text) {
-  if (text.length > 100) {
-    let string = '';
-    let i = 0;
-    while (string.length < 60) {
-      string += text[i];
-      i++;
-    }
-    return string + '...';
-  } else {
-    return text;
-  }
-};
-
 const Review = (props) => {
+  const [collapsed, setCollapsed] = useState(false);
   const elAnim = useRef(null);
   useEffect(() => {
     elAnim.current.style.transform = 'translateX(0%)'
   });
 
+  function onReadMoreHandler () {
+    setCollapsed(!collapsed)
+  }
+
+  function chopText (text) {
+    return text.slice(0, 150) + '...';
+  };
+
   return (
     <Card forwardedRef={elAnim} className={`animate`}>
       <div>
-        <ReviewDate rating={props.rating} username={props.username} date={props.date}/>
+        <ReviewDate summary={props.summary} rating={props.rating} username={props.username} date={props.date}/>
         <h3>{props.title}</h3>
       </div>
       <div className="review-text">
-        {chopText(props.text)}
+        {collapsed ? '' + props.text : '' + chopText(props.text)}
+        {(props.text.length > 150) && <a onClick={onReadMoreHandler} className="read-more" href="#">{(collapsed) ? '⬆ Collapse text' : '⬇ Read more'}</a>}
       </div>
       {(props.photos.length > 0) && (
-        <div className="review-photo-holder">
-          {props.photos.map(photo => <ReviewPhotos key={photo.id} photo={photo}/>)}
+        <div className="review-photo-holder-container">
+          <div className="review-photo-holder">
+            {props.photos.map(photo => <ReviewPhotos key={photo.id} photo={photo}/>)}
+          </div>
         </div>
       )}
       {(props.recommend) &&

@@ -49,36 +49,34 @@ const Ratings = ({ meta }) => {
 
     return (
       <div className="ratings-section">
-        uncomment when ready
         <div className="rating-summary-top">
-          <span>{ratingAverage.average}</span>
+          <div>{ratingAverage.average}</div>
           <StarRating ratingsObjectOrNumber={meta.ratings}/>
         </div>
 
         <div className="rating-bar-container">
-          onClick
           <div className="progress-bar">
-            <span>5 stars</span>
+            5 Star
             <ProgressBar percentage={(ratingObject['5'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>4 stars</span>
+            4 Star
             <ProgressBar percentage={(ratingObject['4'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>3 stars</span>
+            3 Star
             <ProgressBar percentage={(ratingObject['3'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>2 stars</span>
+            2 Star
             <ProgressBar percentage={(ratingObject['2'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>1 stars</span>
+            1 Star
             <ProgressBar percentage={(ratingObject['1'] / ratingAverage.totalRatings) * 100} />
           </div>
         </div>

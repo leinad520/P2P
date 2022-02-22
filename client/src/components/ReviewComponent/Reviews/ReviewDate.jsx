@@ -3,7 +3,7 @@ import moment from 'moment';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
 import css from './ReviewDate.css';
 
-const ReviewDate = ({ rating, username, date }) => {
+const ReviewDate = ({ summary, rating, username, date }) => {
   const momentDate = moment(date);
   const reviewDate = {
     year: momentDate.year(),
@@ -12,11 +12,15 @@ const ReviewDate = ({ rating, username, date }) => {
   };
 
   return (
-    <div className="review-star-date">
-      {/* NEEDS META RATING */}
-      <StarRating ratingsObjectOrNumber={rating} />
-      <span>{username} - {reviewDate.month}/{reviewDate.day}/{reviewDate.year}</span>
-    </div>
+    <>
+      <div className="review-data-container">
+        <StarRating ratingsObjectOrNumber={rating} className="review-stars"/>
+        <div className="review-summary">{summary}</div>
+      </div>
+      <div className="date-box">
+        <span>Reviewed by {username} on {reviewDate.month}/{reviewDate.day}/{reviewDate.year}</span>
+      </div>
+    </>
   );
 }
 

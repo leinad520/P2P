@@ -43,12 +43,12 @@ let returnStars = (rating) => {
     rating--;
   };
   while (starCount.length < 5) {
-    starCount.push(<img key={Math.random() * 100} src={starEmpty} />);
+    starCount.push(<img className="empty-star" key={Math.random() * 100} src={starEmpty} />);
   };
   return starCount;
 };
 
-const StarRating = ({ratingsObjectOrNumber}) => {
+const StarRating = ({ratingsObjectOrNumber, className}) => {
   if (ratingsObjectOrNumber === null) {
     return <div>LOADING</div>
   } else {
@@ -57,15 +57,16 @@ const StarRating = ({ratingsObjectOrNumber}) => {
       let starCount = Object.values(ratingsObjectOrNumber).map(stringNum => Number(stringNum));
 
       let ratingAvg = avgRating(starNumber, starCount);
-
+      let classes = 'star-rating ' + className;
       return (
-        <div className="star-rating">
+        <div className={className}>
           {returnStars(ratingAvg)}
         </div>
       );
     } else {
+      let classes = 'star-rating ' + className;
       return (
-        <div className="star-rating">
+        <div className={className}>
           {returnStars(ratingsObjectOrNumber)}
         </div>
       );

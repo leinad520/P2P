@@ -997,6 +997,12 @@ tr:nth-child(even) {
   transition: all 1s ease-in;
 }
 
+.review-recommend img {
+  width: 15px;
+  height: 15px;
+}
+
+
 
 /* GLOBAL STYLES BELOW */
 
@@ -1050,4 +1056,8 @@ tr:nth-child(even) {
 .review-container.visible {
   opacity: 1;
   transform: translateY(0px);
+}
+
+.empty-star {
+  opacity: 0;
 }
