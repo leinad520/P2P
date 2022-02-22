@@ -63,6 +63,8 @@ function ImageGallery({ selectedStyle }) {
                   src={photo.url}
                   onClick={() => modal.current.open()}>
                 </img>
+                <FontAwesomeIcon icon={ faArrowLeft } className='prev' onClick={() => moveSlide(-1)}/>
+                <FontAwesomeIcon icon={ faArrowRight } className='next' onClick={() => moveSlide(1)}/>
               </>
             )}
           </div>
@@ -173,19 +175,23 @@ function ImageGallery({ selectedStyle }) {
   }
 
   return (
-    <div className="heroPhotoContainer">
-      <div className='imageContainer'>
-        {renderHeroImage()}
-        <FontAwesomeIcon icon={ faArrowLeft } className='prev' onClick={() => moveSlide(-1)}/>
-        <FontAwesomeIcon icon={ faArrowRight } className='next' onClick={() => moveSlide(1)}/>
-      </div>
-      <Modal ref={modal}>
-        {renderModal()}
-      </Modal>
+    <>
+    <div className='thumbnail-wrapper'>
       <div className='row'>
         {renderThumbnails()}
       </div>
     </div>
+    <div className="heroPhotoContainer">
+      <div className='imageContainer'>
+        {renderHeroImage()}
+        {/* <FontAwesomeIcon icon={ faArrowLeft } className='prev' onClick={() => moveSlide(-1)}/>
+        <FontAwesomeIcon icon={ faArrowRight } className='next' onClick={() => moveSlide(1)}/> */}
+      </div>
+      <Modal ref={modal}>
+        {renderModal()}
+      </Modal>
+    </div>
+    </>
   )
 }
 

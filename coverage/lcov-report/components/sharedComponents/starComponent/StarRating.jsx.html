@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.97% </span>
+                <span class="strong">38.46% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/39</span>
+                <span class='fraction'>15/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/18</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.16% </span>
+                <span class="strong">40.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/37</span>
+                <span class='fraction'>15/37</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -169,8 +169,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -182,21 +182,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,7 +204,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,9 +243,9 @@ export function avgRating(rNum, rCount) {
 &nbsp;
 avgRating([1, 2, 3, 4, 5], [15, 10, 2, 20, 50]);
 &nbsp;
-let returnStars = (rating) =&gt; {
-  let starCount = [];
-  while (rating &gt; 0) {
+let returnStars = <span class="fstat-no" title="function not covered" >(r</span>ating) =&gt; {
+  let starCount = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >  while (rating &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >    if (rating &gt; .99) {</span>
 <span class="cstat-no" title="statement not covered" >      starCount.push(&lt;img key={Math.random() * 100} src={star} /&gt;);</span>
     } else <span class="cstat-no" title="statement not covered" >if (rating &lt; 1 &amp;&amp; rating &gt;= 0.75) {</span>
@@ -257,17 +257,17 @@ let returnStars = (rating) =&gt; {
     }
 <span class="cstat-no" title="statement not covered" >    rating--;</span>
   };
-  while (starCount.length &lt; 5) {
-    starCount.push(&lt;img key={Math.random() * 100} src={starEmpty} /&gt;);
+<span class="cstat-no" title="statement not covered" >  while (starCount.length &lt; 5) {</span>
+<span class="cstat-no" title="statement not covered" >    starCount.push(&lt;img key={Math.random() * 100} src={starEmpty} /&gt;);</span>
   };
-  return starCount;
+<span class="cstat-no" title="statement not covered" >  return starCount;</span>
 };
 &nbsp;
-const StarRating = ({ratingsObjectOrNumber}) =&gt; {
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (ratingsObjectOrNumber === null) {
+const StarRating = <span class="fstat-no" title="function not covered" >({</span>ratingsObjectOrNumber}) =&gt; {
+<span class="cstat-no" title="statement not covered" >  if (ratingsObjectOrNumber === null) {</span>
 <span class="cstat-no" title="statement not covered" >    return &lt;div&gt;LOADING&lt;/div&gt;</span>
   } else {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if ((typeof ratingsObjectOrNumber) === 'object') {
+<span class="cstat-no" title="statement not covered" >    if ((typeof ratingsObjectOrNumber) === 'object') {</span>
       let starNumber = <span class="cstat-no" title="statement not covered" >Object.keys(ratingsObjectOrNumber).map(<span class="fstat-no" title="function not covered" >st</span>ringNum =&gt; <span class="cstat-no" title="statement not covered" >Number(stringNum))</span>;</span>
       let starCount = <span class="cstat-no" title="statement not covered" >Object.values(ratingsObjectOrNumber).map(<span class="fstat-no" title="function not covered" >st</span>ringNum =&gt; <span class="cstat-no" title="statement not covered" >Number(stringNum))</span>;</span>
 &nbsp;
@@ -279,7 +279,7 @@ const StarRating = ({ratingsObjectOrNumber}) =&gt; {
         &lt;/div&gt;
       );
     } else {
-      return (
+<span class="cstat-no" title="statement not covered" >      return (</span>
         &lt;div className="star-rating"&gt;
           {returnStars(ratingsObjectOrNumber)}
         &lt;/div&gt;
@@ -295,7 +295,7 @@ export default StarRating;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Feb 19 2022 17:09:30 GMT-0800 (Pacific Standard Time)
+                at Mon Feb 21 2022 16:43:47 GMT-0800 (Pacific Standard Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

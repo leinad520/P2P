@@ -4,6 +4,11 @@ import axios from 'axios';
 function AddToCart({ currData, defaultStyle }) {
 
   const [skus, setSkus] = useState('');
+  const [skuSize, setSkuSize] = useState('');
+
+  const handleSizeChange = (skus) => {
+    setSkuSize(skus);
+  }
 
   const renderSizes = () => {
     let results = [];
@@ -12,7 +17,19 @@ function AddToCart({ currData, defaultStyle }) {
     for (let skus in sizeContainer) {
       if (skus !== 'null') {
         results.push(
-          <option key={skus} value={skus}>{sizeContainer[skus].size}</option>
+          // <option key={skus} value={skus}>{sizeContainer[skus].size}</option>
+          // <input type='radio' name={skus} key={skus} value={sizeContainer[skus].size}></input>
+          // <label key={skus}>{sizeContainer[skus].size}
+          //   <input type='radio' value={skus}></input>
+          // </label>
+          <div className={skuSize === skus ? 'size chosen-size' : 'size'} key={skus}>
+            <input type='radio' className='size-button-input' name='size' value={skus} id={skus}/>
+            <label htmlFor={skus} className='size-label' onClick={() => handleSizeChange(skus)}>
+              <div>
+                {sizeContainer[skus].size}
+              </div>
+            </label>
+          </div>
         )
       }
     }
@@ -25,24 +42,26 @@ function AddToCart({ currData, defaultStyle }) {
       )
     }
 
+    // return results;
+
     return (
-      <select className='sizeDropDown' onChange={(e) => onSizeChange(e)} required>
-        <option value=''>Select Size</option>
+      <div className='sizes'>
         {results}
-      </select>
+      </div>
+
     );
   }
 
-  const renderQuantity = () => {
-    if (Object.keys(currData).length) {
-      let results = [];
-      // console.log(currData.skus[skus]?.quantity)
-      for (let i = 1; i <= currData.skus[skus]?.quantity; i++) {
-        results.push(<option key={i} value={i}>{i}</option>)
-      }
-      return results;
-    }
-  }
+  // const renderQuantity = () => {
+  //   if (Object.keys(currData).length) {
+  //     let results = [];
+  //     // console.log(currData.skus[skus]?.quantity)
+  //     for (let i = 1; i <= currData.skus[skus]?.quantity; i++) {
+  //       results.push(<option key={i} value={i}>{i}</option>)
+  //     }
+  //     return results;
+  //   }
+  // }
 
   const onSizeChange = (e) => {
     document.getElementById('quantity').disabled = false;
@@ -51,22 +70,21 @@ function AddToCart({ currData, defaultStyle }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post(`cart/${skus}`)
-    console.log(skus);
+    console.log(skuSize)
+    axios.post(`cart/${skuSize}`)
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
   }
 
   return (
-    <div>
       <form className='formData' onSubmit={(e) => onSubmit(e)}>
         {Object.keys(currData).length && renderSizes()}
-        <select id='quantity' disabled>
+        {/* <select id='quantity' disabled>
           {renderQuantity()}
-        </select>
-        <input type='submit' value='Add to Cart'></input>
+        </select> */}
+          <input className='addtocart' type='submit' value='Add to Cart'></input>
       </form>
-    </div>
   )
 }
-
 
 export default AddToCart;

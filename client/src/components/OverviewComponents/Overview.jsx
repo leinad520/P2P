@@ -20,7 +20,7 @@ function Overview() {
     <div className='MegaContainer'>
       <ImageGallery selectedStyle={styles} />
       <div className='productInfoContainer'>
-        <DarkMode />
+        {/* <DarkMode /> */}
         <ProductHeader productInfo={product} selectedStyle={styles} />
         <StyleSelector productId={productId} />
         <ProductInfo productInfo={product} />

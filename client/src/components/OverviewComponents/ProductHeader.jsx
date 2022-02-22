@@ -27,20 +27,31 @@ function ProductHeader({ productInfo, selectedStyle }) {
           <span>{`$${selectedStyle.sale_price}`}</span>
         </div>
       )
-    } else {
+    } else if (selectedStyle.original_price) {
       return <div>{`$${selectedStyle.original_price}`}</div>
     }
   }
 
+  function renderInfo() {
+    if (productInfo) {
+      return (
+        <div className='productHeader'>
+          <h1 className='product-name'>{productInfo.name}</h1>
+          <StarRating ratingsObjectOrNumber={productMeta.ratings} />
+          <h3 className='product-category'>{productInfo.category}: {styles.name}</h3>
+          {renderSalePrice()}
+          {renderProductOverView()}
+        </div>
+      )
+    } else {
+      return <div>LOADING...</div>
+    }
+  }
+
   return (
-    <div className='productHeader'>
-      <h2>{productInfo.name}</h2>
-      <StarRating ratingsObjectOrNumber={productMeta.ratings}/>
-      <h3>{productInfo.category}</h3>
-      <h3>{styles.name}</h3>
-      {renderSalePrice()}
-      {renderProductOverView()}
-    </div>
+    <>
+      {renderInfo()}
+    </>
   );
 }
 

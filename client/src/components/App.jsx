@@ -6,6 +6,7 @@ import RelatedProductsAndOutfit from './RelatedProductsComponent/RelatedProducts
 import ReviewSection from './ReviewComponent/ReviewSection.jsx';
 import ProductState from './Context/ProductState.jsx';
 import ProductContext from './Context/ProductContext.jsx';
+import DarkMode from './DarkMode.jsx';
 
 const App = (props) => {
   const productContext = useContext(ProductContext);
@@ -22,10 +23,13 @@ const App = (props) => {
   if (productId) {
     return (
       <section>
+        <div className='darkmode-wrapper'>
+          <DarkMode />
+        </div>
         <Overview />
-        <RelatedProductsAndOutfit />
+        {/* <RelatedProductsAndOutfit />
         <QA productId={productId} />
-        <ReviewSection />
+        <ReviewSection /> */}
       </section>
     );
   } else {
