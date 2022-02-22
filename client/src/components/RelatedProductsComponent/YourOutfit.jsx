@@ -46,15 +46,9 @@ class YourOutfit extends React.Component {
       )
       Promise.all(promiseArr)
         .then(values => {
-          values.forEach(obj => {
-            if (obj === null) {
-              this.setState({relatedCardReviews: [...this.state.relatedCardReviews, null]})
-            } else {
-              this.setState({relatedCardReviews: [...this.state.relatedCardReviews, obj.data.ratings]})
-            }
-          })
+            this.setState({ relatedCardReviews: values })
         })
-    })
+      })
     });
   }
 
@@ -81,7 +75,7 @@ class YourOutfit extends React.Component {
   }
 
   render() {
-      var {outfitCardObjs, styles} = this.state;
+      var {outfitCardObjs, styles, relatedCardReviews} = this.state;
 
     return (
     <>
@@ -104,7 +98,7 @@ class YourOutfit extends React.Component {
                 <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>
                 <span className="name">{outfitCardObjs[i].data.name}</span>
                 <span>${outfitCardObjs[i].data.default_price}</span>
-                <StarRating ratingsObjectOrNumber={this.state.relatedCardReviews[i]} />
+                <StarRating ratingsObjectOrNumber={relatedCardReviews[i] ? relatedCardReviews[i].data.ratings : null} />
               </div>
             </div>
           )}

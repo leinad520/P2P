@@ -68,22 +68,22 @@ const ComparisonTable = ({mainItem, item}) => {
           <td>Price</td>
           <td>${item.default_price}</td>
         </tr>
-        {filteredArray.map(filteredFeature =>
-            <tr>
+        {filteredArray.map((filteredFeature, i) =>
+            <tr key={`filteredArray-${i}`}>
               <td>{mainItemArrValues[mainItemArr.indexOf(filteredFeature)]}</td>
               <td>{filteredFeature}</td>
               <td>{itemArrValues[itemArr.indexOf(filteredFeature)]}</td>
           </tr>
           )}
-          {mainItemObjs.map(obj =>
-            <tr>
+          {mainItemObjs.map((obj, i) =>
+            <tr key={`mainItemObjs-${i}`}>
               <td>{obj.value}</td>
               <td>{obj.feature}</td>
               <td>n/a</td>
           </tr>
           )}
-          {itemObjs.map(obj =>
-            <tr>
+          {itemObjs.map((obj, i) =>
+            <tr key={`itemObjs-${i}`}>
               <td>n/a</td>
               <td>{obj.feature}</td>
               <td>{obj.value}</td>
