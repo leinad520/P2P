@@ -12,10 +12,10 @@ class YourOutfit extends React.Component {
     super(props);
     this.state = {
       chosenCard: this.props.productId, //Get from other component's state
-      outfitCardIds: Array(4).fill(null), // [42367, null, null, null]
-      outfitCardObjs: Array(4).fill(null), // [{}, null, null, null]
-      styles: [],
-      relatedCardReviews: []
+      outfitCardIds: JSON.parse(localStorage.getItem("outfitCardIds")) || Array(4).fill(null), // [42367, null, null, null]
+      outfitCardObjs: JSON.parse(localStorage.getItem("outfitCardObjs")) || Array(4).fill(null), // [{}, null, null, null]
+      styles: JSON.parse(localStorage.getItem("styles")) || [], // thumbnail image urls
+      starReviews: JSON.parse(localStorage.getItem("starReviews")) || [] // star component
     };
 
     this.addOutfit = this.addOutfit.bind(this);
@@ -46,7 +46,7 @@ class YourOutfit extends React.Component {
       )
       Promise.all(promiseArr)
         .then(values => {
-            this.setState({ relatedCardReviews: values })
+            this.setState({ starReviews: values })
         })
       })
     });
@@ -71,11 +71,14 @@ class YourOutfit extends React.Component {
   }
 
   componentDidUpdate() {
-    localStorage.setItem("outfitCardObjs", JSON.stringify(this.state.outfitCardObjs))
+    localStorage.setItem("outfitCardObjs", JSON.stringify(this.state.outfitCardObjs));
+    localStorage.setItem("outfitCardIds", JSON.stringify(this.state.outfitCardIds));
+    localStorage.setItem("styles", JSON.stringify(this.state.styles));
+    localStorage.setItem("starReviews", JSON.stringify(this.state.starReviews));
   }
 
   render() {
-      var {outfitCardObjs, styles, relatedCardReviews} = this.state;
+      var {outfitCardObjs, styles, starReviews} = this.state;
 
     return (
     <>
@@ -98,7 +101,7 @@ class YourOutfit extends React.Component {
                 <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>
                 <span className="name">{outfitCardObjs[i].data.name}</span>
                 <span>${outfitCardObjs[i].data.default_price}</span>
-                <StarRating ratingsObjectOrNumber={relatedCardReviews[i] ? relatedCardReviews[i].data.ratings : null} />
+                <StarRating ratingsObjectOrNumber={starReviews[i] ? starReviews[i].data.ratings : null} />
               </div>
             </div>
           )}
