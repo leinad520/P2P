@@ -379,11 +379,11 @@ input:checked + .slider:before {
   margin-top: 30px;
 }
 
-.parent {
+/* .parent {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-}
+} */
 
 .card {
   width: 250px;
@@ -547,6 +547,18 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+/* Dan Carousel */
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.rec.rec-carousel-wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+
 
 /* Matt's Styles */
 
