@@ -42,8 +42,6 @@ const QA = () => {
   let getAllQuestions = () => {
     axios.get(`/qa/questions/${product.id}`)
       .then(response => {
-
-
         setInitialQuestions(response.data.results)
       })
       .catch(() => { console.log('error'); });
@@ -59,7 +57,7 @@ const QA = () => {
   //filter the questions array based on the search state when search state is greater than or equal to 3
 
   let moreAnswerQuestionsButton = () => {
-    if (initialQuestions.length > 2) {
+    if (initialQuestions.length > 2 || initialQuestions.length !== 0) {
       return <button onClick={onMoreAnsweredQuestionsClick}>More Answered Questions</button>
     } else {
       return <></>
@@ -86,7 +84,7 @@ const QA = () => {
             </form>
           </div>
         </section>
-        <div className={(counter > 6) ? "qa-list" : ""}>
+        <div className={(counter > 5) ? "qa-list" : ""}>
           <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} counter={counter} />
         </div>
         <div>
