@@ -76,22 +76,33 @@ function ImageGallery({ selectedStyle }) {
   const renderThumbnails = () => {
     if (selectedStyle.photos) {
       let photoSet;
+
+      let container = {};
+
+      selectedStyle.photos.map((photo, index) => {
+        // console.log(photo);
+        container[index] = photo.thumbnail_url;
+      })
+
+      let containerArray = Object.entries(container);
+
       if (selectedStyle.photos.length >= 4) {
         if (selectedStyle.photos[currPhotoIndex + 4]) {
-          photoSet = selectedStyle.photos.slice(currPhotoIndex, currPhotoIndex + 4);
+          photoSet = containerArray.slice(currPhotoIndex, currPhotoIndex + 4);
         } else {
-          photoSet = selectedStyle.photos.slice(selectedStyle.photos.length - 4);
+          photoSet = containerArray.slice(selectedStyle.photos.length - 4);
         }
       } else {
-        photoSet = selectedStyle.photos;
+        photoSet = containerArray;
       }
+
       return photoSet.map((photo, index) => {
         return (
           <div className='column' key={`column ${index} ${photo.style_id}`}>
-            <img className='thumbnailPhoto' src={photo.thumbnail_url} />
+            <img className='thumbnailPhoto' src={photo[1]} />
             <input
               type="button"
-              className='thumbnail' onClick={() => setCurrPhotoIndex(index)} />
+              className='thumbnail' onClick={() => setCurrPhotoIndex(Number(photo[0]))} />
           </div>
         )
       })

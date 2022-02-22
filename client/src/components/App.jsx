@@ -13,6 +13,7 @@ const App = (props) => {
   const { product, productId, changeProduct} = productContext;
 
   // 🧠
+  // 🧠
 
   const newId = useParams().id;
 
@@ -27,9 +28,9 @@ const App = (props) => {
           <DarkMode />
         </div>
         <Overview />
-        {/* <RelatedProductsAndOutfit />
+        <RelatedProductsAndOutfit />
         <QA productId={productId} />
-        <ReviewSection /> */}
+        <ReviewSection />
       </section>
     );
   } else {
