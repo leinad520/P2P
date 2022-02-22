@@ -27,9 +27,9 @@ const App = (props) => {
           <DarkMode />
         </div>
         <Overview />
-        {/* <RelatedProductsAndOutfit />
+        <RelatedProductsAndOutfit />
         <QA productId={productId} />
-        <ReviewSection /> */}
+        <ReviewSection />
       </section>
     );
   } else {
