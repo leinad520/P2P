@@ -95,7 +95,7 @@ app.get("/api/:id", (req, res) => {
 
 app.get('/qa/questions/:id', (req, res) => {
   const { id, page, count } = req.params;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&sort=newest&count=5`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&count=100`, {
     header: {
       Authorization: process.env.HR_TOKEN
     }
@@ -117,7 +117,7 @@ app.get('/qa/questions/:id/answers', (req, res) => {
 app.post('/qa/questions/:id', (req, res) => {
   const {id} = req.params
   // console.log('this is req.body:', req.body);
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions`, req.body)
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/`, req.body)
   .then(success => {
     console.log('success');
     res.sendStatus(201).end();

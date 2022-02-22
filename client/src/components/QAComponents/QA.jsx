@@ -5,6 +5,7 @@ import QAList from './QAList.jsx';
 import ProductContext from '../Context/ProductContext.jsx';
 import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
+import css from './QA.css';
 //this is the main component for the QA List
 //will map over the data and render each QA List Entry
 
@@ -21,7 +22,7 @@ const QA = () => {
   // const [passedQuestions, setPassedQuestions] = useState([]);
   const [show, setShow] = useState(false);
   const [counter, setCounter] = useState(2);
-
+  const [lastQuestion, setLastQuestion] = useState(initialQuestions[initialQuestions.length - 1])
   const productContext = useContext(ProductContext);
   const { product } = productContext;
 
@@ -54,7 +55,7 @@ const QA = () => {
   };
 
   // console.log('this is initialQuestions:', initialQuestions.results);
-  console.log('this is initialQuestions:', initialQuestions);
+
 
   //filter the questions array based on the search state when search state is greater than or equal to 3
 
@@ -87,7 +88,7 @@ const QA = () => {
             </form>
           </div>
         </section>
-        <div id="qa-list">
+        <div className={(counter > 6) ? "qa-list" : ""}>
           <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} counter={counter} />
         </div>
         <div>
