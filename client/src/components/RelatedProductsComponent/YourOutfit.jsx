@@ -5,20 +5,20 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 
+
 class YourOutfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenCard: 42366, //Get from other component's state
+      chosenCard: this.props.productId, //Get from other component's state
       outfitCardIds: Array(4).fill(null), // [42367, null, null, null]
       outfitCardObjs: Array(4).fill(null), // [{}, null, null, null]
-      styles: []
+      styles: [],
     };
 
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
   }
-
 
   setOutfitCardsHelper(outfitCardIdsCopy) {
     this.setState({ outfitCardIds: outfitCardIdsCopy }, () => {
@@ -42,10 +42,12 @@ class YourOutfit extends React.Component {
   }
 
   addOutfit(index) {
-    let outfitCardIdsCopy = this.state.outfitCardIds.slice();
-    outfitCardIdsCopy[index] = this.state.chosenCard;
+    if (!this.state.outfitCardIds.includes(this.state.chosenCard)) {
+      let outfitCardIdsCopy = this.state.outfitCardIds.slice();
+      outfitCardIdsCopy[index] = this.state.chosenCard;
 
-    this.setOutfitCardsHelper(outfitCardIdsCopy);
+      this.setOutfitCardsHelper(outfitCardIdsCopy);
+    }
   }
 
   deleteOutfit(index) {
@@ -53,6 +55,10 @@ class YourOutfit extends React.Component {
     outfitCardIdsCopy[index] = null;
 
     this.setOutfitCardsHelper(outfitCardIdsCopy);
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("outfitCardObjs", JSON.stringify(this.state.outfitCardObjs))
   }
 
   render() {
@@ -72,7 +78,7 @@ class YourOutfit extends React.Component {
             </div>
             :
             //filled outfit card
-            <div className="card" key={`your-outfit-${i}`}>
+            <div className="card" key={`your-outfit-${i}`} >
               <div className="card-picture">
                 <img src={styles[i] ? styles[i].data.results[0].photos[0].thumbnail_url : null }></img>
                 <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} />
