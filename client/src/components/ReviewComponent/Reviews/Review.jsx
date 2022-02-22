@@ -33,7 +33,7 @@ const Review = (props) => {
       </div>
       <div className="review-text">
         {collapsed ? '' + props.text : '' + chopText(props.text)}
-        {(props.text.length > 150) && <a onClick={onReadMoreHandler} className="read-more" href="#">{(collapsed) ? '⬆ Collapse text' : '⬇ Read more'}</a>}
+        {(props.text.length > 150) && <span onClick={onReadMoreHandler} className="read-more">{(collapsed) ? '⬆ Collapse text' : '⬇ Read more'}</span>}
       </div>
       {(props.photos.length > 0) && (
         <div className="review-photo-holder-container">
