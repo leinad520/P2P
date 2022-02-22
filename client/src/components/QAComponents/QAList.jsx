@@ -2,8 +2,12 @@ import React from 'react';
 import QAListEntry from './QAListEntry.jsx';
 
 const QAList = (props) => {
-  let slicedFour = props.data.results.slice(0, 4);
+  // console.log('this is props.data:', props.data);
+
+  let slicedFour = props.questions.results.slice(0, 4);
   // console.log('this is slicedFour: ', slicedFour);
+  let remainingQs = props.questions.results.slice(4);
+
   return (
   <div>
   {slicedFour.map((question, index) => {
