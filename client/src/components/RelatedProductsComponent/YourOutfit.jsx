@@ -97,6 +97,7 @@ class YourOutfit extends React.Component {
               <div className="card-picture">
                 <img src={styles[i] ? styles[i].data.results[0].photos[0].thumbnail_url : null }></img>
                 <FontAwesomeIcon icon={faCircleXmark} className="corner-xmark" onClick={() => this.deleteOutfit(i)} />
+                <div className="corner-cover corner-cover-two"></div>
               </div>
               <div className="card-description">
                 <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>

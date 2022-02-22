@@ -448,21 +448,57 @@ input:checked + .slider:before {
   height: 100%;
 }
 
+.corner-cover {
+  position: absolute;
+  border-radius: 100%;
+  bottom: 88%;
+  left: 86%;
+  border-style: solid;
+  height: 25px;
+  width: 25px;
+  background-color: #DCDCDC;
+  z-index: 0;
+}
+
 .corner-star {
   position: absolute;
-  bottom: 90%;
-  left: 85%;
+  height: 1.5em;
+  bottom: 89.4%;
+  left: 86.7%;
+  z-index: 2;
+}
+
+.corner-star-full {
+  /* position: absolute;
+  height: 1.5em;
+  bottom: 89.4%;
+  left: 86.7%; */
+  z-index: 1;
+  color: #DCDCDC;
+}
+
+.corner-star-yellow {
+  z-index: 1;
+  color: yellow;
 }
 
 .corner-xmark {
   position: absolute;
-  bottom: 90%;
+  height: 2em;
+  bottom: 88%;
   left: 85%;
+  z-index: 1;
+}
 
+.corner-cover-two {
+  border-style: none;
+  height: 28px;
+  width: 28px;
 }
 
 .circle-plus {
   position: absolute;
+  size: 1.5em;
 }
 
 /* Dan Modal */
@@ -474,6 +510,7 @@ input:checked + .slider:before {
   width:60%;
   height: auto;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
 }
 
 .dan-modal-main {

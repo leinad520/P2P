@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
+
 import DanModal from './DanModal.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
@@ -18,7 +20,7 @@ class RelatedProducts extends React.Component {
       relatedCardReviews: [],
       relatedStyles: [],
       show: false,
-      modalIndex: ''
+      modalIndex: '',
     };
 
     this.showModal = this.showModal.bind(this);
@@ -27,10 +29,11 @@ class RelatedProducts extends React.Component {
 
   showModal = (index) => {
     this.setState({ show: true, modalIndex: index });
+
   };
 
   hideModal = () => {
-    this.setState({ show: false });
+    this.setState({ show: false, modalIndex: '' });
   };
 
   componentDidMount() {
@@ -83,7 +86,7 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    var { relatedCardObjs, chosenCardData } = this.state;
+    var { relatedCardObjs, chosenCardData, modalIndex } = this.state;
     return (
       <>
         <h3 className="title">RELATED PRODUCTS</h3>
@@ -92,8 +95,11 @@ class RelatedProducts extends React.Component {
           {relatedCardObjs.map((card, i) =>
             <div className="card" key={`related-products-${i}`}>
               <div className="card-picture">
-                <img src={this.state.relatedStyles[i]} onClick={() => this.showModal(i)}></img>
-                <FontAwesomeIcon icon={faStar} className="corner-star" />
+                <img src={this.state.relatedStyles[i]}></img>
+                <div className="corner-cover"></div>
+                {/* <FontAwesomeIcon icon={ modalIndex === i ? faStarSolid : faStar } className={ modalIndex === i ? "corner-star-full" : "corner-star" } onClick={() => this.showModal(i)}/> */}
+                <FontAwesomeIcon icon={ faStar } className={ "corner-star" } onClick={() => this.showModal(i)}/>
+                <FontAwesomeIcon icon={ faStarSolid } className={ modalIndex === i ? "corner-star corner-star-yellow" : "corner-star corner-star-full"}/>
               </div>
               <div className="card-description">
                 <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
