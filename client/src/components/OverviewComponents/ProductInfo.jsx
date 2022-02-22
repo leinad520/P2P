@@ -4,21 +4,11 @@ import SocialButtons from './SocialButtons.jsx'
 function ProductInfo({ productInfo }) {
   return (
     <div className='productInfo'>
-      <details>
+      <details className='details'>
         <h3 className='slogan'>{productInfo.slogan}</h3>
-        <summary>Details</summary>
+        <summary className='summary'>Details</summary>
         <p className='description'>{productInfo.description}</p>
       </details>
-      {/* <details>
-        <h3 className='slogan'>{productInfo.slogan}</h3>
-        <summary>Size + Fit</summary>
-        <p className='description'>{productInfo.description}</p>
-      </details>
-      <details>
-        <h3 className='slogan'>{productInfo.slogan}</h3>
-        <summary>Care</summary>
-        <p className='description'>{productInfo.description}</p>
-      </details> */}
     </div>
   )
 }
