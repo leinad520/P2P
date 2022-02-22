@@ -29,6 +29,8 @@ body {
   color: var(--font-color);
 }
 
+body {}
+
 .darkswitch {
   position: relative;
   display: inline-block;
@@ -777,7 +779,10 @@ tr:nth-child(even) {
   transition: all 1s ease-in;
 }
 
-
+.review-recommend img {
+  width: 15px;
+  height: 15px;
+}
 
 
 
@@ -833,4 +838,8 @@ tr:nth-child(even) {
 .review-container.visible {
   opacity: 1;
   transform: translateY(0px);
+}
+
+.empty-star {
+  opacity: 0;
 }

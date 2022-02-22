@@ -94,18 +94,13 @@ fieldset {
   position: relative;
 }
 
-.review-photo-holder {
-  display: flex;
-  gap: 10px;
-  height: 50px;
-  width: 50px;
-}
-.review-photo-holder img {
+
+/* .review-photo-holder img {
   border-radius: 5px;
   height: 50px;
   width: 50px;
   object-fit: cover;
-}
+} */
 
 .custom-file-upload {
   position: relative;
