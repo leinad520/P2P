@@ -12,3 +12,4 @@ module.exports = {
     "@babel/plugin-syntax-jsx"
   ]
 }
+

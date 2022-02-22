@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Modal from '../sharedComponents/Modal/Modal.jsx';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function ImageGallery({ selectedStyle }) {
 
+  const glassDimensions = 500;
+  const zoomPerc = 2.5;
   const modal = useRef(null);
   const imgElement = useRef(null);
   const [currPhotoIndex, setCurrPhotoIndex] = useState(0);
-  const [[x, y], setXY] = useState([0, 0]);
   const length = selectedStyle.photos ? selectedStyle.photos.length : 0;
+  // zoom state hooks
+  const [[x, y], setXY] = useState([0, 0]);
+  const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
+  const [showGlass, setShowGlass] = useState(false);
+  const [glassImage, setGlassImage] = useState(null);
 
   useEffect(() => {
     if (selectedStyle.photos) {
@@ -17,17 +25,48 @@ function ImageGallery({ selectedStyle }) {
     }
   }, [selectedStyle])
 
-  const onMouseMove = (e) => {
-    const { width, height } = e.currentTarget.getBoundingClientRect();
-    setXY([e.screenX, e.screenY]);
+  // Zoom components
+  const onMouseEnter = (e) => {
+    const elem = e.currentTarget;
+    const { width, height } = elem.getBoundingClientRect(); // gets the size of the image in pixels
+    setSize([width, height]); // stores the size of the image in pixels in state
+    setShowGlass(true); // open glass div
+    setGlassImage(e.target.src);
   }
 
-  const renderImage = () => {
+  const onMouseMove = (e) => {
+    const elem = e.currentTarget;
+    const { top, left } = elem.getBoundingClientRect(); // gets the coordinates of the top and left of the image position
+
+    const x = e.pageX - left - window.pageXOffset; // coordinates relative to the left/top corner of the current page - scroll offsets of the page - left/top coordinates of the image position
+    const y = e.pageY - top - window.pageYOffset; // gives us the cursor position based on the image
+    setXY([x, y]); // store the X and y position in state
+  }
+
+  const onMouseLeave = (e) => {
+    setShowGlass(false); // close glass div
+  }
+
+  // end of Zoom functions
+
+  const renderHeroImage = () => {
     if (selectedStyle.photos) {
       return selectedStyle.photos.map((photo, index) => {
         return (
           <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
-            {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onMouseMove={(e) => onMouseMove(e)} onClick={() => modal.current.open()}></img>)}
+            {index === currPhotoIndex && (
+              <>
+                <img
+                  id='B'
+                  className='active-photo'
+                  value={index}
+                  src={photo.url}
+                  onClick={() => modal.current.open()}>
+                </img>
+                <FontAwesomeIcon icon={ faArrowLeft } className='prev' onClick={() => moveSlide(-1)}/>
+                <FontAwesomeIcon icon={ faArrowRight } className='next' onClick={() => moveSlide(1)}/>
+              </>
+            )}
           </div>
         )
       })
@@ -76,25 +115,59 @@ function ImageGallery({ selectedStyle }) {
       if (selectedStyle.photos[currPhotoIndex]) {
         return (
           <div className='modalContainer' onClick={() => modal.current.close()}>
-            <img
-              className='modalImage'
-              src={selectedStyle.photos[currPhotoIndex].url}
-              // onMouseOver={() => modal.current.open()}
-              // onMouseLeave={() => modal.current.close()}
-              onClick={() => modal.current.close()}>
-            </img>
+            <div className='glass-container'>
+              <img
+                className='modalImage'
+                src={selectedStyle.photos[currPhotoIndex].url}
+                onMouseEnter={onMouseEnter}
+                onMouseMove={onMouseMove}
+                onMouseLeave={onMouseLeave}
+                onClick={() => modal.current.close()}>
+              </img>
+              <div
+                className='glass'
+                style={{
+                  display: showGlass ? '' : 'none',
+                  height: `${glassDimensions}px`,
+                  width: `${glassDimensions}px`,
+                  top: `${y - glassDimensions / zoomPerc}px`,
+                  left: `${x - glassDimensions / zoomPerc}px`,
+                  backgroundSize: `${imgWidth * zoomPerc}px ${imgHeight * zoomPerc}px`,
+                  backgroundImage: `url('${glassImage}')`,
+                  backgroundPositionX: `${-x * zoomPerc + glassDimensions / 2}px`,
+                  backgroundPositionY: `${-y * zoomPerc + glassDimensions / 2}px`,
+                }}>
+              </div>
+            </div>
           </div>
         )
       } else {
         return (
           <div className='modalContainer' onClick={() => modal.current.close()}>
-            <img
-              className='modalImage'
-              src={selectedStyle.photos[0].url}
-              // onMouseOver={() => modal.current.open()}
-              // onMouseLeave={() => modal.current.close()}
-              onClick={() => modal.current.close()}>
-            </img>
+            <div className='glass-container'>
+              <img
+                className='modalImage'
+                src={selectedStyle.photos[currPhotoIndex].url}
+                onMouseEnter={onMouseEnter}
+                onMouseMove={onMouseMove}
+                onMouseLeave={onMouseLeave}
+                onClick={() => modal.current.close()}>
+              </img>
+              <div
+                className='glass'
+                style={{
+                  display: showGlass ? '' : 'none',
+                  height: `${glassDimensions}px`,
+                  width: `${glassDimensions}px`,
+                  top: `${y - glassDimensions / zoomPerc}px`,
+                  left: `${x - glassDimensions / zoomPerc}px`,
+                  backgroundSize: `${imgWidth * zoomPerc}px ${imgHeight * zoomPerc}px`,
+                  backgroundImage: `url('${glassImage}')`,
+                  backgroundPositionX: `${-x * zoomPerc + glassDimensions / 2}px`,
+                  backgroundPositionY: `${-y * zoomPerc + glassDimensions / 2}px`,
+                }}>
+              </div>
+            </div>
           </div>
         )
       }
@@ -102,74 +175,24 @@ function ImageGallery({ selectedStyle }) {
   }
 
   return (
-    <div className="heroPhotoContainer">
-      <div className='imageContainer'>
-        {renderImage()}
-        <a className="prev" onClick={() => moveSlide(-1)}>&#10094;</a>
-        <a className="next" onClick={() => moveSlide(1)}>&#10095;</a>
-      </div>
-      <Modal ref={modal}>
-        {renderModal()}
-      </Modal>
+    <>
+    <div className='thumbnail-wrapper'>
       <div className='row'>
         {renderThumbnails()}
       </div>
     </div>
+    <div className="heroPhotoContainer">
+      <div className='imageContainer'>
+        {renderHeroImage()}
+        {/* <FontAwesomeIcon icon={ faArrowLeft } className='prev' onClick={() => moveSlide(-1)}/>
+        <FontAwesomeIcon icon={ faArrowRight } className='next' onClick={() => moveSlide(1)}/> */}
+      </div>
+      <Modal ref={modal}>
+        {renderModal()}
+      </Modal>
+    </div>
+    </>
   )
 }
 
 export default ImageGallery;
-
-  // const [portraitData, setPortraitData] = useState([]);
-
-  // useEffect(() => {
-  //   if (selectedStyle.photos) {
-  //     getIfPortrait().then(res => setPortraitData(res));
-  //   }
-  // }, [selectedStyle])
-
-  // const getIfPortrait = async () => {
-  //   let isPortrait = false
-
-  //     function ifPortrait(currImage) {
-  //       const image = new Image();
-  //       image.src = currImage;
-  //       return new Promise(resolve => {
-  //         image.onload = () => {
-  //           if (image.height > image.width) {
-  //             resolve(true);
-  //           } else {
-  //             resolve(false);
-  //           }
-  //         }
-  //       })
-  //     }
-  //     const promiseArray = [];
-  //     selectedStyle.photos.forEach(photo => {
-  //       promiseArray.push(ifPortrait(photo.url));
-  //     })
-  //     let resolvedArray = await Promise.all(promiseArray);
-  //     return resolvedArray;
-  // }
-
-  // const renderImage = () => {
-  //   if (selectedStyle.photos) {
-
-  //     return selectedStyle.photos.map((photo, index) => {
-  //       if (portraitData[index]) {
-  //         return (
-  //           <div className={index === currPhotoIndex ? 'active slide portrait' : 'slide'} key={`${photo.style_id} ${index}`}>
-  //           {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onClick={() => modal.current.open()}></img>)}
-  //           </div>
-  //         )
-  //       }
-  //       return (
-  //         <div className={index === currPhotoIndex ? 'active slide' : 'slide'} key={`${photo.style_id} ${index}`}>
-  //           {index === currPhotoIndex && (<img id='B' className='active-photo' value={index} src={photo.url} onMouseMove={(e) => onMouseMove(e)} onClick={() => modal.current.open()}></img>)}
-  //         </div>
-  //       )
-  //     })
-  //   }
-  // }
-
-
