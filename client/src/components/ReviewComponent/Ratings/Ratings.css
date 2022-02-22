@@ -20,7 +20,22 @@
 
 .progress-bar {
   display: flex;
-  gap: 1px;
   align-items: center;
   justify-content: space-between;
+}
+
+.progress-bar .progress-descriptor {
+  font-weight: 300;
+  font-size: .9rem;
+  font-style: italic;
+  width: 60px;
+}
+
+.bar-title {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-style: italic;
+  font-weight: bold;
+  width: 40%;
+
 }

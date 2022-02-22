@@ -54,35 +54,47 @@ const Ratings = ({ meta }) => {
           <StarRating ratingsObjectOrNumber={meta.ratings}/>
         </div>
 
+        <div className="bar-title">Product Ratings</div>
         <div className="rating-bar-container">
           <div className="progress-bar">
-            5 Star
+            <div className="progress-descriptor">
+              5 Star
+            </div>
             <ProgressBar percentage={(ratingObject['5'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            4 Star
+            <div className="progress-descriptor">
+              4 Star
+            </div>
             <ProgressBar percentage={(ratingObject['4'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            3 Star
+            <div className="progress-descriptor">
+              3 Star
+            </div>
             <ProgressBar percentage={(ratingObject['3'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            2 Star
+            <div className="progress-descriptor">
+              2 Star
+            </div>
             <ProgressBar percentage={(ratingObject['2'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            1 Star
+            <div className="progress-descriptor">
+              1 Star
+            </div>
             <ProgressBar percentage={(ratingObject['1'] / ratingAverage.totalRatings) * 100} />
           </div>
         </div>
 
+        <div className="bar-title">Product Attributes</div>
         {characteristics.map((characteristic, i) => {
-          return <DescriptorBar htmlId={i} key={characteristic.value} text={characteristic.characteristic} percentage={(characteristic.value / 5) * 100}/>
+          return <DescriptorBar htmlId={i} key={characteristic.id} text={characteristic.characteristic} percentage={(characteristic.value / 5) * 100}/>
         })}
       </div>
     );

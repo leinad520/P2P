@@ -12,8 +12,8 @@ const DescriptorBar = (props) => {
 
   const Parentdiv = {
     margin: '5px 0 5px 0',
-    height: 10,
-    width: '100%',
+    height: 15,
+    width: '80%',
   }
 
   const Childdiv = {
@@ -26,13 +26,23 @@ const DescriptorBar = (props) => {
 
   return (
     <>
-      <div className="meta-descriptor-text">{props.text}</div>
-      <div className="meta" style={Parentdiv}>
+    <div className="progress-bar descrip-text-spacing">
+      <div className="progress-descriptor">
+        {props.text}
+      </div>
+      <div className="ratings-bar white-background" style={Parentdiv}>
         <div ref={elInput} id={props.htmlId} className="marker animate"/>
         <div style={Childdiv} />
         <div style={Childdiv} />
         <div style={Childdiv} />
+        <div className="absolute-descriptor-box">
+          <span>one</span>
+          <span>two</span>
+          <span>three</span>
+        </div>
       </div>
+
+    </div>
     </>
   );
 }
