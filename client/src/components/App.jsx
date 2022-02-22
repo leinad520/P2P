@@ -24,9 +24,9 @@ const App = (props) => {
   if (productId) {
     return (
       <section>
-        <Overview />
-        <RelatedProductsAndOutfit />
-        <QA productId={productId} />
+        {/* <Overview /> */}
+        {/* <RelatedProductsAndOutfit /> */}
+        {/* <QA productId={productId} /> */}
         <ReviewSection />
       </section>
     );

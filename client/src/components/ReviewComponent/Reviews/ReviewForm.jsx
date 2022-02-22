@@ -1,10 +1,13 @@
 import React,{useState, useRef, useEffect} from 'react';
-import FormChars from './FormChars.jsx';
-import Review from './Review.jsx';
-import FormStarRating from './FormStarRating.jsx';
 import { onFormSubmit, onFileChange } from './ReviewFormHelpers.jsx';
 import css from './ReviewForm.css';
 import axios from 'axios';
+
+// Imported Components
+import FormStarRating from './FormStarRating.jsx';
+import FormChars from './FormChars.jsx';
+import Review from './Review.jsx';
+
 
 const ReviewForm = (props) => {
   const [imgPreview, setImgPreview] = useState([]);

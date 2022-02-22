@@ -9,12 +9,10 @@ const ProgressBar = (props) => {
     // console.log(props.percentage);
   }, []);
 
-
   const Parentdiv = {
     margin: '5px 0 5px 0',
     height: 15,
     width: '80%',
-    backgroundColor: 'whitesmoke',
     borderRadius: 40,
   }
 
@@ -26,7 +24,7 @@ const ProgressBar = (props) => {
   }
 
   return (
-    <div style={Parentdiv}>
+    <div className="ratings-bar" style={Parentdiv}>
       <div ref={starInput} className="star animate" style={Childdiv}>
       </div>
     </div>
