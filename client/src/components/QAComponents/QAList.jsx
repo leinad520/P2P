@@ -3,10 +3,16 @@ import QAListEntry from './QAListEntry.jsx';
 
 const QAList = (props) => {
 
-  // console.log('this is props.data:', props.data);
-  let sliced = props.questions.slice(0, props.counter);
-  // console.log('this is slicedFour: ', slicedFour);
-  // let remainingQs = props.questions.slice(4);
+  let filteredSearchArray = () => {
+    if (props.search.length >= 3) {
+      return props.questions.filter((question) => {
+        return question.question_body.toLowerCase().includes(props.search.toLowerCase());
+      });
+    }
+    return props.questions;
+  }
+
+  let sliced = filteredSearchArray().slice(0, props.counter);
 
   return (
   <div>

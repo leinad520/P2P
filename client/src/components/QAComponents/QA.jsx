@@ -34,7 +34,6 @@ const QA = () => {
 
 
   let searchHandler = (e) => {
-    console.log('this is e.target.value:', e.target.value);
     e.preventDefault();
     setSearch(e.target.value);
   };
@@ -72,8 +71,7 @@ const QA = () => {
     setCounter(count);
   }
 
-  // var filteredArr = props.userMovies.filter((movie) => {
-  //   return movie.title.toLowerCase().includes(props.currentSearch.toLowerCase());
+
 
 
   return (
