@@ -12,8 +12,8 @@ class YourOutfit extends React.Component {
     super(props);
     this.state = {
       chosenCard: this.props.productId, //Get from other component's state
-      outfitCardIds: JSON.parse(localStorage.getItem("outfitCardIds")) || Array(4).fill(null), // [42367, null, null, null]
-      outfitCardObjs: JSON.parse(localStorage.getItem("outfitCardObjs")) || Array(4).fill(null), // [{}, null, null, null]
+      outfitCardIds: JSON.parse(localStorage.getItem("outfitCardIds")) || [null], // [42367, null, null, null]
+      outfitCardObjs: JSON.parse(localStorage.getItem("outfitCardObjs")) || [null], // [{}, null, null, null]
       styles: JSON.parse(localStorage.getItem("styles")) || [], // thumbnail image urls
       starReviews: JSON.parse(localStorage.getItem("starReviews")) || [], // star component
       hoverIndex: ''
@@ -59,6 +59,7 @@ class YourOutfit extends React.Component {
     } else {
       let outfitCardIdsCopy = this.state.outfitCardIds.slice();
       outfitCardIdsCopy[index] = this.state.chosenCard;
+      outfitCardIdsCopy.push(null)
       // if (!outfitCardIdsCopy.includes(null)) outfitCardIdsCopy.push(null);
 
       this.setOutfitCardsHelper(outfitCardIdsCopy);
@@ -67,8 +68,7 @@ class YourOutfit extends React.Component {
 
   deleteOutfit(index) {
     let outfitCardIdsCopy = this.state.outfitCardIds.slice();
-    outfitCardIdsCopy[index] = null;
-    if (outfitCardIdsCopy.includes(null))
+    outfitCardIdsCopy.splice(index, 1);
 
     this.setOutfitCardsHelper(outfitCardIdsCopy);
     this.setState({hoverIndex: ''})
