@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-regular-svg-icons'
+// import { faStar } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
 
 import DanModal from './DanModal.jsx';
@@ -97,10 +97,8 @@ class RelatedProducts extends React.Component {
             <div className="card" key={`related-products-${i}`}>
               <div className="card-picture">
                 <img src={this.state.relatedStyles[i]}></img>
-                <div className="corner-cover"></div>
-                {/* <FontAwesomeIcon icon={ modalIndex === i ? faStarSolid : faStar } className={ modalIndex === i ? "corner-star-full" : "corner-star" } onClick={() => this.showModal(i)}/> */}
-                <FontAwesomeIcon icon={ faStar } className={ "corner-star" } onClick={() => this.showModal(i)} onMouseEnter={()=>this.setState({hoverIndex: i})} onMouseLeave={()=>this.setState({hoverIndex: ''})}/>
-                <FontAwesomeIcon icon={ faStarSolid } className={ modalIndex === i || hoverIndex === i ? "corner-star corner-star-yellow" : "corner-star corner-star-full"} />
+                <div></div>
+                <FontAwesomeIcon icon={ faStarSolid } className={ modalIndex === i || hoverIndex === i ? "corner-star corner-star-yellow" : "corner-star corner-star-full"} onClick={() => this.showModal(i)} onMouseEnter={()=>this.setState({hoverIndex: i})} onMouseLeave={()=>this.setState({hoverIndex: ''})}/>
               </div>
               <div className="card-description">
                 <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>

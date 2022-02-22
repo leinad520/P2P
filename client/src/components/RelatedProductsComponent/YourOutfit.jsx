@@ -59,6 +59,7 @@ class YourOutfit extends React.Component {
     } else {
       let outfitCardIdsCopy = this.state.outfitCardIds.slice();
       outfitCardIdsCopy[index] = this.state.chosenCard;
+      // if (!outfitCardIdsCopy.includes(null)) outfitCardIdsCopy.push(null);
 
       this.setOutfitCardsHelper(outfitCardIdsCopy);
     }
@@ -67,8 +68,10 @@ class YourOutfit extends React.Component {
   deleteOutfit(index) {
     let outfitCardIdsCopy = this.state.outfitCardIds.slice();
     outfitCardIdsCopy[index] = null;
+    if (outfitCardIdsCopy.includes(null))
 
     this.setOutfitCardsHelper(outfitCardIdsCopy);
+    this.setState({hoverIndex: ''})
   }
 
   componentDidUpdate() {
