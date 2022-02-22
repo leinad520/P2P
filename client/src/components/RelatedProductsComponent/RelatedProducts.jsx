@@ -5,6 +5,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons'
 import DanModal from './DanModal.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
+import Carousel from 'react-elastic-carousel';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -87,6 +88,7 @@ class RelatedProducts extends React.Component {
       <>
         <h3 className="title">RELATED PRODUCTS</h3>
         <section className="parent">
+        <Carousel itemsToShow={3}>
           {relatedCardObjs.map((card, i) =>
             <div className="card" key={`related-products-${i}`}>
               <div className="card-picture">
@@ -101,6 +103,7 @@ class RelatedProducts extends React.Component {
               </div>
             </div>
           )}
+        </Carousel>
         </section>
         {this.state.modalIndex !== '' &&
         <DanModal show={this.state.show} handleClose={this.hideModal}>

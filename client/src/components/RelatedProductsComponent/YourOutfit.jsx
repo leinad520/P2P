@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
-
+import Carousel from 'react-elastic-carousel';
 
 
 class YourOutfit extends React.Component {
@@ -84,10 +84,11 @@ class YourOutfit extends React.Component {
     <>
       <h3 className="title">YOUR OUTFIT</h3>
         <section className="parent">
+        <Carousel itemsToShow={3}>
           {outfitCardObjs.map((card, i) => card === null ?
             //empty outfit card
             <div className="outfit-card" key={`your-outfit-${i}`} onClick={() => this.addOutfit(i)}>
-              <h3>Add to Outfit</h3>
+              <h2>Add to Outfit</h2>
               <FontAwesomeIcon icon={faCirclePlus} className="circle-plus" size='5x' />
             </div>
             :
@@ -105,6 +106,7 @@ class YourOutfit extends React.Component {
               </div>
             </div>
           )}
+        </Carousel>
         </section>
     </>
 
