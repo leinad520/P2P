@@ -29,8 +29,9 @@ const ReviewPhotos = ({photo}) => {
 
   if(imageValid) {
     return (
-      <div key={photo.id}>
+      <>
         <img
+          key={photo.id}
           ref={image}
           onLoad={checkValid}
           onError={() => setImageValid(false)}
@@ -40,12 +41,11 @@ const ReviewPhotos = ({photo}) => {
         <Modal ref={modal}>
           {renderModal(photo)}
         </Modal>
-      </div>
+      </>
     );
   } else {
-    return <></>
+    return <div></div>
   }
-
 }
 
 export default ReviewPhotos;

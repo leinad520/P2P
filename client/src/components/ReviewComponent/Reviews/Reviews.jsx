@@ -18,7 +18,7 @@ const Reviews = ({
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(3);
   const productContext = useContext(ProductContext);
-  const { meta } = productContext;
+  const { productMeta } = productContext;
 
 
   if (reviews.product === undefined) {
@@ -43,6 +43,7 @@ const Reviews = ({
               key={review.review_id}
               reviewId={review.review_id}
               rating={review.rating}
+              summary={review.summary}
               helpfulness={review.helpfulness}
               text={review.body}
               username={((review.reviewer_name) ? review.reviewer_name : 'anonymous')}
@@ -74,7 +75,7 @@ const Reviews = ({
         <ModalWindow onClose={showModal} show={show}>
           <ReviewForm
             onClose={showModal}
-            meta={meta}
+            meta={productMeta}
             getReviews={getReviews}
             productId={productId}
           />

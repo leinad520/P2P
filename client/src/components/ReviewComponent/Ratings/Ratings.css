@@ -1,17 +1,23 @@
 .ratings-section {
   padding: 10px;
-  margin-right: 50px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: left;
   flex: 1 0 20%;
-  min-width: 245px;
+  min-width: 285px;
 }
 
 .rating-summary-top {
   display: flex;
-  gap: 10px;
-  align-items: end;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ratings-score {
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 .rating-summary-top span {
@@ -22,4 +28,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.progress-bar .progress-descriptor {
+  font-weight: 300;
+  font-size: .9rem;
+  font-style: italic;
+  width: 60px;
+}
+
+.bar-title {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-style: italic;
+  font-weight: bold;
+  width: 60%;
+
 }

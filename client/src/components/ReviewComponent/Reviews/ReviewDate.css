@@ -1,4 +1,30 @@
-.review-star-date{
+.review-data-container{
+  color: #333;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
+  align-items: center;
+}
+.review-summary {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.date-box {
+  color: rgb(113,113,113);
+  margin-top: 3px;
+}
+
+.review-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  font-size: 1.5rem;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.review-stars img {
+  height: 110%;
+  width: auto;
 }

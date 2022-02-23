@@ -1,74 +1,120 @@
 import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-regular-svg-icons'
+// import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
 
+import DanModal from './DanModal.jsx';
+import ComparisonTable from './ComparisonTable.jsx';
+import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
+import Carousel from 'react-elastic-carousel';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenCard: 42366, //Get from other component's state
+      chosenCard: this.props.productId, //Get from other component's state
+      chosenCardData: [],
       relatedCardIds: [],
       relatedCardObjs: [],
-      relatedStyles: []
+      relatedCardReviews: [],
+      relatedStyles: [],
+      show: false,
+      modalIndex: '',
+      hoverIndex: ''
     };
 
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
+
+  showModal = (index) => {
+    this.setState({ show: true, modalIndex: index });
+
+  };
+
+  hideModal = () => {
+    this.setState({ show: false, modalIndex: '' });
+  };
 
   componentDidMount() {
     axios.get(`/api/${this.state.chosenCard}/related`)
-    .then(res => {
-      this.setState({relatedCardIds: res.data})
-    })
-    .then(() => {
-      let promiseArr = this.state.relatedCardIds.map(id =>
-        axios.get(`/api/${id}`)
-      )
-      Promise.all(promiseArr)
-      .then(values => {
-        values.forEach(obj => {
-          this.setState({relatedCardObjs: [...this.state.relatedCardObjs, obj.data]})
-        })
+      .then(res => {
+        this.setState({ relatedCardIds: res.data })
       })
-    })
-    .then(() => {
-      let promiseArr = this.state.relatedCardIds.map(id =>
-        axios.get(`/products/${id}/styles`)
-      )
-      Promise.all(promiseArr)
-      .then(values => {
-        values.forEach(obj => {
-          this.setState({relatedStyles: [...this.state.relatedStyles, obj.data.results[0].photos[0].thumbnail_url]})
-        })
+      .then(() => {
+        return axios.get(`/api/${this.state.chosenCard}`)
       })
-    })
-    .catch(err => console.log(err))
+      .then(res => {
+        this.setState({chosenCardData: res.data})
+      })
+      .then(() => {
+        let promiseArr = this.state.relatedCardIds.map(id =>
+          axios.get(`/api/${id}`)
+        )
+        Promise.all(promiseArr)
+          .then(values => {
+            values.forEach(obj => {
+              this.setState({ relatedCardObjs: [...this.state.relatedCardObjs, obj.data] })
+            })
+          })
+      })
+      .then(() => {
+        let promiseArr = this.state.relatedCardIds.map(id =>
+          axios.get(`/products/${id}/styles`)
+        )
+        Promise.all(promiseArr)
+          .then(values => {
+            values.forEach(obj => {
+              this.setState({ relatedStyles: [...this.state.relatedStyles, obj.data.results[0].photos[0].thumbnail_url] })
+            })
+          })
+      })
+      .then(() => {
+        let promiseArr = this.state.relatedCardIds.map(id =>
+          axios.get(`/productmeta/${id}`)
+        )
+        Promise.all(promiseArr)
+          .then(values => {
+            values.forEach(obj => {
+              this.setState({ relatedCardReviews: [...this.state.relatedCardReviews, obj.data.ratings] })
+            })
+          })
+      })
+      .catch(err => console.log(err))
 
 
   }
 
   render() {
-      var {relatedCardObjs} = this.state;
+    var { relatedCardObjs, chosenCardData, modalIndex, hoverIndex } = this.state;
     return (
       <>
-      <div className="title">RELATED PRODUCTS</div>
-      <section className="parent">
-        {relatedCardObjs.map((card, i) =>
-          <div className="card" key={`related-products-${i}`}>
-            <div className="card-picture">
-              <img src={this.state.relatedStyles[i]}></img>
-              <FontAwesomeIcon icon={faStar} className="corner-star" />
+        <h2 className="title">RELATED PRODUCTS</h2>
+        <section className="parent">
+        <Carousel itemsToShow={3}>
+          {relatedCardObjs.map((card, i) =>
+            <div className="card" key={`related-products-${i}`}>
+              <div className="card-picture">
+                <img src={this.state.relatedStyles[i]}></img>
+                <div></div>
+                <FontAwesomeIcon icon={ faStarSolid } className={ modalIndex === i || hoverIndex === i ? "corner-star corner-star-yellow" : "corner-star corner-star-full"} onClick={() => this.showModal(i)} onMouseEnter={()=>this.setState({hoverIndex: i})} onMouseLeave={()=>this.setState({hoverIndex: ''})}/>
+              </div>
+              <div className="card-description">
+                <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
+                <span className="name">{relatedCardObjs[i].name}</span>
+                <span>${relatedCardObjs[i].default_price}</span>
+                <StarRating className="star-rating" ratingsObjectOrNumber={this.state.relatedCardReviews[i]} />
+              </div>
             </div>
-            <div className="card-description">
-              <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
-              <span className="name">{relatedCardObjs[i].name}</span>
-              <span>${relatedCardObjs[i].default_price}</span>
-              <span>*****</span>
-            </div>
-          </div>
-        )}
-      </section>
+          )}
+        </Carousel>
+        </section>
+        {this.state.modalIndex !== '' &&
+        <DanModal show={this.state.show} handleClose={this.hideModal}>
+          <ComparisonTable mainItem={chosenCardData} item={relatedCardObjs[this.state.modalIndex]} />
+        </DanModal>
+        }
       </>
     )
   }

@@ -1,3 +1,10 @@
 .star {
   width: 0%;
 }
+
+.ratings-bar {
+  display: flex;
+  justify-content: space-between;
+  background: #999;
+  position: relative;
+}

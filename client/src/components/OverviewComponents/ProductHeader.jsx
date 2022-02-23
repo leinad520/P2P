@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import ProductContext from '../Context/ProductContext.jsx'
+import StarRating from '../sharedComponents/starComponent/StarRating.jsx';
+import DarkMode from '../DarkMode.jsx';
 
 function ProductHeader({ productInfo, selectedStyle }) {
+
+  const productContext = useContext(ProductContext);
+  const { styles, productMeta } = productContext;
+
+
+  useEffect(() => {
+    // console.log(productMeta)
+  }, [styles])
 
   function renderProductOverView() {
     if (productInfo.productOverview) {
@@ -16,19 +27,31 @@ function ProductHeader({ productInfo, selectedStyle }) {
           <span>{`$${selectedStyle.sale_price}`}</span>
         </div>
       )
-    } else {
+    } else if (selectedStyle.original_price) {
       return <div>{`$${selectedStyle.original_price}`}</div>
     }
   }
 
+  function renderInfo() {
+    if (productInfo) {
+      return (
+        <div className='productHeader'>
+          <h1 className='product-name'>{productInfo.name}</h1>
+          <StarRating ratingsObjectOrNumber={productMeta.ratings} />
+          <h3 className='product-category'>{productInfo.category}: {styles.name}</h3>
+          {renderSalePrice()}
+          {renderProductOverView()}
+        </div>
+      )
+    } else {
+      return <div>LOADING...</div>
+    }
+  }
+
   return (
-    <div className='productHeader'>
-      <h2>{productInfo.name}</h2>
-      <div>stars READ ALL REVIEWS</div>
-      <h3>{productInfo.category}</h3>
-      {renderSalePrice()}
-      {renderProductOverView()}
-    </div>
+    <>
+      {renderInfo()}
+    </>
   );
 }
 

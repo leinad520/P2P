@@ -35,8 +35,8 @@ const Ratings = ({ meta }) => {
   } else {
     const ratingNum = Object.keys(meta.ratings).map(rating => Number(rating));
     const ratingCount = Object.values(meta.ratings).map(count => Number(count));
-    console.log(ratingNum);
-    console.log(ratingCount);
+    // console.log(ratingNum);
+    // console.log(ratingCount);
     const ratingObj = Object.entries(meta.ratings).map(arr => {
       return [arr[0], Number(arr[1])];
     });
@@ -49,42 +49,52 @@ const Ratings = ({ meta }) => {
 
     return (
       <div className="ratings-section">
-        uncomment when ready
         <div className="rating-summary-top">
-          <span>{ratingAverage.average}</span>
+          <div className="ratings-score">{ratingAverage.average}</div>
           <StarRating ratingsObjectOrNumber={meta.ratings}/>
         </div>
 
+        <div className="bar-title">Product Ratings</div>
         <div className="rating-bar-container">
-          onClick
           <div className="progress-bar">
-            <span>5 stars</span>
+            <div className="progress-descriptor">
+              5 Star
+            </div>
             <ProgressBar percentage={(ratingObject['5'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>4 stars</span>
+            <div className="progress-descriptor">
+              4 Star
+            </div>
             <ProgressBar percentage={(ratingObject['4'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>3 stars</span>
+            <div className="progress-descriptor">
+              3 Star
+            </div>
             <ProgressBar percentage={(ratingObject['3'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>2 stars</span>
+            <div className="progress-descriptor">
+              2 Star
+            </div>
             <ProgressBar percentage={(ratingObject['2'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
-            <span>1 stars</span>
+            <div className="progress-descriptor">
+              1 Star
+            </div>
             <ProgressBar percentage={(ratingObject['1'] / ratingAverage.totalRatings) * 100} />
           </div>
         </div>
 
+        <div className="bar-title">Product Attributes</div>
         {characteristics.map((characteristic, i) => {
-          return <DescriptorBar htmlId={i} key={characteristic.value} text={characteristic.characteristic} percentage={(characteristic.value / 5) * 100}/>
+          return <DescriptorBar htmlId={i} key={characteristic.id} text={characteristic.characteristic} percentage={(characteristic.value / 5) * 100}/>
         })}
       </div>
     );
