@@ -90,7 +90,7 @@ class RelatedProducts extends React.Component {
     var { relatedCardObjs, chosenCardData, modalIndex, hoverIndex } = this.state;
     return (
       <>
-        <h3 className="title">RELATED PRODUCTS</h3>
+        <h2 className="title">RELATED PRODUCTS</h2>
         <section className="parent">
         <Carousel itemsToShow={3}>
           {relatedCardObjs.map((card, i) =>

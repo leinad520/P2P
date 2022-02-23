@@ -86,7 +86,7 @@ class YourOutfit extends React.Component {
 
     return (
     <>
-      <h3 className="title">YOUR OUTFIT</h3>
+      <h2 className="title">YOUR OUTFIT</h2>
         <section className="parent">
         <Carousel itemsToShow={3}>
           {outfitCardObjs.map((card, i) => card === null ?
