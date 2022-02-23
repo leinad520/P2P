@@ -1,6 +1,6 @@
 .review-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   gap: 2rem;
 }

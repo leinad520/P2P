@@ -22,7 +22,7 @@ export function avgRating(rNum, rCount) {
     totalStars += (num * rCount[index]);
     totalRatings += rCount[index];
   });
-  console.log(Number((totalStars/totalRatings).toFixed(1)), 'this is avgRating')
+  // console.log(Number((totalStars/totalRatings).toFixed(1)), 'this is avgRating')
   return Number((totalStars/totalRatings).toFixed(1));
 };
 

@@ -22,7 +22,7 @@ const Review = (props) => {
   }
 
   function chopText (text) {
-    return text.slice(0, 150) + '...';
+    return text.slice(0, 80) + '...';
   };
 
   return (
@@ -32,7 +32,7 @@ const Review = (props) => {
         <h3>{props.title}</h3>
       </div>
       <div className="review-text">
-        {collapsed ? '' + props.text : '' + chopText(props.text)}
+        {collapsed ? <span>{props.text}</span> : <span>{chopText(props.text)}</span>}
         {(props.text.length > 150) && <span onClick={onReadMoreHandler} className="read-more">{(collapsed) ? '⬆ Collapse text' : '⬇ Read more'}</span>}
       </div>
       {(props.photos.length > 0) && (
