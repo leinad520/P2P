@@ -71,7 +71,7 @@ const StarRating = ({ratingsObjectOrNumber, className}) => {
         </div>
       );
     }
-  }
-};
+  };
+}
 
 export default StarRating;
