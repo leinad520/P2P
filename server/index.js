@@ -178,10 +178,13 @@ app.put('/qa/answers/:id/helpful', (req, res) => {
   })
 })
 
-//REPORT ANSWER // NEED TO NOT GET ON
-app.put('qa/answers/:id/report', (req, res) => {
+//REPORT ANSWER
+app.put('/qa/answers/:id/report', (req, res) => {
+  console.log('hello')
   const { id } = req.params
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/report`, req.body)
+
+  console.log(id);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/report`)
   .then(success => {
     console.log('successfuly reported answer')
     res.sendStatus(201).end()

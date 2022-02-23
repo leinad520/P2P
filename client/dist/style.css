@@ -466,10 +466,10 @@ input:checked + .slider:before {
 /* .questions-answers-main {
 } */
 
-.questions-answers-main {
+/* .questions-answers-main {
   display: relative;
   max-width: 85%;
-}
+} */
 
 
 .searchContainer {
@@ -541,6 +541,7 @@ input:checked + .slider:before {
 
 .add-answer-modal-container {
   display: flex;
+  border-radius: 15px;
   align-items: flex-start;
   justify-content: center;
   height: 100%;
@@ -623,6 +624,7 @@ input:checked + .slider:before {
 /* Add Questions Modal */
 .add-question-modal-container {
   display: flex;
+  border-radius: 15px;
   align-items: flex-start;
   justify-content: center;
   height: 100%;
@@ -723,13 +725,15 @@ input:checked + .slider:before {
   padding: 5px;
 }
 
+
 #Q {
-  padding-right: 5px;
+  padding: 5px;
   margin: 2px;
 }
 
 #A {
-  padding-right: 5px;
+  font-weight: bold;
+  padding: 5px;
   margin: 2px;
 }
 

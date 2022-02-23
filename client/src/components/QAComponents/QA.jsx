@@ -22,7 +22,7 @@ const QA = () => {
   // const [passedQuestions, setPassedQuestions] = useState([]);
   const [show, setShow] = useState(false);
   const [counter, setCounter] = useState(2);
-  const [lastQuestion, setLastQuestion] = useState(initialQuestions[initialQuestions.length - 1])
+  // const [lastQuestion, setLastQuestion] = useState(initialQuestions[initialQuestions.length - 1])
   const productContext = useContext(ProductContext);
   const { product } = productContext;
 
@@ -57,10 +57,12 @@ const QA = () => {
   //filter the questions array based on the search state when search state is greater than or equal to 3
 
   let moreAnswerQuestionsButton = () => {
-    if (initialQuestions.length > 2 || initialQuestions.length !== 0) {
-      return <button onClick={onMoreAnsweredQuestionsClick}>More Answered Questions</button>
+    // if (initialQuestions.length > 2 || initialQuestions.length !== 0) {
+    if (counter < initialQuestions.length) {
+      return <button className="btn matt-btn"  onClick={onMoreAnsweredQuestionsClick}>More Answered Questions</button>
     } else {
-      return <></>
+  // } else {
+      return <button className="btn matt-btn" onClick={()=> {setCounter(2)}}>Collapse Questions</button>
     }
   }
 
@@ -74,13 +76,14 @@ const QA = () => {
 
   return (
     <>
-      <h3>QUESTION & ANSWERS</h3>
+      {/* <div className="questions-answers-main"> */}
       <div className="questions-answers-main">
+      <h3>QUESTION & ANSWERS</h3>
         <section >
           <div className="searchContainer">
             <form className="searchForm">
               <input className="searchInput" onChange={searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
-              <button id="q-btn-search">Search</button>
+              <button id="q-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
           </div>
         </section>
@@ -91,10 +94,10 @@ const QA = () => {
           <div>
             {moreAnswerQuestionsButton()}
             <span className="add-question">
-            <button id="add-question-btn" onClick={e => showModal()}>Add a Question           +</button>
+            <button id="add-question-btn" className="btn matt-btn" onClick={e => showModal()}>Add a Question           +</button>
             <div>
-              <ModalWindow onClose={showModal} show={show}>
-                <AddQuestionForm product={product}/>
+              <ModalWindow id="matt-modal" onClose={showModal} show={show}>
+                <AddQuestionForm showModal={showModal} product={product}/>
               </ModalWindow>
             </div>
             </span>

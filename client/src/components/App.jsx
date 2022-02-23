@@ -25,9 +25,9 @@ const App = (props) => {
     return (
       <section>
         <Overview />
-        {/* <RelatedProductsAndOutfit /> */}
+        <RelatedProductsAndOutfit />
         <QA />
-        {/* <ReviewSection /> */}
+        <ReviewSection />
       </section>
     );
   } else {

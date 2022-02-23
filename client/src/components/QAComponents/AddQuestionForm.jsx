@@ -23,13 +23,14 @@ const AddQuestionForm = (props) => {
 
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
+    props.showModal();
     axios.post(`/qa/questions/${product.id}`, {
       body: state.qQuestion,
       name: state.qNickname,
       email: state.qEmail,
       product_id: product.id,
     })
-    .then(response => {console.log('questions was succesfully posted');
+    .then(response => {console.log('question was succesfully posted');
     })
     .catch(err => {console.error(err);})
   }
@@ -43,21 +44,21 @@ const AddQuestionForm = (props) => {
           <h4 id="add-question-subtitle">About the {product.name}</h4>
           <div>
             <div>Your Question*
-            <textarea id="qQuestion" type="text" name="qQuestion" placeholder="Your question here" value={state.mQuestion} onChange={handleQFormChange}/>
+            <textarea id="qQuestion" type="text" name="qQuestion" placeholder="Your question here" value={state.mQuestion} onChange={handleQFormChange} required="required"/>
             </div>
             <div id="q-nickname-div">
               <div >What is your nickname?*
-              <textarea id="qNickname" type="text" name="qNickname" placeholder="Example: jackson11!" value={state.qNickname} onChange={handleQFormChange}/>
+              <textarea id="qNickname" type="text" name="qNickname" placeholder="Example: jackson11!" value={state.qNickname} onChange={handleQFormChange} required="required"/>
               </div>
               <div id="q-priv-span">*For privacy reasons, do not use your full name or email address*</div>
             </div>
             <div id="q-email-div">
               <div >Your email*
-              <textarea id="qEmail" type="text" name="qEmail" placeholder="Why did you like the product or not?" value={state.mEmail} onChange={handleQFormChange}/>
+              <textarea id="qEmail" type="email" name="qEmail" placeholder="Why did you like the product or not?" value={state.mEmail} onChange={handleQFormChange} required="required"/>
               </div>
               <div id="q-auth-span">*For authentication reasons, you will not be emailed*</div>
             </div>
-            <button type="submit" id="add-question-submit">Submit Question</button>
+            <button type="submit" id="add-question-submit" >Submit Question</button>
           </div>
         </form>
       </div>

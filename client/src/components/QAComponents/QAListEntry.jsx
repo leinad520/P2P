@@ -121,8 +121,8 @@ const QAListEntry = (props) => {
                 <u>Add Answer</u>
               </button>
               <div>
-              <ModalWindow onClose={showModal} show={show}>
-                <AddAnswerForm props={props}/>
+              <ModalWindow id="matt-modal" onClose={showModal} show={show}>
+                <AddAnswerForm showModal={showModal} props={props}/>
               </ModalWindow>
               </div>
             </span>
@@ -130,16 +130,16 @@ const QAListEntry = (props) => {
         </span>
       </div>
       <div className="answer">
-          <div>
-            <span id="A">A: </span>
-            <div className={(answersCount > 2) ? "answers-list" : ""}>
+          <div className="answer-block">
+            <span id="A">A:</span>
+            <span className={(answersCount > 2) ? "answers-list" : ""}>
               {slicedAns.map((answer, index) => {
-                return <Answer answer={answer} key={index} />
+                return <span><Answer answer={answer} key={index} /> </span>
               })}
-            </div>
+            </span>
           </div>
 
-        {(answers.length > 2) && <button id="see-more-answers-btn" onClick={onShowMoreAnswersClick}>{(answersCount > 2) ? 'Collapse Answers' : 'See More Answers'}</button>}
+        {(answers.length > 2) && <button id="see-more-answers-btn" className="btn matt-bold-font" onClick={onShowMoreAnswersClick}>{(answersCount > 2) ? 'Collapse Answers' : 'See More Answers'}</button>}
       </div>
     </>
   );
