@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import data from './dummyQAdata.js';
 import QAList from './QAList.jsx';
 import ProductContext from '../Context/ProductContext.jsx';
 import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
+import css from './QA.css';
 //this is the main component for the QA List
 //will map over the data and render each QA List Entry
 
@@ -16,13 +16,12 @@ import AddQuestionForm from './AddQuestionForm.jsx';
 
 const QA = () => {
   const [search, setSearch] = useState('');
-  const [initialQuestions, setInitialQuestions] = useState({
-    results: []
-  });
+  const [initialQuestions, setInitialQuestions] = useState([]);
   // this state variable is for the filtered/sliced array to pass down for rendering
   // const [passedQuestions, setPassedQuestions] = useState([]);
   const [show, setShow] = useState(false);
-
+  const [counter, setCounter] = useState(2);
+  // const [lastQuestion, setLastQuestion] = useState(initialQuestions[initialQuestions.length - 1])
   const productContext = useContext(ProductContext);
   const { product } = productContext;
 
@@ -34,7 +33,6 @@ const QA = () => {
 
 
   let searchHandler = (e) => {
-    console.log('this is e.target.value:', e.target.value);
     e.preventDefault();
     setSearch(e.target.value);
   };
@@ -43,7 +41,7 @@ const QA = () => {
   let getAllQuestions = () => {
     axios.get(`/qa/questions/${product.id}`)
       .then(response => {
-        setInitialQuestions(response.data)
+        setInitialQuestions(response.data.results)
       })
       .catch(() => { console.log('error'); });
   };
@@ -52,45 +50,53 @@ const QA = () => {
     setShow(!show);
   };
 
-  console.log('this is initialQuestions:', initialQuestions.results);
+  // console.log('this is initialQuestions:', initialQuestions.results);
+
 
   //filter the questions array based on the search state when search state is greater than or equal to 3
 
   let moreAnswerQuestionsButton = () => {
-    if (initialQuestions.results.length > 2) {
-      return <button>More Answered Questions</button>
+    // if (initialQuestions.length > 2 || initialQuestions.length !== 0) {
+    if (counter < initialQuestions.length) {
+      return <button className="btn matt-btn"  onClick={onMoreAnsweredQuestionsClick}>More Answered Questions</button>
     } else {
-      return <></>
+  // } else {
+      return <button className="btn matt-btn" onClick={()=> {setCounter(2)}}>Collapse Questions</button>
     }
   }
 
-  // var filteredArr = props.userMovies.filter((movie) => {
-  //   return movie.title.toLowerCase().includes(props.currentSearch.toLowerCase());
+  let onMoreAnsweredQuestionsClick = () => {
+    let count = counter + 2
+    setCounter(count);
+  }
+
+
 
 
   return (
     <>
-      <h3>QUESTION & ANSWERS</h3>
+      {/* <div className="questions-answers-main"> */}
       <div className="questions-answers-main">
+      <h3>QUESTION & ANSWERS</h3>
         <section >
           <div className="searchContainer">
             <form className="searchForm">
               <input className="searchInput" onChange={searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
-              <button id="q-btn-search">Search</button>
+              <button id="q-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
           </div>
         </section>
-        <div id="qa-list">
-          <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} />
+        <div className={(counter > 5) ? "qa-list" : ""}>
+          <QAList search={search} getAllQuestions={getAllQuestions} questions={initialQuestions} counter={counter} />
         </div>
         <div>
           <div>
             {moreAnswerQuestionsButton()}
             <span className="add-question">
-            <button id="add-question-btn" onClick={e => showModal()}>Add a Question           +</button>
+            <button id="add-question-btn" className="btn matt-btn" onClick={e => showModal()}>Add a Question           +</button>
             <div>
-              <ModalWindow onClose={showModal} show={show}>
-                <AddQuestionForm product={product}/>
+              <ModalWindow id="matt-modal" onClose={showModal} show={show}>
+                <AddQuestionForm showModal={showModal} product={product}/>
               </ModalWindow>
             </div>
             </span>

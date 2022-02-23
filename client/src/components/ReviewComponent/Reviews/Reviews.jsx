@@ -34,7 +34,6 @@ const Reviews = ({
       showReviews: () => {
         const reviewsToShow = allReviewsObj.reviews.slice(0, count);
         return reviewsToShow.map(review => {
-          console.log(review);
           return (
             <Review
               sort={sort}

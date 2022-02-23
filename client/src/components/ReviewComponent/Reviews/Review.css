@@ -4,6 +4,12 @@
   line-height: 1.5;
   color: #333;
 }
+
+.review-text span {
+  width: 100%;
+  word-wrap: break-word;
+}
+
 .review-photo-holder {
   display: flex;
   gap: 10px;

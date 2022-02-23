@@ -95,7 +95,7 @@ app.get("/api/:id", (req, res) => {
 
 app.get('/qa/questions/:id', (req, res) => {
   const { id, page, count } = req.params;
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&sort=newest&count=5`, {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${id}&count=100`, {
     header: {
       Authorization: process.env.HR_TOKEN
     }
@@ -117,7 +117,7 @@ app.get('/qa/questions/:id/answers', (req, res) => {
 app.post('/qa/questions/:id', (req, res) => {
   const {id} = req.params
   // console.log('this is req.body:', req.body);
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions`, req.body)
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/`, req.body)
   .then(success => {
     console.log('success');
     res.sendStatus(201).end();
@@ -178,10 +178,13 @@ app.put('/qa/answers/:id/helpful', (req, res) => {
   })
 })
 
-//REPORT ANSWER // NEED TO NOT GET ON
-app.put('qa/answers/:id/report', (req, res) => {
+//REPORT ANSWER
+app.put('/qa/answers/:id/report', (req, res) => {
+  console.log('hello')
   const { id } = req.params
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/report`, req.body)
+
+  console.log(id);
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/answers/${id}/report`)
   .then(success => {
     console.log('successfuly reported answer')
     res.sendStatus(201).end()

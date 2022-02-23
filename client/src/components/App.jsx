@@ -10,7 +10,7 @@ import DarkMode from './DarkMode.jsx';
 
 const App = (props) => {
   const productContext = useContext(ProductContext);
-  const { product, productId, changeProduct} = productContext;
+  const { product, productId, changeProduct, productMeta} = productContext;
 
   // 🧠
   // 🧠
@@ -32,7 +32,7 @@ const App = (props) => {
           <DarkMode />
         </div>
         <Overview />
-        <RelatedProductsAndOutfit />
+        <RelatedProductsAndOutfit productId={productId} />
         <QA productId={productId} />
         <ReviewSection />
       </section>
