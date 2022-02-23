@@ -522,6 +522,7 @@ input:checked + .slider:before {
 #add-answer-btn {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .question-utility {
@@ -530,6 +531,7 @@ input:checked + .slider:before {
 
 #q-helpful {
   font-size: smaller;
+  cursor: pointer;
 }
 
 .answerBody {
@@ -607,7 +609,7 @@ input:checked + .slider:before {
   width: 95%;
   border: 1px solid #CCC;
   background: #FFF;
-  margin: 0 0 5px;
+  margin: 0 0 -3px;
   padding: 5px;
 }
 
@@ -616,7 +618,7 @@ input:checked + .slider:before {
   width: 95%;
   border: 1px solid #CCC;
   background: #FFF;
-  margin: 0 0 5px;
+  margin: 0 0 -3px;
   padding: 5px;
 }
 
@@ -736,6 +738,10 @@ input:checked + .slider:before {
   padding: 5px;
   margin: 2px;
 }
+
+
+/*End Matt Styles*/
+
 
 /* GLOBAL STYLE */
 .animate {

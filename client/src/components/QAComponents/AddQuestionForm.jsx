@@ -50,13 +50,13 @@ const AddQuestionForm = (props) => {
               <div >What is your nickname?*
               <textarea id="qNickname" type="text" name="qNickname" placeholder="Example: jackson11!" value={state.qNickname} onChange={handleQFormChange} required="required"/>
               </div>
-              <div id="q-priv-span">*For privacy reasons, do not use your full name or email address*</div>
+              <div id="q-priv-span"><b>*For privacy reasons, do not use your full name or email address*</b></div>
             </div>
             <div id="q-email-div">
               <div >Your email*
               <textarea id="qEmail" type="email" name="qEmail" placeholder="Why did you like the product or not?" value={state.mEmail} onChange={handleQFormChange} required="required"/>
               </div>
-              <div id="q-auth-span">*For authentication reasons, you will not be emailed*</div>
+              <div id="q-auth-span"><b>*For authentication reasons, you will not be emailed*</b></div>
             </div>
             <button type="submit" id="add-question-submit" >Submit Question</button>
           </div>

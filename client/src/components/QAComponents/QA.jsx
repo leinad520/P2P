@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import data from './dummyQAdata.js';
 import QAList from './QAList.jsx';
 import ProductContext from '../Context/ProductContext.jsx';
 import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';

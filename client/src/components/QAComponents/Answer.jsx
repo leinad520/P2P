@@ -79,9 +79,9 @@ class Answer extends React.Component {
         </div>
         <div id="sellerInfo">
         <span>by {this.answererName()}, {this.newDate(this.props.answer.date)}</span>
-          <span>| Helpful?
-            <span id="answer-helpfulness">
-              <span> <u onClick={this.handleHelpfulAnswerClick}>Yes</u>
+          <span >| Helpful?
+            <span >
+              <span id="answer-helpfulness"> <u onClick={this.handleHelpfulAnswerClick}>Yes</u>
                 ({this.state.helpfulACount}) |
               </span>
             </span>
