@@ -1,11 +1,13 @@
 .answer-report-btn {
   text-decoration: none;
-  padding: 5px 12px;
+  padding: 3px 10px;
   border-radius: 29px;
   background-color: rgb(230, 87, 87);
   color: white;
   text-align: left;
   margin-left: 10px;
+  margin-top: -2px;
+  cursor: pointer;
 }
 
 #sellerInfo {

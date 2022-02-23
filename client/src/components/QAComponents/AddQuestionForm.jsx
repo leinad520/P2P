@@ -44,7 +44,7 @@ const AddQuestionForm = (props) => {
           <h4 id="add-question-subtitle">About the {product.name}</h4>
           <div>
             <div>Your Question*
-            <textarea id="qQuestion" type="text" name="qQuestion" placeholder="Your question here" value={state.mQuestion} onChange={handleQFormChange} required="required"/>
+            <textarea id="qQuestion" type="text" name="qQuestion" placeholder="Your question here" value={state.mQuestion} onChange={handleQFormChange} spellcheck="true" required="required"/>
             </div>
             <div id="q-nickname-div">
               <div >What is your nickname?*

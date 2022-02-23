@@ -44,11 +44,11 @@ const AddAnswerForm = (props) => {
     <div className="add-answer-modal-container">
       <div className="add-answer-form-container">
         <form id="add-answer-form" onSubmit={handleAnswerSubmit}>
-          <h3 id="add-answer-title">Submit your Answer</h3>
+          <h2 id="add-answer-title">Submit your Answer</h2>
           <h4 id="add-answer-description"> {product.name} : {props.props.question.question_body}</h4>
           <div>
             <div>Your Answer*
-            <textarea id="mAnswer" type="text" name="mAnswer" placeholder="Your answer here" value={state.mAnswer} onChange={handleFormChange} required="required"/>
+            <textarea id="mAnswer" type="text" name="mAnswer" placeholder="Your answer here" value={state.mAnswer} onChange={handleFormChange} spellcheck="true" required="required"/>
             </div>
           </div>
           <div>
