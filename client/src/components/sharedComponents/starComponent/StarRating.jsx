@@ -32,13 +32,13 @@ let returnStars = (rating) => {
   let starCount = [];
   while (rating > 0) {
     if (rating > .99) {
-      starCount.push(<img key={Math.random() * 100} src={star} />);
+      starCount.push(<img className='red-star' key={Math.random() * 100} src={star} />);
     } else if (rating < 1 && rating >= 0.75) {
-      starCount.push( <img key={Math.random() * 100} src={starThreeQuarter} />);
+      starCount.push( <img className='red-star' key={Math.random() * 100} src={starThreeQuarter} />);
     } else if (rating < 0.75 && rating >= 0.5) {
-      starCount.push( <img key={Math.random() * 100} src={starHalf} /> );
+      starCount.push( <img className='red-star' key={Math.random() * 100} src={starHalf} /> );
     } else if (rating < 0.5 && rating >= 0.25) {
-      starCount.push( <img key={Math.random() * 100} src={starOneQuarter} /> );
+      starCount.push( <img className='red-star' key={Math.random() * 100} src={starOneQuarter} /> );
     }
     rating--;
   };

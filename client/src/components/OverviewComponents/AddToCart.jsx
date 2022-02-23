@@ -82,7 +82,7 @@ function AddToCart({ currData, defaultStyle }) {
         {/* <select id='quantity' disabled>
           {renderQuantity()}
         </select> */}
-          <input className='addtocart' type='submit' value='Add to Cart'></input>
+          <input className='addtocart' type='submit' value='ADD TO CART'></input>
       </form>
   )
 }
