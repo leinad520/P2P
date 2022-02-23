@@ -4,7 +4,7 @@ import css from './ReviewSort.css';
 const ReviewSort = ({sortedByOnChangeHandler}) => {
   return (
     <ul className='base-ul'>
-		<li><a href="#">Sort Reviews</a>
+		<li className="first-li"><a href="#">Sort Reviews</a>
 			<ul className='menu-item-holder'>
 				<li
           className="menu-item"

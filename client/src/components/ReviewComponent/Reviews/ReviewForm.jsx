@@ -43,45 +43,46 @@ const ReviewForm = (props) => {
         <form
           id="review"
           onSubmit={(e) => onFormSubmit(e, imgPreview, props, form)}
-          onChange={onFormChange}>
-          <h3>Submit a Review</h3>
-          <h4>Tell us what you think!</h4>
-          <FormStarRating />
-          <fieldset>
-            <input name="name" type="text" placeholder="Name" tabIndex="1" autoFocus required></input>
-          </fieldset>
-          <fieldset>
-            <input name="email" type="email" placeholder="Email" tabIndex="2" required></input>
-          </fieldset>
-          {/* delete className select if not needed */}
-          <div className="select" required>
-            <div>Recommmend?</div>
-            <div><input name="recommend" type="radio" value="false" required/> No</div>
-            <div><input name="recommend" type="radio" value="true" required/> Yes</div>
-          </div>
-          <fieldset>
-            <input name="summary" type="text" placeholder="Review Summary" required tabIndex="3" required></input>
-          </fieldset>
-          <fieldset>
-            <textarea name="body" placeholder="Type your Message Here...." tabIndex="4" required></textarea>
-          </fieldset>
-          <fieldset>
-            <FormChars meta={props.meta} />
-          </fieldset>
-          {(imgPreview.length) && (
-            <div className="review-photo-holder">
-              {imgPreview.map(src => <img key={src} src={src} />)}
+          onChange={onFormChange}
+        >
+          <div className="inner-form-container">
+            <h3>Submit a Review</h3>
+            <h4>Tell us what you think!</h4>
+            <FormStarRating />
+            <fieldset className="form-fields">
+              <div className="name-and-email">
+                <input id="email-input" name="name" type="text" placeholder="Name" tabIndex="1" autoFocus required></input>
+                <input name="email" type="email" placeholder="Email" tabIndex="2" required></input>
+              </div>
+              <div className="other-fields">
+                <input className="input-padding-5" name="summary" type="text" placeholder="Review Summary" required tabIndex="3" required></input>
+                <textarea className="input-padding-5" name="body" placeholder="Type your Message Here...." tabIndex="4" required></textarea>
+              </div>
+            </fieldset>
+            {/* delete className select if not needed */}
+            <div className="select" required>
+              <div>Recommmend?</div>
+              <div><input name="recommend" type="radio" value="false" required/> No</div>
+              <div><input name="recommend" type="radio" value="true" required/> Yes</div>
             </div>
-          )}
-          <fieldset className="relative-fieldset">
-            <label className="custom-file-upload">
-                <input name="image" id="imageInput" type="file" accept="image/*" multiple="multiple" onChange={(e) => onFileChange(e, setImgPreview, imgPreview)}/>
-                <i className="fa fa-cloud-upload"></i> Upload Images
-            </label>
-          </fieldset>
-          <fieldset>
-            <button name="submit" type="submit" id="review-submit" data-submit="...Sending" tabIndex="6">Submit</button>
-          </fieldset>
+            <fieldset>
+              <FormChars meta={props.meta} />
+            </fieldset>
+            {(imgPreview.length) && (
+              <div className="review-photo-holder">
+                {imgPreview.map(src => <img key={src} src={src} />)}
+              </div>
+            )}
+            <fieldset className="relative-fieldset">
+              <label className="custom-file-upload">
+                  <input name="image" id="imageInput" type="file" accept="image/*" multiple="multiple" onChange={(e) => onFileChange(e, setImgPreview, imgPreview)}/>
+                  <i className="fa fa-cloud-upload"></i> Upload Images
+              </label>
+            </fieldset>
+            <fieldset>
+              <button name="submit" type="submit" id="review-submit" data-submit="...Sending" tabIndex="6">Submit</button>
+            </fieldset>
+          </div>
         </form>
       </div>
     </div>
