@@ -4,3 +4,5 @@ config.js
 bundle.js.map
 .env
 .env.local
+.package-lock.json
+.package.json

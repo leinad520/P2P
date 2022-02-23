@@ -13,6 +13,11 @@ const App = (props) => {
   const { product, productId, changeProduct} = productContext;
 
   // 🧠
+  // 🧠
+  // 🧠
+  // 🧠
+
+  console.log('i hate this bundle')
 
   const newId = useParams().id;
 

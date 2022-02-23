@@ -241,6 +241,7 @@ input:checked + .slider:before {
   cursor: pointer;
   padding: 3px;
   margin: 3px;
+  opacity: .6;
   object-fit: cover;
   border-radius: 50%;
   height: 6em;
@@ -492,7 +493,11 @@ input[type=radio] {
 }
 
 .chosen.styleButtons {
+  box-sizing: border-box;
+  opacity: 1;
   border: 3px solid var(--font-color);
+  transition-duration: .5s;
+  transform: scale(1.2);
 }
 
 .modalImage {
@@ -598,6 +603,7 @@ input[type=radio] {
 
 .description {
   line-height: 1.5em;
+  width: 85%;
 }
 
 .parent {
