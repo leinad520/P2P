@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --font-color: #333;
   --background-color: #eee;
 }
@@ -6,8 +6,10 @@
 [data-theme='dark'] {
   --font-color: #eee;
   --background-color: #333;
-}
+} */
 
 .star-rating {
   display: flex;
+  /* color: var(--font-color);
+  background-color: var(--background-color); */
 }
