@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import css from './Answer.css';
 
 class Answer extends React.Component {
   constructor(props) {
@@ -7,11 +8,13 @@ class Answer extends React.Component {
 
     this.state = {
       helpful: false,
-      helpfulACount: this.props.answer.helpfulness
+      helpfulACount: this.props.answer.helpfulness,
+      reported: false
     }
     this.handleHelpfulAnswerClick = this.handleHelpfulAnswerClick.bind(this)
     this.newDate = this.newDate.bind(this);
     this.answererName = this.answererName.bind(this);
+    this.handleReportClick = this.handleReportClick.bind(this);
   }
 
   handleHelpfulAnswerClick(e) {
@@ -31,6 +34,24 @@ class Answer extends React.Component {
   }
   }
 
+  handleReportClick(e) {
+    console.log('report click is firing');
+    const { id } = this.props.answer
+    console.log('this is id:', id);
+    if (!this.state.reported) {
+      axios.put(`/qa/answers/${id}/report`)
+      .then(response => {
+        this.setState({
+          reported: !this.state.reported
+        })
+      })
+      .then(response => {console.log('answer has been reported')})
+      .catch(err => {
+        console.error(err)
+      })
+    }
+  }
+
   newDate(date) {
     let newDate = new Date(date).toString().slice(4, 15);
     let newDateMonthAndDay = newDate.slice(0, 6);
@@ -42,29 +63,30 @@ class Answer extends React.Component {
   answererName() {
     let answerer;
     if (this.props.answer.answerer_name === "Seller") {
-      answerer = <b>{this.props.answer.answerer_name}</b>
+      answerer = <b><i>{this.props.answer.answerer_name}</i></b>
     } else {
-      answerer = this.props.answer.answerer_name;
+      answerer = <i>{this.props.answer.answerer_name}</i>
     }
     return answerer;
   }
 
   render() {
-
+    console.log(this.props.answer);
     return (
       <div className="answerBody">
         <div id="answer">
-          <span>{this.props.answer.body}</span>
+         {this.props.answer.body}
         </div>
-        <div id="sellerInfo">by {this.answererName()} , {this.newDate(this.props.answer.date)}
-          <span>| Helpful?
-            <span id="answer-helpfulness">
-              <span> <u onClick={this.handleHelpfulAnswerClick}>Yes</u>
+        <div id="sellerInfo">
+        <span>by {this.answererName()}, {this.newDate(this.props.answer.date)}</span>
+          <span >| Helpful?
+            <span >
+              <span id="answer-helpfulness"> <u onClick={this.handleHelpfulAnswerClick}>Yes</u>
                 ({this.state.helpfulACount}) |
               </span>
             </span>
           </span>
-          <span id="report"><u>Report</u></span>
+          <span id="report" className="answer-report-btn">{!this.state.reported ?  <span onClick={this.handleReportClick}>Report</span> : <u>Reported</u>}</span>
         </div>
       </div>
     )

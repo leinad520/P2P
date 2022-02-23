@@ -1,0 +1,23 @@
+.answers-list {
+  overflow: auto;
+  height: 250px;
+}
+
+.matt-bold-font {
+  font-size: x-small;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-style: italic;
+  font-weight: bold;
+
+}
+
+.answer-block {
+  display: flex;
+  width: 100%;
+}
+
+.question {
+  font-weight: bold;
+}

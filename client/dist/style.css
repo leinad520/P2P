@@ -784,10 +784,10 @@ tr:nth-child(even) {
 /* .questions-answers-main {
 } */
 
-.questions-answers-main {
+/* .questions-answers-main {
   display: relative;
   max-width: 85%;
-}
+} */
 
 
 .searchContainer {
@@ -840,6 +840,7 @@ tr:nth-child(even) {
 #add-answer-btn {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .question-utility {
@@ -848,6 +849,7 @@ tr:nth-child(even) {
 
 #q-helpful {
   font-size: smaller;
+  cursor: pointer;
 }
 
 .answerBody {
@@ -859,6 +861,7 @@ tr:nth-child(even) {
 
 .add-answer-modal-container {
   display: flex;
+  border-radius: 15px;
   align-items: flex-start;
   justify-content: center;
   height: 100%;
@@ -924,7 +927,7 @@ tr:nth-child(even) {
   width: 95%;
   border: 1px solid #CCC;
   background: #FFF;
-  margin: 0 0 5px;
+  margin: 0 0 -3px;
   padding: 5px;
 }
 
@@ -933,7 +936,7 @@ tr:nth-child(even) {
   width: 95%;
   border: 1px solid #CCC;
   background: #FFF;
-  margin: 0 0 5px;
+  margin: 0 0 -3px;
   padding: 5px;
 }
 
@@ -941,6 +944,7 @@ tr:nth-child(even) {
 /* Add Questions Modal */
 .add-question-modal-container {
   display: flex;
+  border-radius: 15px;
   align-items: flex-start;
   justify-content: center;
   height: 100%;
@@ -1041,15 +1045,21 @@ tr:nth-child(even) {
   padding: 5px;
 }
 
+
 #Q {
-  padding-right: 5px;
+  padding: 5px;
   margin: 2px;
 }
 
 #A {
-  padding-right: 5px;
+  font-weight: bold;
+  padding: 5px;
   margin: 2px;
 }
+
+
+/*End Matt Styles*/
+
 
 /* GLOBAL STYLE */
 .animate {

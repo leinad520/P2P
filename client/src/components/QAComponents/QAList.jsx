@@ -1,19 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import QAListEntry from './QAListEntry.jsx';
 
 const QAList = (props) => {
-  // console.log('this is props.data:', props.data);
 
-  let slicedFour = props.questions.results.slice(0, 4);
-  // console.log('this is slicedFour: ', slicedFour);
-  let remainingQs = props.questions.results.slice(4);
+  let filteredSearchArray = () => {
+    if (props.search.length >= 3) {
+      return props.questions.filter((question) => {
+        return question.question_body.toLowerCase().includes(props.search.toLowerCase());
+      });
+    }
+    return props.questions;
+  }
+
+  let sliced = filteredSearchArray().slice(0, props.counter);
 
   return (
   <div>
-  {slicedFour.map((question, index) => {
-    {/* {console.log('question' , props.data.results)} */}
-    return <QAListEntry productId={props.productId} getAllQuestions={props.getAllQuestions} question={question} key={index}/>
-  })}
+    {sliced.map((question, index) => {
+      {/* {console.log('question' , props.data.results)} */}
+      return <QAListEntry productId={props.productId} getAllQuestions={props.getAllQuestions} question={question} key={index}/>
+    })}
   </div>
 )
 };
