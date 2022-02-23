@@ -2,7 +2,7 @@
   color: #333;
   display: flex;
   justify-content: left;
-  gap: 1rem;
+  align-items: center;
 }
 .review-summary {
   font-weight: bold;
@@ -18,6 +18,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 90px;
+  height: 20px;
+  font-size: 1.5rem;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.review-stars img {
+  height: 110%;
+  width: auto;
 }

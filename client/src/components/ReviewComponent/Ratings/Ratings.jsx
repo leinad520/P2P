@@ -50,7 +50,7 @@ const Ratings = ({ meta }) => {
     return (
       <div className="ratings-section">
         <div className="rating-summary-top">
-          <div>{ratingAverage.average}</div>
+          <div className="ratings-score">{ratingAverage.average}</div>
           <StarRating ratingsObjectOrNumber={meta.ratings}/>
         </div>
 

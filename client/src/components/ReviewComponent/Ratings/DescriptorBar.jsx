@@ -18,11 +18,62 @@ const DescriptorBar = (props) => {
 
   const Childdiv = {
     height: '100%',
-    width: `30%`,
+    width: `35%`,
     backgroundColor: '#999',
     borderRadius: 40,
   }
 
+  function returnText(descriptor) {
+    if (descriptor === 'Fit'){
+      return(
+        <>
+        <span>Tight</span>
+        <span>Perfect</span>
+        <span>Loose</span>
+        </>
+      )
+    } else if (descriptor === 'Length') {
+      return(
+        <>
+        <span>Short</span>
+        <span>Perfect</span>
+        <span>Long</span>
+        </>
+      )
+    } else if (descriptor === 'Comfort') {
+      return(
+        <>
+        <span>Bad</span>
+        <span></span>
+        <span>Good</span>
+        </>
+      )
+    } else if (descriptor === 'Quality') {
+      return(
+        <>
+        <span>Low</span>
+        <span></span>
+        <span>High</span>
+        </>
+      )
+    } else if (descriptor === 'Size') {
+      return(
+        <>
+        <span>Loose</span>
+        <span></span>
+        <span>Tight</span>
+        </>
+      )
+    } else if (descriptor === 'Width') {
+      return(
+        <>
+        <span>Narrow</span>
+        <span></span>
+        <span>Wide</span>
+        </>
+      )
+    }
+  }
 
   return (
     <>
@@ -36,9 +87,7 @@ const DescriptorBar = (props) => {
         <div style={Childdiv} />
         <div style={Childdiv} />
         <div className="absolute-descriptor-box">
-          <span>one</span>
-          <span>two</span>
-          <span>three</span>
+          {returnText(props.text)}
         </div>
       </div>
 
