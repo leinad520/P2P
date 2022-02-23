@@ -27,13 +27,13 @@ function StyleSelector() {
               onClick={handleClick}
               name={style.name}
               src={style.photos[0].thumbnail_url}
-              className='styleButtons'
+              className={styles.style_id === style.style_id ? 'chosen styleButtons' : 'styleButtons'}
             ></input>
-            {styles.style_id === style.style_id &&
+            {/* {styles.style_id === style.style_id &&
               <div className='circle'>
                 <span className='selected'>&#10003;</span>
               </div>
-            }
+            } */}
           </div>
         )
       })
@@ -47,7 +47,6 @@ function StyleSelector() {
     let selectedStyle;
     productStyles.forEach(style => {
       if (style.style_id === Number(e.target.value)) {
-        console.log('style match')
         selectedStyle = style;
       }
     });
@@ -55,13 +54,18 @@ function StyleSelector() {
   }
 
   return (
-    <div className='styleContainer'>
-      STYLE > {styles.name}
-      <div className='grid-container'>
-        {renderStyleButtons()}
+    <>
+      <div className='styleContainer'>
+        <div className='grid-container'>
+          <div className='grid'>
+            {renderStyleButtons()}
+          </div>
+        </div>
       </div>
-      <AddToCart currData={styles} />
-    </div>
+      <div className='cart-container'>
+        <AddToCart currData={styles} />
+      </div>
+    </>
   );
 }
 

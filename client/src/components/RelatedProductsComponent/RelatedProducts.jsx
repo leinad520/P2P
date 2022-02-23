@@ -104,7 +104,7 @@ class RelatedProducts extends React.Component {
                 <span className="category">{relatedCardObjs[i].category.toUpperCase()}</span>
                 <span className="name">{relatedCardObjs[i].name}</span>
                 <span>${relatedCardObjs[i].default_price}</span>
-                <StarRating ratingsObjectOrNumber={this.state.relatedCardReviews[i]} />
+                <StarRating className="star-rating" ratingsObjectOrNumber={this.state.relatedCardReviews[i]} />
               </div>
             </div>
           )}

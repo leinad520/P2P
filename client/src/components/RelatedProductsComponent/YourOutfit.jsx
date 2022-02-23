@@ -109,7 +109,7 @@ class YourOutfit extends React.Component {
                 <span className="category">{outfitCardObjs[i].data.category.toUpperCase()}</span>
                 <span className="name">{outfitCardObjs[i].data.name}</span>
                 <span>${outfitCardObjs[i].data.default_price}</span>
-                <StarRating ratingsObjectOrNumber={starReviews[i] ? starReviews[i].data.ratings : null} />
+                <StarRating className="star-rating" ratingsObjectOrNumber={starReviews[i] ? starReviews[i].data.ratings : null} />
               </div>
             </div>
           )}

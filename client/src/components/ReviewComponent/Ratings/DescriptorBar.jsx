@@ -12,7 +12,7 @@ const DescriptorBar = (props) => {
 
   const Parentdiv = {
     margin: '5px 0 5px 0',
-    height: 15,
+    height: 10,
     width: '100%',
   }
 
@@ -26,7 +26,7 @@ const DescriptorBar = (props) => {
 
   return (
     <>
-      <div>{props.text}</div>
+      <div className="meta-descriptor-text">{props.text}</div>
       <div className="meta" style={Parentdiv}>
         <div ref={elInput} id={props.htmlId} className="marker animate"/>
         <div style={Childdiv} />
