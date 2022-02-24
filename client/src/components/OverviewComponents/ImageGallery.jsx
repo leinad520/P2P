@@ -80,7 +80,6 @@ function ImageGallery({ selectedStyle }) {
       let container = {};
 
       selectedStyle.photos.map((photo, index) => {
-        // console.log(photo);
         container[index] = photo.thumbnail_url;
       })
 
@@ -99,7 +98,7 @@ function ImageGallery({ selectedStyle }) {
       return photoSet.map((photo, index) => {
         return (
           <div className='column' key={`column ${index} ${photo.style_id}`}>
-            <img className='thumbnailPhoto' src={photo[1]} />
+              <img key={`${index}, ${photo[0]}, ${photo.style_id}`} className={Number(photo[0]) === currPhotoIndex ? 'thumbnailPhoto chosen' : 'thumbnailPhoto'} src={photo[1]} />
             <input
               type="button"
               className='thumbnail' onClick={() => setCurrPhotoIndex(Number(photo[0]))} />
