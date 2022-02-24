@@ -877,7 +877,7 @@ tr:nth-child(even) {
   align-items: flex-start;
   justify-content: center;
   height: 100%;
-  width: 100%;
+  width: 50%;
   background-color: white;
 }
 
@@ -960,7 +960,7 @@ tr:nth-child(even) {
   align-items: flex-start;
   justify-content: center;
   height: 100%;
-  width: 100%;
+  width: 50%;
   background-color: white;
 }
 

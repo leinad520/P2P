@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.33% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/15</span>
+                <span class='fraction'>2/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.33% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/15</span>
+                <span class='fraction'>2/10</span>
             </div>
         
             
@@ -121,9 +121,7 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,24 +133,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -166,7 +159,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,38 +191,36 @@ import ReviewDate from './ReviewDate.jsx';
 import ReviewLinks from './ReviewLinks.jsx';
 &nbsp;
 &nbsp;
-function <span class="fstat-no" title="function not covered" >chopText </span>(text) {
-<span class="cstat-no" title="statement not covered" >  if (text.length &gt; 100) {</span>
-    let string = <span class="cstat-no" title="statement not covered" >'';</span>
-    let i = <span class="cstat-no" title="statement not covered" >0;</span>
-<span class="cstat-no" title="statement not covered" >    while (string.length &lt; 60) {</span>
-<span class="cstat-no" title="statement not covered" >      string += text[i];</span>
-<span class="cstat-no" title="statement not covered" >      i++;</span>
-    }
-<span class="cstat-no" title="statement not covered" >    return string + '...';</span>
-  } else {
-<span class="cstat-no" title="statement not covered" >    return text;</span>
-  }
-};
-&nbsp;
 const Review = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
+  const [collapsed, setCollapsed] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
   const elAnim = <span class="cstat-no" title="statement not covered" >useRef(null);</span>
 <span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    elAnim.current.style.transform = 'translateX(0%)'</span>
   });
 &nbsp;
+  function <span class="fstat-no" title="function not covered" >onReadMoreHandler </span>() {
+<span class="cstat-no" title="statement not covered" >    setCollapsed(!collapsed)</span>
+  }
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >chopText </span>(text) {
+<span class="cstat-no" title="statement not covered" >    return text.slice(0, 80) + '...';</span>
+  };
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;Card forwardedRef={elAnim} className={`animate`}&gt;
       &lt;div&gt;
-        &lt;ReviewDate rating={props.rating} username={props.username} date={props.date}/&gt;
+        &lt;ReviewDate summary={props.summary} rating={props.rating} username={props.username} date={props.date}/&gt;
         &lt;h3&gt;{props.title}&lt;/h3&gt;
       &lt;/div&gt;
       &lt;div className="review-text"&gt;
-        {chopText(props.text)}
+        {collapsed ? &lt;span&gt;{props.text}&lt;/span&gt; : &lt;span&gt;{chopText(props.text)}&lt;/span&gt;}
+        {(props.text.length &gt; 150) &amp;&amp; &lt;span onClick={onReadMoreHandler} className="read-more"&gt;{(collapsed) ? '⬆ Collapse text' : '⬇ Read more'}&lt;/span&gt;}
       &lt;/div&gt;
       {(props.photos.length &gt; 0) &amp;&amp; (
-        &lt;div className="review-photo-holder"&gt;
-          {props.photos.map(<span class="fstat-no" title="function not covered" >ph</span>oto =&gt; <span class="cstat-no" title="statement not covered" >&lt;ReviewPhotos key={photo.id} photo={photo}/&gt;)</span>}
+        &lt;div className="review-photo-holder-container"&gt;
+          &lt;div className="review-photo-holder"&gt;
+            {props.photos.map(<span class="fstat-no" title="function not covered" >ph</span>oto =&gt; <span class="cstat-no" title="statement not covered" >&lt;ReviewPhotos key={photo.id} photo={photo}/&gt;)</span>}
+          &lt;/div&gt;
         &lt;/div&gt;
       )}
       {(props.recommend) &amp;&amp;
@@ -250,7 +244,7 @@ export default Review;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Feb 21 2022 16:43:47 GMT-0800 (Pacific Standard Time)
+                at Thu Feb 24 2022 09:37:28 GMT-0800 (Pacific Standard Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

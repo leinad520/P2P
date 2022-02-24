@@ -25,8 +25,8 @@
 .jim-modal {
   z-index: 100;
   transition: all 0.2s ease-in;
-  background-color: #333;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* background-color: #333;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
   display: flex;
   position: fixed;
   flex-direction: column;
