@@ -2,7 +2,6 @@
   width: 100%;
   font-size: 1.25rem;
   line-height: 1.5;
-  color: #333;
 }
 
 .review-text span {
@@ -60,9 +59,9 @@
   gap: 10px;
 }
 
-.review-recommend {
-  color: #444;
-}
+/* .review-recommend {
+
+} */
 
 .read-more {
   margin-top: 10px;

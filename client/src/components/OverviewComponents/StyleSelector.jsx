@@ -29,11 +29,6 @@ function StyleSelector() {
               src={style.photos[0].thumbnail_url}
               className={styles.style_id === style.style_id ? 'chosen styleButtons' : 'styleButtons'}
             ></input>
-            {/* {styles.style_id === style.style_id &&
-              <div className='circle'>
-                <span className='selected'>&#10003;</span>
-              </div>
-            } */}
           </div>
         )
       })

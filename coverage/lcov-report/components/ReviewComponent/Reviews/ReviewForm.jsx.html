@@ -150,7 +150,14 @@
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,13 +244,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React,{useState, useRef, useEffect} from 'react';
-import FormChars from './FormChars.jsx';
-import Review from './Review.jsx';
-import FormStarRating from './FormStarRating.jsx';
 import { onFormSubmit, onFileChange } from './ReviewFormHelpers.jsx';
 import css from './ReviewForm.css';
 import axios from 'axios';
+&nbsp;
+// Imported Components
+import FormStarRating from './FormStarRating.jsx';
+import FormChars from './FormChars.jsx';
+import Review from './Review.jsx';
+&nbsp;
 &nbsp;
 const ReviewForm = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {
   const [imgPreview, setImgPreview] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
@@ -279,45 +290,46 @@ const ReviewForm = <span class="fstat-no" title="function not covered" >(p</span
         &lt;form
           id="review"
           onSubmit={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >onFormSubmit(e, imgPreview, props, form)}</span>
-          onChange={onFormChange}&gt;
-          &lt;h3&gt;Submit a Review&lt;/h3&gt;
-          &lt;h4&gt;Tell us what you think!&lt;/h4&gt;
-          &lt;FormStarRating /&gt;
-          &lt;fieldset&gt;
-            &lt;input name="name" type="text" placeholder="Name" tabIndex="1" autoFocus required&gt;&lt;/input&gt;
-          &lt;/fieldset&gt;
-          &lt;fieldset&gt;
-            &lt;input name="email" type="email" placeholder="Email" tabIndex="2" required&gt;&lt;/input&gt;
-          &lt;/fieldset&gt;
-          {/* delete className select if not needed */}
-          &lt;div className="select" required&gt;
-            &lt;div&gt;Recommmend?&lt;/div&gt;
-            &lt;div&gt;&lt;input name="recommend" type="radio" value="false" required/&gt; No&lt;/div&gt;
-            &lt;div&gt;&lt;input name="recommend" type="radio" value="true" required/&gt; Yes&lt;/div&gt;
-          &lt;/div&gt;
-          &lt;fieldset&gt;
-            &lt;input name="summary" type="text" placeholder="Review Summary" required tabIndex="3" required&gt;&lt;/input&gt;
-          &lt;/fieldset&gt;
-          &lt;fieldset&gt;
-            &lt;textarea name="body" placeholder="Type your Message Here...." tabIndex="4" required&gt;&lt;/textarea&gt;
-          &lt;/fieldset&gt;
-          &lt;fieldset&gt;
-            &lt;FormChars meta={props.meta} /&gt;
-          &lt;/fieldset&gt;
-          {(imgPreview.length) &amp;&amp; (
-            &lt;div className="review-photo-holder"&gt;
-              {imgPreview.map(<span class="fstat-no" title="function not covered" >sr</span>c =&gt; <span class="cstat-no" title="statement not covered" >&lt;img key={src} src={src} /&gt;)</span>}
+          onChange={onFormChange}
+        &gt;
+          &lt;div className="inner-form-container"&gt;
+            &lt;h3&gt;Submit a Review&lt;/h3&gt;
+            &lt;h4&gt;Tell us what you think!&lt;/h4&gt;
+            &lt;FormStarRating /&gt;
+            &lt;fieldset className="form-fields"&gt;
+              &lt;div className="name-and-email"&gt;
+                &lt;input id="email-input" name="name" type="text" placeholder="Name" tabIndex="1" autoFocus required&gt;&lt;/input&gt;
+                &lt;input name="email" type="email" placeholder="Email" tabIndex="2" required&gt;&lt;/input&gt;
+              &lt;/div&gt;
+              &lt;div className="other-fields"&gt;
+                &lt;input className="input-padding-5" name="summary" type="text" placeholder="Review Summary" required tabIndex="3" required&gt;&lt;/input&gt;
+                &lt;textarea className="input-padding-5" name="body" placeholder="Type your Message Here...." tabIndex="4" required&gt;&lt;/textarea&gt;
+              &lt;/div&gt;
+            &lt;/fieldset&gt;
+            {/* delete className select if not needed */}
+            &lt;div className="select" required&gt;
+              &lt;div&gt;Recommmend?&lt;/div&gt;
+              &lt;div&gt;&lt;input name="recommend" type="radio" value="false" required/&gt; No&lt;/div&gt;
+              &lt;div&gt;&lt;input name="recommend" type="radio" value="true" required/&gt; Yes&lt;/div&gt;
             &lt;/div&gt;
-          )}
-          &lt;fieldset className="relative-fieldset"&gt;
-            &lt;label className="custom-file-upload"&gt;
-                &lt;input name="image" id="imageInput" type="file" accept="image/*" multiple="multiple" onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >onFileChange(e, setImgPreview, imgPreview)}</span>/&gt;
-                &lt;i className="fa fa-cloud-upload"&gt;&lt;/i&gt; Upload Images
-            &lt;/label&gt;
-          &lt;/fieldset&gt;
-          &lt;fieldset&gt;
-            &lt;button name="submit" type="submit" id="review-submit" data-submit="...Sending" tabIndex="6"&gt;Submit&lt;/button&gt;
-          &lt;/fieldset&gt;
+            &lt;fieldset&gt;
+              &lt;FormChars meta={props.meta} /&gt;
+            &lt;/fieldset&gt;
+            {(imgPreview.length) &amp;&amp; (
+              &lt;div className="review-photo-holder"&gt;
+                {imgPreview.map(<span class="fstat-no" title="function not covered" >sr</span>c =&gt; <span class="cstat-no" title="statement not covered" >&lt;img key={src} src={src} /&gt;)</span>}
+              &lt;/div&gt;
+            )}
+            &lt;fieldset className="relative-fieldset"&gt;
+              &lt;label className="custom-file-upload"&gt;
+                  &lt;input name="image" id="imageInput" type="file" accept="image/*" multiple="multiple" onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >onFileChange(e, setImgPreview, imgPreview)}</span>/&gt;
+                  &lt;i className="fa fa-cloud-upload"&gt;&lt;/i&gt; Upload Images
+              &lt;/label&gt;
+            &lt;/fieldset&gt;
+            &lt;fieldset&gt;
+              &lt;button name="submit" type="submit" id="review-submit" data-submit="...Sending" tabIndex="6"&gt;Submit&lt;/button&gt;
+            &lt;/fieldset&gt;
+          &lt;/div&gt;
         &lt;/form&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -331,7 +343,7 @@ export default ReviewForm;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Feb 21 2022 16:43:47 GMT-0800 (Pacific Standard Time)
+                at Thu Feb 24 2022 12:05:03 GMT-0800 (Pacific Standard Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

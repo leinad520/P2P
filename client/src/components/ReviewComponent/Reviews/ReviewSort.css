@@ -16,7 +16,6 @@ ul li {
   width: 200px;
 	height: 40px;
 	list-style-type: none;
-	background-color: #333;
 	text-align: center;
 	margin-right: 2px;
 }
@@ -25,8 +24,6 @@ ul li a {
 	line-height: 40px;
 	text-decoration: none;
   text-align: center;
-	color: white;
-
 }
 
 
@@ -66,7 +63,7 @@ ul li a {
 
 .menu-item:hover {
   opacity: 1;
-	background-color: tomato;
+	background-color: red;
   /* transition: all 0.5s ease-in; */
 }
 
@@ -81,7 +78,6 @@ ul li ul li {
 
   transition: all 1s ease-in;
   cursor: pointer;
-  color: whitesmoke;
   text-align: center;
 	display: none;
   opacity: 0;

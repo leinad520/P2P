@@ -1,10 +1,13 @@
 import React, { useState, useImperativeHandle, forwardRef, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-const modalElement = document.getElementById('modal-root');
+// const modalElement = document.createElement('div');
+// modalElement.setAttribute('id', 'modal-root')
 
 export function Modal({ children, defaultOpened = false }, ref) {
   const [isOpen, setIsOpen] = useState(defaultOpened);
+
+  const modalElement = document.getElementById('modal-root');
 
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),
@@ -26,6 +29,7 @@ export function Modal({ children, defaultOpened = false }, ref) {
     isOpen ? <div onClick={() => setIsOpen(false)} className='modal'>{children}</div> : null,
     modalElement
   )
+
 }
 
 export default forwardRef(Modal)
