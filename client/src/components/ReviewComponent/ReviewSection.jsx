@@ -6,23 +6,27 @@ import css from './ReviewSection.css';
 import ProductContext from '../Context/ProductContext.jsx';
 
 const ReviewSection = (props) => {
-  const [reviews, setReviews] = useState({});
+  // holds review data
+  const [maxReviewCount, setMaxReviewCount] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  // metadata for each product
   const [meta, setMeta] = useState({});
+  // state for sorting reviews by helpfulness, relevant, new
   const [sort, setSort] = useState(1);
+  // state for sorting reviews by user-clicked Product Ratings bar
+  const [barRating, setBarRating] = useState(0);
 
   const productContext = useContext(ProductContext);
-  const { productId, getMetaData: getMeta } = productContext;
-  // let id = 42371;
+  const { productId, getMetaData, productMeta } = productContext;
 
   function getReviews(arg = '1') {
     axios.get(`/productreviews/${productId}/${arg}`)
-    .then(data => setReviews(data.data))
-    .catch(err => console.log(err));
-  }
-
-  function getMetaData() {
-    axios(`/productmeta/${productId}`)
-    .then(data => setMeta(data.data))
+    .then(data => {
+      setReviews(data.data.results);
+      if (maxReviewCount === 0) {
+        setMaxReviewCount(data.data.results.length);
+      }
+    })
     .catch(err => console.log(err));
   }
 
@@ -30,24 +34,27 @@ const ReviewSection = (props) => {
     setSort(val);
   }
 
-  // componentDidUpdate for sort state:
   useEffect(() => {
-    getReviews(sort);
-  }, [sort])
-
-  // on load:
-  useEffect(() => {
-    getReviews(sort);
-    getMetaData();
-    getMeta(productId);
-  }, [productId])
+    if (barRating === 0) {
+      getReviews(sort);
+    } else {
+      let reviewsBySelectedBar = reviews.filter(review => review.rating === barRating);
+      if (reviewsBySelectedBar.length === 0) {
+        alert(`No ${barRating} Star Reviews`);
+      } else {
+        setReviews(reviewsBySelectedBar);
+      }
+    }
+    getMetaData(productId);
+  }, [productId, sort, barRating]);
 
   return (
     <section className="ratings-reviews-section">
-      {/* {console.log(colors)} */}
-      <Ratings meta={meta} />
+      <Ratings meta={productMeta} setBarRating={setBarRating} />
       <Reviews
-        meta={meta}
+        maxReviewCount={maxReviewCount}
+        setBarRating={setBarRating}
+        meta={productMeta}
         sort={sort}
         sortedByOnChangeHandler={sortedByOnChangeHandler}
         getReviews={getReviews}

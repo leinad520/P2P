@@ -7,80 +7,87 @@ import css from './Reviews.css';
 import ProductContext from '../../Context/ProductContext.jsx';
 
 const Reviews = ({
-                  sortedByOnChangeHandler,
-                  reviews,
-                  productId,
-                  getReviews,
-                  onHelpfulClick,
-                  sort,
-                  // meta
-                }) => {
+    sortedByOnChangeHandler,
+    reviews,
+    productId,
+    getReviews,
+    onHelpfulClick,
+    sort,
+    setBarRating,
+    maxReviewCount
+  }) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(3);
   const productContext = useContext(ProductContext);
   const { productMeta } = productContext;
 
-
-  if (reviews.product === undefined) {
+  if (reviews.length < 1) {
     return <div data-testid="loading">loading...</div>
   } else {
 
-    function showModal () {
-      setShow(!show);
-    };
+  function showModal () {
+    setShow(!show);
+  };
 
-    let allReviewsObj = {
-      reviews: reviews.results,
-      showReviews: () => {
-        const reviewsToShow = allReviewsObj.reviews.slice(0, count);
-        return reviewsToShow.map(review => {
-          return (
-            <Review
-              sort={sort}
-              getReviews={getReviews}
-              data-testid="resolved"
-              onHelpfulClick={onHelpfulClick}
-              key={review.review_id}
-              reviewId={review.review_id}
-              rating={review.rating}
-              summary={review.summary}
-              helpfulness={review.helpfulness}
-              text={review.body}
-              username={((review.reviewer_name) ? review.reviewer_name : 'anonymous')}
-              date={review.date}
-              recommend={review.recommend}
-              response={review.response}
-              photos={review.photos}
-            />
-          );
-        })
-      },
-      showThreeMoreReviews: () => {
-        setCount(count + 3);
-      },
-    };
+  let allReviewsObj = {
+    showReviews: () => {
+      const reviewsToShow = reviews.slice(0, count);
 
-    return (
-      <div className="reviews-section">
-        <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
-
-        { allReviewsObj.showReviews() }
-
-        <div className="review-section-buttons">
-          <button className="btn" onClick={e => {allReviewsObj.showThreeMoreReviews()}}>Show More</button>
-            {/* MODAL BUTTON */}
-          <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
-        </div>
-
-        <ModalWindow onClose={showModal} show={show}>
-          <ReviewForm
-            onClose={showModal}
-            meta={productMeta}
+      return reviewsToShow.map(review => {
+        return (
+          <Review
+            sort={sort}
             getReviews={getReviews}
-            productId={productId}
+            data-testid="resolved"
+            onHelpfulClick={onHelpfulClick}
+            key={review.review_id}
+            reviewId={review.review_id}
+            rating={review.rating}
+            summary={review.summary}
+            helpfulness={review.helpfulness}
+            text={review.body}
+            username={((review.reviewer_name) ? review.reviewer_name : 'anonymous')}
+            date={review.date}
+            recommend={review.recommend}
+            response={review.response}
+            photos={review.photos}
           />
-        </ModalWindow>
+        );
+      })
+    },
+    showThreeMoreReviews: () => {
+      setCount(count + 3);
+    },
+  };
+
+  return (
+    <div className="reviews-section">
+
+      <div className="sort-review-show-all-buttons">
+        <ReviewSort sortedByOnChangeHandler={sortedByOnChangeHandler} />
+       {(reviews.length !== maxReviewCount) && <button className="show-all-reviews-btn" onClick={() => {setBarRating(0)}}>
+          Show All Reviews
+        </button>}
+
       </div>
+
+      { allReviewsObj.showReviews() }
+
+      <div className="review-section-buttons">
+        {(count < reviews.length) && <button className="btn" onClick={e => {allReviewsObj.showThreeMoreReviews()}}>Show More</button>}
+          {/* MODAL BUTTON */}
+        <button className="add-review btn" onClick={e => {showModal()}}>Add a Review</button>
+      </div>
+
+      <ModalWindow onClose={showModal} show={show}>
+        <ReviewForm
+          onClose={showModal}
+          meta={productMeta}
+          getReviews={getReviews}
+          productId={productId}
+        />
+      </ModalWindow>
+    </div>
   )
   }
 }

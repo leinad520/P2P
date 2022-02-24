@@ -7,46 +7,76 @@ const FormChars = ({meta}) => {
 
   return metaArray.map(attribute => {
     const id = attribute[1].id;
+
+    const attribs = {}
+
+    if (attribute[0] === 'Fit') {
+      attribs.one = 'Too tight';
+      attribs.two = 'Somewhat tight';
+      attribs.three = 'Perfect';
+      attribs.four = 'Somewhat loose';
+      attribs.five = 'Too loose';
+    } else if (attribute[0] === 'Length') {
+      attribs.one = 'Too short';
+      attribs.two = 'Somewhat short';
+      attribs.three = 'Perfect';
+      attribs.four = 'Somewhat long';
+      attribs.five = 'Too long';
+    } else if (attribute[0] === 'Comfort') {
+      attribs.one = 'Not comfy';
+      attribs.two = 'Comfy-ish';
+      attribs.three = 'Comfy';
+      attribs.four = 'Very comfy';
+      attribs.five = 'My lord';
+    }  else if (attribute[0] === 'Quality') {
+      attribs.one = 'Poor';
+      attribs.two = 'OK';
+      attribs.three = 'Solid';
+      attribs.four = 'Great';
+      attribs.five = 'Amazing';
+    } else if (attribute[0] === 'Size') {
+      attribs.one = 'Poor';
+      attribs.two = 'OK';
+      attribs.three = 'Solid';
+      attribs.four = 'Great';
+      attribs.five = 'Amazing';
+    } else if (attribute[0] === 'Width') {
+      attribs.one = 'Poor';
+      attribs.two = 'OK';
+      attribs.three = 'Solid';
+      attribs.four = 'Great';
+      attribs.five = 'Amazing';
+    }
+
     return (
       <div className="attribute-container" key={attribute[1].id}>
-        <label htmlFor={attribute[0]}>{attribute[0]}</label>
-        <div className="attribute-radio">
-          <input type="radio" id={id} name={id} data-label="attribute" value={1} />
-          <input type="radio" id={id} name={id} data-label="attribute" value={2} />
-          <input type="radio" id={id} name={id} data-label="attribute" value={3} />
-          <input type="radio" id={id} name={id} data-label="attribute" value={4} />
-          <input type="radio" id={id} name={id} data-label="attribute" value={5} />
-        </div>
-        <div className="attribute-descriptor">
-          { (attribute[0] === 'Fit') &&
-            <>
-              <div className="attribute-left">Too loose</div>
-              <div className="attribute-middle">Just right</div>
-              <div className="attribute-right">Too tight</div>
-            </>
-          }
-          { (attribute[0] === 'Length') &&
-            <>
-              <div className="attribute-left">Too short</div>
-              <div className="attribute-middle">Just right</div>
-              <div className="attribute-right">Too long</div>
-            </>
-          }
-          { (attribute[0] === 'Comfort') &&
-            <>
-              <div className="attribute-left">Sandpaper</div>
-              <div className="attribute-middle">Just right</div>
-              <div className="attribute-right">Never taking them off</div>
-            </>
-          }
-          { (attribute[0] === 'Quality') &&
-            <>
-              <div className="attribute-left">Garbage</div>
-              <div className="attribute-middle">OK</div>
-              <div className="attribute-right">Great Value</div>
-            </>
-          }
-        </div>
+        <label className="radio-label" htmlFor={attribute[0]}>{attribute[0]}</label>
+
+          <div className="attribute-group">
+            <input className="radio-form-button" type="radio" id={id} name={id} data-label="attribute" value={1} />
+            <div>{attribs.one}</div>
+          </div>
+
+          <div className="attribute-group">
+            <input className="radio-form-button" type="radio" id={id} name={id} data-label="attribute" value={2} />
+            <div>{attribs.two}</div>
+          </div>
+
+          <div className="attribute-group">
+            <input className="radio-form-button" type="radio" id={id} name={id} data-label="attribute" value={3} />
+            <div>{attribs.three}</div>
+          </div>
+
+          <div className="attribute-group">
+            <input className="radio-form-button" type="radio" id={id} name={id} data-label="attribute" value={4} />
+            <div>{attribs.four}</div>
+          </div>
+
+          <div className="attribute-group">
+            <input className="radio-form-button" type="radio" id={id} name={id} data-label="attribute" value={5} />
+            <div>{attribs.five}</div>
+          </div>
+
       </div>
       )
   });

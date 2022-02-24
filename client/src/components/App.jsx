@@ -17,7 +17,7 @@ const App = (props) => {
   // 🧠
   // 🧠
 
-  console.log('i hate this bundle')
+  // console.log('i hate this bundle')
 
   const newId = useParams().id;
 
@@ -31,9 +31,9 @@ const App = (props) => {
         <div className='darkmode-wrapper'>
           <DarkMode />
         </div>
-        <Overview />
-        <RelatedProductsAndOutfit productId={productId} />
-        <QA productId={productId} />
+        {/* <Overview /> */}
+        {/* <RelatedProductsAndOutfit productId={productId} /> */}
+        {/* <QA productId={productId} /> */}
         <ReviewSection />
       </section>
     );
