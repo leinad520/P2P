@@ -19,7 +19,7 @@ const ProgressBar = (props) => {
   const Childdiv = {
     height: '100%',
     // width: `${props.percentage}%`,
-    backgroundColor: '#333',
+    // backgroundColor: '#333',
     borderRadius: 40,
   }
 
