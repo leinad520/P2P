@@ -22,7 +22,11 @@ const Review = (props) => {
   }
 
   function chopText (text) {
-    return text.slice(0, 80) + '...';
+    if (text.length > 100) {
+      return text.slice(0, 100) + '...';
+    } else {
+      return text;
+    }
   };
 
   return (

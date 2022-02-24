@@ -275,8 +275,12 @@
 <a name='L210'></a><a href='#L210'>210</a>
 <a name='L211'></a><a href='#L211'>211</a>
 <a name='L212'></a><a href='#L212'>212</a>
+<<<<<<< HEAD
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+=======
+<a name='L213'></a><a href='#L213'>213</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,29 +385,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+=======
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -431,6 +421,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -489,6 +480,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
+=======
+<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import axios from 'axios';
@@ -508,6 +519,7 @@ const QAListEntry = <span class="fstat-no" title="function not covered" >(p</spa
   // Filter all seller answers out. Sort that array by helpfulness.
   // In non-seller answer array, sort answers by most helpful.
   // Finally, concat seller array with answer array.
+<<<<<<< HEAD
 &nbsp;
   // SORT ANSWER LOGIC:
   //sort answers array with seller as priority
@@ -548,6 +560,56 @@ const QAListEntry = <span class="fstat-no" title="function not covered" >(p</spa
 <span class="cstat-no" title="statement not covered" >    array[i].answerer_name === "Seller" ? left.push(array[i]) : right.push(array[i]);</span>
   }
 <span class="cstat-no" title="statement not covered" >  return quicksortHelpful(left).concat(quicksortHelpful(right));</span>
+=======
+&nbsp;
+  // SORT ANSWER LOGIC:
+  //sort answers array with seller as priority
+    //create left and right array
+    //if answer is from seller, push to left array
+    //else, push answer to right array
+    //concat answers
+&nbsp;
+  let answers = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >  for (let answer in props.question.answers) {</span>
+<span class="cstat-no" title="statement not covered" >    answers.push(props.question.answers[answer]);</span>
+  }
+&nbsp;
+  // console.log(answers);
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >quicksortHelpful(</span>array) {
+<span class="cstat-no" title="statement not covered" >    if (array.length &lt;= 1) {</span>
+<span class="cstat-no" title="statement not covered" >      return array;</span>
+    }
+    let pivot = <span class="cstat-no" title="statement not covered" >array[0];</span>
+    let left = <span class="cstat-no" title="statement not covered" >[];</span>
+    let right = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (var i = <span class="cstat-no" title="statement not covered" >1;</span> i &lt; array.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      array[i].helpfulness &gt; pivot.helpfulness ? left.push(array[i]) : right.push(array[i])</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return quicksortHelpful(left).concat(pivot, quicksortHelpful(right));</span>
+>>>>>>> master
+  }
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >quicksortSeller(</span>array) {
+<span class="cstat-no" title="statement not covered" >    if (array.length &lt;= 1) {</span>
+<span class="cstat-no" title="statement not covered" >      return array;</span>
+    }
+&nbsp;
+<<<<<<< HEAD
+  let sortedArray = <span class="cstat-no" title="statement not covered" >quicksortSeller(answers);</span>
+  // console.log('this is sortedArray:', sortedArray);
+&nbsp;
+  //for initial load and load more answers button click load
+  let slicedAns = <span class="cstat-no" title="statement not covered" >sortedArray.slice(0, answersCount);</span>
+&nbsp;
+=======
+  var left = <span class="cstat-no" title="statement not covered" >[];</span>
+  var right = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; array.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    array[i].answerer_name === "Seller" ? left.push(array[i]) : right.push(array[i]);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return quicksortHelpful(left).concat(quicksortHelpful(right));</span>
   }
 &nbsp;
 &nbsp;
@@ -557,6 +619,7 @@ const QAListEntry = <span class="fstat-no" title="function not covered" >(p</spa
   //for initial load and load more answers button click load
   let slicedAns = <span class="cstat-no" title="statement not covered" >sortedArray.slice(0, answersCount);</span>
 &nbsp;
+>>>>>>> master
   let handleHelpfulQuestionClick = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
     const { question_id } = <span class="cstat-no" title="statement not covered" >props.question;</span>
 <span class="cstat-no" title="statement not covered" >    if (!helpful) {</span>
@@ -589,6 +652,10 @@ const QAListEntry = <span class="fstat-no" title="function not covered" >(p</spa
   }
   //set intiial answers state to length of all answers
   //attach function to onclick of load more answers button
+<<<<<<< HEAD
+=======
+&nbsp;
+>>>>>>> master
 &nbsp;
   // let handleMoreAnsweredButton = () =&gt; {
   //   if ()
@@ -611,11 +678,19 @@ const QAListEntry = <span class="fstat-no" title="function not covered" >(p</spa
             &lt;span&gt;{'     '}&lt;/span&gt;
             &lt;span className="add-answer"&gt;
               &lt;button id="add-answer-btn" onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >showModal()}</span>&gt;
+<<<<<<< HEAD
                 &lt;u&gt;Add Answer&lt;/u&gt;
               &lt;/button&gt;
               &lt;div&gt;
               &lt;ModalWindow id="matt-modal" onClose={showModal} show={show}&gt;
                 &lt;AddAnswerForm getAllQuestions={props.getAllQuestions} showModal={showModal} props={props}/&gt;
+=======
+                &lt;u className='add-button-text'&gt;Add Answer&lt;/u&gt;
+              &lt;/button&gt;
+              &lt;div&gt;
+              &lt;ModalWindow id="matt-modal" onClose={showModal} show={show}&gt;
+                &lt;AddAnswerForm showModal={showModal} props={props}/&gt;
+>>>>>>> master
               &lt;/ModalWindow&gt;
               &lt;/div&gt;
             &lt;/span&gt;
@@ -631,7 +706,12 @@ const QAListEntry = <span class="fstat-no" title="function not covered" >(p</spa
               })}
             &lt;/span&gt;
           &lt;/div&gt;
+<<<<<<< HEAD
         {(answers.length &gt; 2 ) &amp;&amp; &lt;button id="see-more-answers-btn" className="btn matt-bold-font" onClick={onShowMoreAnswersClick}&gt;{(answersCount &gt; 2) ? 'Collapse Answers' : 'See More Answers'}&lt;/button&gt;}
+=======
+&nbsp;
+        {(answers.length &gt; 2) &amp;&amp; &lt;button id="see-more-answers-btn" className="btn matt-bold-font" onClick={onShowMoreAnswersClick}&gt;{(answersCount &gt; 2) ? 'Collapse Answers' : 'See More Answers'}&lt;/button&gt;}
+>>>>>>> master
       &lt;/div&gt;
     &lt;/&gt;
   );
@@ -709,7 +789,11 @@ export default QAListEntry;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at Thu Feb 24 2022 09:37:28 GMT-0800 (Pacific Standard Time)
+=======
+                at Thu Feb 24 2022 12:05:03 GMT-0800 (Pacific Standard Time)
+>>>>>>> master
             </div>
         <script src="../../prettify.js"></script>
         <script>

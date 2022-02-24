@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>7/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>1/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">28% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>7/25</span>
             </div>
         
             
@@ -148,35 +148,25 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -218,20 +208,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -246,27 +236,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >AddToCart(</span>{ currData, defaultStyle }) {
+function AddToCart({ currData, defaultStyle }) {
 &nbsp;
-  const [skus, setSkus] = <span class="cstat-no" title="statement not covered" >useState('');</span>
-  const [skuSize, setSkuSize] = <span class="cstat-no" title="statement not covered" >useState('');</span>
+  const [skus, setSkus] = useState('');
+  const [skuSize, setSkuSize] = useState('');
 &nbsp;
-  const handleSizeChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>kus) =&gt; {</span>
+  const handleSizeChange = <span class="fstat-no" title="function not covered" >(s</span>kus) =&gt; {
 <span class="cstat-no" title="statement not covered" >    setSkuSize(skus);</span>
   }
 &nbsp;
-  const renderSizes = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+  const renderSizes = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
     let results = <span class="cstat-no" title="statement not covered" >[];</span>
     const sizeContainer = <span class="cstat-no" title="statement not covered" >currData.skus;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    for (let skus in sizeContainer) {</span>
 <span class="cstat-no" title="statement not covered" >      if (skus !== 'null') {</span>
 <span class="cstat-no" title="statement not covered" >        results.push(</span>
-          // &lt;option key={skus} value={skus}&gt;{sizeContainer[skus].size}&lt;/option&gt;
-          // &lt;input type='radio' name={skus} key={skus} value={sizeContainer[skus].size}&gt;&lt;/input&gt;
-          // &lt;label key={skus}&gt;{sizeContainer[skus].size}
-          //   &lt;input type='radio' value={skus}&gt;&lt;/input&gt;
-          // &lt;/label&gt;
           &lt;div className={skuSize === skus ? 'size chosen-size' : 'size'} key={skus}&gt;
             &lt;input type='radio' className='size-button-input' name='size' value={skus} id={skus}/&gt;
             &lt;label htmlFor={skus} className='size-label' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleSizeChange(skus)}</span>&gt;
@@ -308,12 +293,12 @@ function <span class="fstat-no" title="function not covered" >AddToCart(</span>{
   //   }
   // }
 &nbsp;
-  const onSizeChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+  const onSizeChange = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >    document.getElementById('quantity').disabled = false;</span>
 <span class="cstat-no" title="statement not covered" >    setSkus(e.target.value)</span>
   }
 &nbsp;
-  const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+  const onSubmit = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >    console.log(skuSize)</span>
 <span class="cstat-no" title="statement not covered" >    axios.post(`cart/${skuSize}`)</span>
@@ -321,9 +306,9 @@ function <span class="fstat-no" title="function not covered" >AddToCart(</span>{
       .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.log(err))</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
       &lt;form className='formData' onSubmit={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >onSubmit(e)}</span>&gt;
-        {Object.keys(currData).length &amp;&amp; renderSizes()}
+        {Object.keys(currData).length &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >renderSizes()}</span>
         {/* &lt;select id='quantity' disabled&gt;
           {renderQuantity()}
         &lt;/select&gt; */}
@@ -340,7 +325,11 @@ export default AddToCart;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at Thu Feb 24 2022 09:37:28 GMT-0800 (Pacific Standard Time)
+=======
+                at Thu Feb 24 2022 12:05:03 GMT-0800 (Pacific Standard Time)
+>>>>>>> master
             </div>
         <script src="../../prettify.js"></script>
         <script>

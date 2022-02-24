@@ -2,12 +2,13 @@
   width: 100%;
   font-size: 1.25rem;
   line-height: 1.5;
-  color: #333;
 }
 
 .review-text span {
   width: 100%;
   word-wrap: break-word;
+  display: inline-block;
+  max-width: 900px;
 }
 
 .review-photo-holder {
@@ -58,9 +59,9 @@
   gap: 10px;
 }
 
-.review-recommend {
-  color: #444;
-}
+/* .review-recommend {
+
+} */
 
 .read-more {
   margin-top: 10px;

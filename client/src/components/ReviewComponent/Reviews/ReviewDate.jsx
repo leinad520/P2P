@@ -4,13 +4,7 @@ import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
 import css from './ReviewDate.css';
 
 const ReviewDate = ({ summary, rating, username, date }) => {
-  const momentDate = moment(date);
-  const reviewDate = {
-    year: momentDate.year(),
-    month: (momentDate.month() + 1),
-    day: (momentDate.day() +  + 1)
-  };
-
+  const newDate = new Date(date);
   return (
     <>
       <div className="review-data-container">
@@ -18,7 +12,7 @@ const ReviewDate = ({ summary, rating, username, date }) => {
         <div className="review-summary">{summary}</div>
       </div>
       <div className="date-box">
-        <span>Reviewed by {username} on {reviewDate.month}/{reviewDate.day}/{reviewDate.year}</span>
+        <span>Reviewed by {username} on {newDate.getMonth() + 1}/{newDate.getDate() + 1}/{newDate.getFullYear()}</span>
       </div>
     </>
   );
