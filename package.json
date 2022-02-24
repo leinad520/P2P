@@ -8,7 +8,9 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack --config ./webpack.config.js  -w",
-    "test": "jest"
+    "test": "jest",
+    "react-prod": "webpack",
+    "startprod": "node server/server.js"
   },
   "jest": {
     "setupFilesAfterEnv": [

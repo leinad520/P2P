@@ -6,7 +6,7 @@ const ReviewLinks = ({ reviewId, helpfulness }) => {
   const [helpfulCount, setHelpfulCount] = useState(helpfulness);
 
   function onHelpfulClick(reviewId) {
-    axios({ method: 'put', url: 'http://localhost:3000/helpful', data: { reviewId }})
+    axios.put(`/helpful`, { reviewId })
       .then(success => {
         setHelpfulCount(helpfulCount + 1);
       })
