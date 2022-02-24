@@ -1,6 +1,6 @@
 import React from 'react';
 import StarRating from '../../sharedComponents/starComponent/StarRating.jsx';
-import ProgressBar from './RatingsProgressBar.jsx';
+import RatingsProgressBar from './RatingsProgressBar.jsx';
 import DescriptorBar from './DescriptorBar.jsx';
 import css from './Ratings.css';
 
@@ -29,14 +29,12 @@ function objectOfRatings (robj) {
   return obj;
 }
 
-const Ratings = ({ meta }) => {
+const Ratings = ({ meta, setBarRating}) => {
   if (meta.ratings === undefined) {
     return <div>loading...</div>
   } else {
     const ratingNum = Object.keys(meta.ratings).map(rating => Number(rating));
     const ratingCount = Object.values(meta.ratings).map(count => Number(count));
-    // console.log(ratingNum);
-    // console.log(ratingCount);
     const ratingObj = Object.entries(meta.ratings).map(arr => {
       return [arr[0], Number(arr[1])];
     });
@@ -60,35 +58,35 @@ const Ratings = ({ meta }) => {
             <div className="progress-descriptor">
               5 Star
             </div>
-            <ProgressBar percentage={(ratingObject['5'] / ratingAverage.totalRatings) * 100} />
+            <RatingsProgressBar setBarRating={setBarRating} val={5} percentage={(ratingObject['5'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <div className="progress-descriptor">
               4 Star
             </div>
-            <ProgressBar percentage={(ratingObject['4'] / ratingAverage.totalRatings) * 100} />
+            <RatingsProgressBar setBarRating={setBarRating} val={4} percentage={(ratingObject['4'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <div className="progress-descriptor">
               3 Star
             </div>
-            <ProgressBar percentage={(ratingObject['3'] / ratingAverage.totalRatings) * 100} />
+            <RatingsProgressBar setBarRating={setBarRating} val={3} percentage={(ratingObject['3'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <div className="progress-descriptor">
               2 Star
             </div>
-            <ProgressBar percentage={(ratingObject['2'] / ratingAverage.totalRatings) * 100} />
+            <RatingsProgressBar setBarRating={setBarRating} val={2} percentage={(ratingObject['2'] / ratingAverage.totalRatings) * 100} />
           </div>
 
           <div className="progress-bar">
             <div className="progress-descriptor">
               1 Star
             </div>
-            <ProgressBar percentage={(ratingObject['1'] / ratingAverage.totalRatings) * 100} />
+            <RatingsProgressBar setBarRating={setBarRating} val={1} percentage={(ratingObject['1'] / ratingAverage.totalRatings) * 100} />
           </div>
         </div>
 

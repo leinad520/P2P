@@ -18,9 +18,9 @@ const ProductState = ({ children }) => {
   const initalState = {
     product: {},
     styles: {},
+    productMeta: {},
     productStyles: [],
     productId: null,
-    productMeta: {},
     error: null,
   }
 
@@ -86,6 +86,7 @@ const ProductState = ({ children }) => {
   }
 
   const getMetaData = (productId) => {
+    console.log(productId);
     axios.get(`/productmeta/${productId}`)
     .then(data => {
       // setMeta(data.data)

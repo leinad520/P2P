@@ -14,8 +14,12 @@ const modalWindow = (props) => {
   const classes = `${props.className}` + ` jim-modal animate`;
 
   if (!props.show) {
+    // document.body.setAttribute('style', '');
+    // window.scrollTo(0, this.windowOffset);
     return null;
   } else {
+    // this.windowOffset = window.scrollY;
+    // document.body.setAttribute('style', `position: fixed; top: -${this.windowOffset}px; left: 0; right: 0;`);
     return (
       <>
       <div ref={elInput} className={classes}>

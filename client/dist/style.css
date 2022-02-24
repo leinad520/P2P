@@ -1132,11 +1132,14 @@ tr:nth-child(even) {
 .review-container {
   transform: translateX(250%);
   padding: 15px;
+  position: relative;
+  padding-top: 15px;
   width: 100%;
-  margin-top: 25px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 1;
 }
 .review-container.visible {
   opacity: 1;

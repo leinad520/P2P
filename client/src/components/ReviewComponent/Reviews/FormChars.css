@@ -1,7 +1,32 @@
 .attribute-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.radio-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.radio-holder {
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.attribute-group {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .attribute-radio {
@@ -18,13 +43,15 @@
 }
 
 .attribute-container label {
-  font-size: small;
-  font-style: italic;
-  color: rgba(43, 35, 35, 0.632);
+  font-size: large;
+  color: #333;
 }
 
+input .radio-form-button {
+  width: 100px;
+}
 .attribute-left {
-  display: flex;
+  /* display: flex; */
   justify-content: left;
   width: 100px;
 }
@@ -35,6 +62,6 @@
 }
 .attribute-right {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   width: 100px;
 }
