@@ -29,9 +29,9 @@ const App = (props) => {
         <div className='darkmode-wrapper'>
           <DarkMode />
         </div>
-        {/* <Overview /> */}
-        {/* <RelatedProductsAndOutfit productId={productId} /> */}
-        {/* <QA productId={productId} /> */}
+        <Overview />
+        <RelatedProductsAndOutfit productId={productId} />
+        <QA />
         <ReviewSection />
       </section>
     );
