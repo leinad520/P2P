@@ -73,6 +73,7 @@ const QA = () => {
 
 
 
+
   return (
     <>
       {/* <div className="questions-answers-main"> */}
@@ -80,7 +81,7 @@ const QA = () => {
       <h3>QUESTION & ANSWERS</h3>
         <section >
           <div className="searchContainer">
-            <form className="searchForm">
+            <form className="searchForm" onSubmit={(e) => {e.preventDefault()}}>
               <input className="searchInput" onChange={searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
               <button id="q-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
@@ -94,9 +95,9 @@ const QA = () => {
             {moreAnswerQuestionsButton()}
             <span className="add-question">
             <button id="add-question-btn" className="btn matt-btn" onClick={e => showModal()}>Add a Question           +</button>
-            <div>
-              <ModalWindow id="matt-modal" onClose={showModal} show={show}>
-                <AddQuestionForm showModal={showModal} product={product}/>
+            <div className="matt-modal">
+              <ModalWindow className="matt-modal" onClose={showModal} show={show}>
+                <AddQuestionForm getAllQuestions={getAllQuestions} showModal={showModal} product={product}/>
               </ModalWindow>
             </div>
             </span>
