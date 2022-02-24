@@ -27,6 +27,8 @@
   flex: 1 1 30%;
   background: url(https://bit.ly/3sF5qUD);
   background-size: cover;
+	border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
   background-position-x: 70%;
 }
 
@@ -38,6 +40,8 @@
 	background:#f9f9f9;
   width: 100%;
 	height: 100%;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20px;
 }
 
 #review h3 {
@@ -117,6 +121,7 @@ fieldset {
 	color:#333;
 	margin:0 0 5px;
 	padding:10px;
+	border-radius: 20px;
 	font-size:15px;
 }
 

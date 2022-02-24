@@ -118,7 +118,7 @@ const QAListEntry = (props) => {
             <span>{'     '}</span>
             <span className="add-answer">
               <button id="add-answer-btn" onClick={e => showModal()}>
-                <u>Add Answer</u>
+                <u className='add-button-text'>Add Answer</u>
               </button>
               <div>
               <ModalWindow id="matt-modal" onClose={showModal} show={show}>
