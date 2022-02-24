@@ -7,10 +7,7 @@ export async function onFormSubmit (e, imgArrays, props, form) {
   let arrOfS3UrlPromises = [];
 
   imgArrays.forEach(img => {
-    let getUrl = axios({
-      method: 'GET',
-      url: 'http://localhost:3000/s3Url'
-    }).then(data => data.data);
+    let getUrl = axios.get('/s3Url').then(data => data.data);
     arrOfS3UrlPromises.push(getUrl);
   });
 
@@ -39,11 +36,8 @@ export async function onFormSubmit (e, imgArrays, props, form) {
   let productId = props.productId;
   form.photos = s3photoUrlsArray;
   form.product_id = Number(props.productId);
-  axios({
-    method: 'post',
-    url: 'http://localhost:3000/review',
-    data: form
-  })
+
+  axios.post(`/review`, form)
   .then(success => {
     console.log('Successfully posted review - getting reviews');
     props.getReviews();

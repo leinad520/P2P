@@ -15,20 +15,14 @@ const ReviewSection = (props) => {
   // let id = 42371;
 
   function getReviews(arg = '1') {
-    axios({
-      method: 'get',
-      url: `http://localhost:3000/productreviews/${productId}/${arg}`,
-    })
+    axios.get(`/productreviews/${productId}/${arg}`)
     .then(data => setReviews(data.data))
     .catch(err => console.log(err));
   }
 
   function getMetaData() {
-    axios({
-      method: 'get',
-      url: `http://localhost:3000/productmeta/${productId}`
-    }).
-    then(data => setMeta(data.data))
+    axios(`/productmeta/${productId}`)
+    .then(data => setMeta(data.data))
     .catch(err => console.log(err));
   }
 
