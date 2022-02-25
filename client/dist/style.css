@@ -251,6 +251,7 @@ input:checked + .slider:before {
   border-radius: 50%;
   height: 6em;
   width: 6em;
+  gap: 2px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -1275,4 +1276,8 @@ ul li ul li {
     max-width: 100%;
     max-height: 100%;
   }
+}
+
+#q-input {
+  color: var(--font-color);
 }
