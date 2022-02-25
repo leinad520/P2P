@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import axios from 'axios';
-import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
+import ModalWindow from '../sharedComponents/mattModal/Modal.jsx';
 import AddAnswerForm from './AddAnswerForm.jsx';
 import css from './QAListEntry.css';
 
