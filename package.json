@@ -10,7 +10,7 @@
     "react-dev": "webpack --config ./webpack.config.js  -w",
     "test": "jest",
     "react-prod": "webpack",
-    "startprod": "node server/server.js"
+    "startprod": "node server/index.js"
   },
   
   "devDependencies": {
