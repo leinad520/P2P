@@ -1,9 +1,10 @@
 .form-container {
-	border-radius: 10px;
+	border-radius: 22px;
   display: flex;
 	flex-direction: column;
   height: 100%;
   width: 100%;
+	color: black;
 }
 
 .inner-form-container {
