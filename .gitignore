@@ -6,3 +6,5 @@ bundle.js.map
 .env.local
 .package-lock.json
 .package.json
+FEC.pem
+
