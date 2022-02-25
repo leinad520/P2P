@@ -17,8 +17,6 @@ const App = (props) => {
   // 🧠
   // 🧠
 
-  console.log('i hate this bundle')
-
   const newId = useParams().id;
 
   useEffect(() => {
@@ -33,7 +31,7 @@ const App = (props) => {
         </div>
         <Overview />
         <RelatedProductsAndOutfit productId={productId} />
-        <QA productId={productId} />
+        <QA />
         <ReviewSection />
       </section>
     );

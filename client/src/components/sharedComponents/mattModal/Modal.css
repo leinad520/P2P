@@ -1,18 +1,18 @@
-#modal-close-btn {
+#matt-modal-close-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
   top: 2%;
-  left: 90%;
+  left: 67%;
   border-radius: 10px;
   height: 50px;
   width: 80px;
   color: #333;
-  background-color: whitesmoke
+  background-color: rgba(215, 177, 121);
 }
 
-.jim-modal-backdrop {
+.matt-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;

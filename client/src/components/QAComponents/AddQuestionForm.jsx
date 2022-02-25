@@ -32,6 +32,9 @@ const AddQuestionForm = (props) => {
     })
     .then(response => {console.log('question was succesfully posted');
     })
+    .then(response => {
+      props.getAllQuestions();
+    })
     .catch(err => {console.error(err);})
   }
 
@@ -39,7 +42,7 @@ const AddQuestionForm = (props) => {
 
     <div className="add-question-modal-container">
       <div className="add-question-form-container">
-        <form id="add-question-form" onSubmit={handleQuestionSubmit}>
+        <form id="add-answer-form" onSubmit={handleQuestionSubmit}>
           <h2 id="add-question-title">Ask Your Question</h2>
           <h4 id="add-question-subtitle">About the {product.name}</h4>
           <div>
@@ -54,7 +57,7 @@ const AddQuestionForm = (props) => {
             </div>
             <div id="q-email-div">
               <div >Your email*
-              <textarea id="qEmail" type="email" name="qEmail" placeholder="Why did you like the product or not?" value={state.mEmail} onChange={handleQFormChange} required="required"/>
+              <textarea id="qEmail" type="email" name="qEmail" placeholder="Example: example@example.com" value={state.mEmail} onChange={handleQFormChange} required="required"/>
               </div>
               <div id="q-auth-span"><b>*For authentication reasons, you will not be emailed*</b></div>
             </div>

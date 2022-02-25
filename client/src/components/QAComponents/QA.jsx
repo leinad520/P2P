@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import QAList from './QAList.jsx';
 import ProductContext from '../Context/ProductContext.jsx';
-import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
+import ModalWindow from '../sharedComponents/mattModal/Modal.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
 import css from './QA.css';
 //this is the main component for the QA List
@@ -73,6 +73,7 @@ const QA = () => {
 
 
 
+
   return (
     <>
       {/* <div className="questions-answers-main"> */}
@@ -80,7 +81,7 @@ const QA = () => {
       <h3>QUESTION & ANSWERS</h3>
         <section >
           <div className="searchContainer">
-            <form className="searchForm">
+            <form className="searchForm" onSubmit={(e) => {e.preventDefault()}}>
               <input className="searchInput" onChange={searchHandler} type="text" id="q-input" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></input>
               <button id="q-btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
@@ -94,9 +95,9 @@ const QA = () => {
             {moreAnswerQuestionsButton()}
             <span className="add-question">
             <button id="add-question-btn" className="btn matt-btn" onClick={e => showModal()}>Add a Question           +</button>
-            <div>
-              <ModalWindow id="matt-modal" onClose={showModal} show={show}>
-                <AddQuestionForm showModal={showModal} product={product}/>
+            <div className="matt-modal">
+              <ModalWindow className="matt-modal" onClose={showModal} show={show}>
+                <AddQuestionForm getAllQuestions={getAllQuestions} showModal={showModal} product={product}/>
               </ModalWindow>
             </div>
             </span>

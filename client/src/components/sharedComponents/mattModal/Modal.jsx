@@ -24,9 +24,9 @@ const modalWindow = (props) => {
       <>
       <div ref={elInput} className={classes}>
         {props.children}
-        <button id="modal-close-btn" className="btn" onClick={props.onClose}>close</button>
+        <button id="matt-modal-close-btn" className="btn" onClick={props.onClose}>close</button>
       </div>
-      <div className="jim-modal-backdrop" onClick={props.onClose}></div>
+      <div className="matt-modal-backdrop" onClick={props.onClose}></div>
       </>
     )
   }

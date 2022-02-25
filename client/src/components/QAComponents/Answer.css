@@ -13,7 +13,7 @@
 #sellerInfo {
   font-size: small;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 5px 0;
 }
 

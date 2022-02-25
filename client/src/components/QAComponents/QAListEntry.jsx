@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import axios from 'axios';
-import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
+import ModalWindow from '../sharedComponents/mattModal/Modal.jsx';
 import AddAnswerForm from './AddAnswerForm.jsx';
 import css from './QAListEntry.css';
 
@@ -99,7 +99,9 @@ const QAListEntry = (props) => {
   //set intiial answers state to length of all answers
   //attach function to onclick of load more answers button
 
-
+  // let handleMoreAnsweredButton = () => {
+  //   if ()
+  // }
 
 
   //if answers array has more than 2 answers, a link "see more answers" should be below the list
@@ -118,11 +120,11 @@ const QAListEntry = (props) => {
             <span>{'     '}</span>
             <span className="add-answer">
               <button id="add-answer-btn" onClick={e => showModal()}>
-                <u>Add Answer</u>
+                <u className='add-button-text'>Add Answer</u>
               </button>
               <div>
-              <ModalWindow id="matt-modal" onClose={showModal} show={show}>
-                <AddAnswerForm showModal={showModal} props={props}/>
+              <ModalWindow className="matt-modal" onClose={showModal} show={show}>
+                <AddAnswerForm getAllQuestions={props.getAllQuestions} showModal={showModal} props={props}/>
               </ModalWindow>
               </div>
             </span>
@@ -138,8 +140,7 @@ const QAListEntry = (props) => {
               })}
             </span>
           </div>
-
-        {(answers.length > 2) && <button id="see-more-answers-btn" className="btn matt-bold-font" onClick={onShowMoreAnswersClick}>{(answersCount > 2) ? 'Collapse Answers' : 'See More Answers'}</button>}
+        {(answers.length > 2 ) && <button id="see-more-answers-btn" className="btn matt-bold-font" onClick={onShowMoreAnswersClick}>{(answersCount > 2) ? 'Collapse Answers' : 'See More Answers'}</button>}
       </div>
     </>
   );

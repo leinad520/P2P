@@ -37,6 +37,9 @@ const AddAnswerForm = (props) => {
       photos: state.mPhotos
     })
     .then(response => {console.log('answer was successfully posted');})
+    .then(response => {
+      props.getAllQuestions();
+    })
     .catch(err => {console.error(err);})
   }
 
@@ -63,7 +66,7 @@ const AddAnswerForm = (props) => {
             </div>
             <span id="q-auth-span">*For authentication reasons, you will not be emailed*</span>
           </div>
-          <button>Upload your photos</button>
+          {/* <button>Upload your photos</button> */}
           <div>
           <button type="submit" id="add-answer-submit">Submit Answer</button>
           </div>

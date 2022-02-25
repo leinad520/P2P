@@ -1,5 +1,4 @@
 .review-data-container{
-  color: #333;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -16,12 +15,10 @@
 
 .review-stars {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 20px;
   font-size: 1.5rem;
-  width: 100px;
-  margin-right: 10px;
+  width: 85px;
 }
 
 .review-stars img {

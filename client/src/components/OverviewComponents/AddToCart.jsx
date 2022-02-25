@@ -17,11 +17,6 @@ function AddToCart({ currData, defaultStyle }) {
     for (let skus in sizeContainer) {
       if (skus !== 'null') {
         results.push(
-          // <option key={skus} value={skus}>{sizeContainer[skus].size}</option>
-          // <input type='radio' name={skus} key={skus} value={sizeContainer[skus].size}></input>
-          // <label key={skus}>{sizeContainer[skus].size}
-          //   <input type='radio' value={skus}></input>
-          // </label>
           <div className={skuSize === skus ? 'size chosen-size' : 'size'} key={skus}>
             <input type='radio' className='size-button-input' name='size' value={skus} id={skus}/>
             <label htmlFor={skus} className='size-label' onClick={() => handleSizeChange(skus)}>
