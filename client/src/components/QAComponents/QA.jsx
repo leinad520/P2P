@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import QAList from './QAList.jsx';
 import ProductContext from '../Context/ProductContext.jsx';
-import ModalWindow from '../sharedComponents/modalComponent/Modal.jsx';
+import ModalWindow from '../sharedComponents/mattModal/Modal.jsx';
 import AddQuestionForm from './AddQuestionForm.jsx';
 import css from './QA.css';
 //this is the main component for the QA List
