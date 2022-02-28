@@ -39,7 +39,6 @@ npm install
 ```
 
 ## Setup
-* Rename tokens.example.js to tokens.js
 * Create a .env file
 * Add HR_TOKEN=githubtoken
 
@@ -54,9 +53,11 @@ npm run startprod
 open
 
 ```
-http://localhost:3000/
+http://localhost:3000/product_id
 
 ```
+
+The product_id is a number between IDs 42366 - 43376
 
 ## :heavy_check_mark: Credit
 DJAM Industries is
